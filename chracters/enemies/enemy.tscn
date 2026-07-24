@@ -1,3 +1,19 @@
-[gd_scene format=3 uid="uid://d1wakfws1yses"]
+[gd_scene load_steps=4 format=3 uid="uid://d1wakfws1yses"]
+
+[ext_resource type="Script" uid="uid://wbbbadomml83" path="res://components/Health.gd" id="1_sufvk"]
+[ext_resource type="Script" uid="uid://duoe8w4fbx8fc" path="res://components/HurtBox.gd" id="2_fwkbl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cwfla"]
 
 [node name="Enemy" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cwfla")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("1_sufvk")
+metadata/_custom_type_script = "uid://wbbbadomml83"
+
+[node name="HurtBox" type="Area2D" parent="."]
+script = ExtResource("2_fwkbl")
+metadata/_custom_type_script = "uid://duoe8w4fbx8fc"

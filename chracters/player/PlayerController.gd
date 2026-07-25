@@ -69,3 +69,7 @@ func _on_collect_feather(area: Area2D) -> void:
 			var enemy = area.get_parent() as EnemyController
 			if enemy and enemy.state == EnemyController.EnemyState.DEAD_PENDING_COLLECTION:
 				enemy.collect()
+
+func take_damage(damage: float) -> void:
+	print('im hit')
+	health.take_damage(damage)

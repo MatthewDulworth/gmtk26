@@ -134,8 +134,10 @@ func _dead_pending_collection() -> void:
 func _on_animation_complete() -> void:
 	if animation.animation == enemy_data.animation_name_die:
 		animation.stop()
-		animation.play(enemy_data.animation_name_feather) 
-	if animation.animation == enemy_data.animation_name_attack:
+		animation.play(enemy_data.animation_name_feather)
+		var tween = _bounce_animation(10)
+		tween.tween_callback(queue_free)
+	elif animation.animation == enemy_data.animation_name_attack:
 		animation.stop()
 		animation.speed_scale = 1.0 
 		
@@ -144,14 +146,15 @@ func _on_animation_complete() -> void:
 	
 func collect() -> void:
 	state = EnemyState.DEAD_COLLECTED
+	_show_value_text_popup()
+	queue_free()
 	
+func _show_value_text_popup() -> void:
 	var text_popup = feather_pickup_text.instantiate()
 	text_popup.setup(enemy_data.count_down_value)
 	text_popup.global_position = global_position
-	get_tree().current_scene.add_child(text_popup)
-	
-	queue_free()
-	
+	get_tree().current_scene.add_child(text_popup)	
+
 func _set_hurtbox_collision_layer(layer: CollisionLayers.Layer) -> void:
 	# Reset any previous layers
 	hurtbox.collision_layer = 0
@@ -196,3 +199,20 @@ func _cooldown_attack() -> void:
 	
 func _is_all_players_dead() -> bool:
 		return players.all(func(p): return p.state == PlayerController.PlayerState.DEAD)
+		
+func _bounce_animation(num_bounces: int) -> Tween:
+	var tween = create_tween()
+	var base_y = position.y
+	var vertical_change = 20
+	var scale_change = 1.1
+	var time = 0.4 # seconds
+	
+	for i in range(num_bounces):
+		# Bounce + grow
+		tween.tween_property(self, "position:y", base_y - vertical_change, time).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+		tween.parallel().tween_property(self, "scale", scale * scale_change, time).set_trans(Tween.TRANS_SINE)
+		
+		# Fall + shrink
+		tween.tween_property(self, "position:y", base_y, time).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+		tween.parallel().tween_property(self, "scale", scale, time).set_trans(Tween.TRANS_SINE)
+	return tween 

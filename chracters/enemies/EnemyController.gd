@@ -93,16 +93,12 @@ func _attack() -> void:
 	state = EnemyState.ATTACK
 	velocity = Vector2.ZERO 
 	
-	# 1. Calculate how fast to scale the sprite based on desired duration
+	# Scale animation based on duration
 	var sprite_frames = animation.sprite_frames
 	var frame_count = sprite_frames.get_frame_count("attack")
 	var base_fps = sprite_frames.get_animation_speed("attack")
 	var native_duration = float(frame_count) / base_fps
-	
-	# Formula: native_seconds / desired_seconds = speed_scale modifier
 	animation.speed_scale = native_duration / enemy_data.attack_duration
-	
-	# 2. Play the scaled animation
 	animation.play("attack")
 	
 func _dead_pending_collection() -> void:

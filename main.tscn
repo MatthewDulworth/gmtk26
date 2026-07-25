@@ -31,6 +31,13 @@ position = Vector2(-478, 99)
 enemy_data = ExtResource("4_5vw27")
 players = [NodePath("../Player")]
 
+[node name="Enemy2" parent="." unique_id=976929462 node_paths=PackedStringArray("players") instance=ExtResource("2_0xm2m")]
+enemy_data = ExtResource("4_5vw27")
+players = [NodePath("../Player")]
+
+[node name="Enemy3" parent="." unique_id=976956025 node_paths=PackedStringArray("players") instance=ExtResource("2_0xm2m")]
+players = [NodePath("../Player")]
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1687995481]
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=162539292]

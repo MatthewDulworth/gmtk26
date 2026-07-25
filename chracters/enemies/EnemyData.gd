@@ -1,8 +1,8 @@
 extends Resource
 class_name EnemyData
 
-@export var max_health: float = 100
-@export var move_speed: float = 200
+@export var max_health: float = 1.0
+@export var move_speed: float = 200.0
 
 @export var attack_range: float = 1.0
 @export var attack_damage: float = 1.0

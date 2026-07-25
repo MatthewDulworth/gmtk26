@@ -43,7 +43,6 @@ func _fire_hitscan(dir: Vector2) -> void:
 		if result:
 			to = result.position
 			if result.collider is HurtBox:
-				print("hit")
 				result.collider.take_damage(weapon_data.damage, self)
 		_draw_tracer(from, to)
 

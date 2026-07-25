@@ -22,8 +22,10 @@ enum EnemyState {
 func _ready() -> void:
 	targetPlayer()
 	scale = scale * enemy_data.size_scale;
-	health.died.connect(func(): queue_free())
 	health.initialize(enemy_data.max_health)
+	health.died.connect(func(): queue_free())
+	
+	# make sure hurtbox is on layer 5 so hitscanning detects it
 	hurtbox.set_collision_layer_value(5, true) 
 
 

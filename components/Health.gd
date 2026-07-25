@@ -18,6 +18,7 @@ func take_damage(damage: float) -> void:
 	if (current_health <= 0):
 		died.emit()
 	else:
+		print("direct hit - ", current_health, "/", max_health)
 		health_changed.emit()
 
 func heal(amount: float) -> void:

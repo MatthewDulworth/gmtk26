@@ -36,7 +36,7 @@ func _physics_process(_delta: float) ->  void:
 		$AnimatedSprite2D.play("run")
 		var pos = global_transform.origin
 		var new_pos = nav_agent_2d.get_next_path_position()
-		var new_vel = (new_pos - pos).normalized() * 100; # speed
+		var new_vel = (new_pos - pos).normalized() * 200; # speed
 		velocity = new_vel
 		move_and_slide()
 		

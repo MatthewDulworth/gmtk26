@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://duoe8w4fbx8fc" path="res://components/HurtBox.gd" id="2_fwkbl"]
 [ext_resource type="Script" uid="uid://bdhvi88d3ihm2" path="res://chracters/enemies/EnemyData.gd" id="2_r7v4m"]
 [ext_resource type="Texture2D" uid="uid://ckdjpaasp8ydo" path="res://assets/Goose/Flap.png" id="4_cuw3f"]
+[ext_resource type="PackedScene" uid="uid://c74uav1jjppt3" path="res://components/HitBox.tscn" id="4_vpdod"]
 [ext_resource type="Texture2D" uid="uid://dhlpiecs6ndv8" path="res://assets/Goose/Idle.png" id="4_yhatl"]
 [ext_resource type="Texture2D" uid="uid://dsg1jdn6o5no3" path="res://assets/Plume 16x16.png" id="6_6sxb8"]
 [ext_resource type="Texture2D" uid="uid://cai7wvm13476g" path="res://assets/Goose/Run.png" id="6_r7v4m"]
@@ -48,6 +49,14 @@ atlas = ExtResource("4_cuw3f")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cixvs"]
+atlas = ExtResource("4_cuw3f")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ltnf5"]
+atlas = ExtResource("4_cuw3f")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pw0mg"]
 atlas = ExtResource("4_cuw3f")
 region = Rect2(192, 0, 64, 64)
 
@@ -133,6 +142,32 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ltnf5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pw0mg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ltnf5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pw0mg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ltnf5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pw0mg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ltnf5")
+}],
+"loop": 0,
+"name": &"death2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_slepv")
 }],
 "loop": 0,
@@ -199,6 +234,8 @@ shape = SubResource("CapsuleShape2D_6sxb8")
 script = ExtResource("1_sufvk")
 metadata/_custom_type_script = "uid://wbbbadomml83"
 
+[node name="HitBox" parent="." unique_id=729020827 instance=ExtResource("4_vpdod")]
+
 [node name="HurtBox" type="Area2D" parent="." unique_id=1940937216 node_paths=PackedStringArray("health")]
 script = ExtResource("2_fwkbl")
 health = NodePath("../Health")
@@ -210,6 +247,6 @@ shape = SubResource("CapsuleShape2D_vpdod")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1927816173]
 sprite_frames = SubResource("SpriteFrames_r7v4m")
-animation = &"attack"
+animation = &"death2"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1165551425]

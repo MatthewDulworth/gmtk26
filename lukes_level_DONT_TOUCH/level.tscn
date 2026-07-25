@@ -1,3 +1,24 @@
 [gd_scene format=3 uid="uid://ciidkousx5xwi"]
 
+[ext_resource type="Texture2D" uid="uid://ddvd7nfqv3aku" path="res://lukes_level_DONT_TOUCH/tiles_prog_art.png" id="1_2rkgw"]
+[ext_resource type="Script" uid="uid://ct70hpy7pe1w7" path="res://lukes_level_DONT_TOUCH/enemy_spawner.gd" id="2_0h76l"]
+[ext_resource type="PackedScene" uid="uid://d1wakfws1yses" path="res://chracters/enemies/enemy.tscn" id="3_dgned"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dgned"]
+texture = ExtResource("1_2rkgw")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_76gxs"]
+sources/1 = SubResource("TileSetAtlasSource_dgned")
+
 [node name="Level" type="Node2D" unique_id=2040812864]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=624556665]
+tile_set = SubResource("TileSet_76gxs")
+
+[node name="EnemySpawner" type="Marker2D" parent="." unique_id=447280142]
+script = ExtResource("2_0h76l")
+enemy_scene = ExtResource("3_dgned")

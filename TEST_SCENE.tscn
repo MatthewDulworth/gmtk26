@@ -1,4 +1,4 @@
-[gd_scene load_steps=0 format=3 uid="uid://c0b5phmxypmb5"]
+[gd_scene format=3 uid="uid://c0b5phmxypmb5"]
 
 [ext_resource type="Texture2D" uid="uid://dn0winq5cq6u2" path="res://Checkerboard_pattern.svg" id="1_pxe5x"]
 [ext_resource type="PackedScene" uid="uid://d0fyntx0582l7" path="res://chracters/player/player.tscn" id="2_n2x8j"]

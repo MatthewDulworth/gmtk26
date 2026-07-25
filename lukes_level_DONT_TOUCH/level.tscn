@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://ciidkousx5xwi"]
 
 [ext_resource type="Texture2D" uid="uid://ddvd7nfqv3aku" path="res://lukes_level_DONT_TOUCH/tiles_prog_art.png" id="1_2rkgw"]
-[ext_resource type="Script" uid="uid://ct70hpy7pe1w7" path="res://lukes_level_DONT_TOUCH/enemy_spawner.gd" id="2_0h76l"]
-[ext_resource type="PackedScene" uid="uid://d1wakfws1yses" path="res://chracters/enemies/enemy.tscn" id="3_dgned"]
-[ext_resource type="Texture2D" uid="uid://dqe135mpyt608" path="res://icon.svg" id="4_sikku"]
+[ext_resource type="PackedScene" uid="uid://3hpj6egl60q1" path="res://lukes_level_DONT_TOUCH/enemy_spawner.tscn" id="2_dgned"]
+[ext_resource type="PackedScene" uid="uid://d0fyntx0582l7" path="res://chracters/player/player.tscn" id="5_lo1vg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dgned"]
 texture = ExtResource("1_2rkgw")
@@ -20,11 +19,8 @@ sources/1 = SubResource("TileSetAtlasSource_dgned")
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=624556665]
 tile_set = SubResource("TileSet_76gxs")
 
-[node name="EnemySpawner" type="Marker2D" parent="." unique_id=447280142]
-script = ExtResource("2_0h76l")
-enemy_scene = ExtResource("3_dgned")
-
-[node name="Sprite2D" type="Sprite2D" parent="EnemySpawner" unique_id=102216301]
-texture = ExtResource("4_sikku")
+[node name="EnemySpawner" parent="." unique_id=1096881686 instance=ExtResource("2_dgned")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=615763250]
+
+[node name="Player" parent="." unique_id=1399235571 instance=ExtResource("5_lo1vg")]

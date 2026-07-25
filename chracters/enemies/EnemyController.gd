@@ -7,6 +7,8 @@ class_name EnemyController
 
 @onready var nav_agent_2d = $NavigationAgent2D
 
+var players: Array[PlayerController]
+
 var target: Vector2
 
 const player_scan_time = 0.3 # Time in seconds until it scans for which player to chase

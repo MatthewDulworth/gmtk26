@@ -5,6 +5,8 @@ extends Marker2D
 var _time_since_last_spawn = 0
 var _time_since_wave_start = 0
 
+@export var players: Array[PlayerController]
+
 var enemy_count:
 	set(v):
 		if v == 0:
@@ -32,7 +34,8 @@ func _process(delta: float) -> void:
 		return
 	
 	if _time_since_last_spawn > current_spawn_rate:
-		var new_enemy = enemy_scene.instantiate()
+		var new_enemy: EnemyController = enemy_scene.instantiate()
+		new_enemy.players = players
 		add_child(new_enemy)
 		enemy_count += 1
 		_time_since_last_spawn = 0

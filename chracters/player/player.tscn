@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://b1ltxks71q21v" path="res://chracters/player/PlayerData.gd" id="2_tdtta"]
 [ext_resource type="Resource" uid="uid://cchvlvuoyk60d" path="res://weapons/Pistol.tres" id="3_7eplg"]
 [ext_resource type="Script" uid="uid://wbbbadomml83" path="res://components/Health.gd" id="3_tdtta"]
+[ext_resource type="PackedScene" uid="uid://c7yaknwjn8i2u" path="res://components/PickupBox.tscn" id="5_puunv"]
 [ext_resource type="Texture2D" uid="uid://vht0s4s0u07e" path="res://ASSets/Vampire-v2/Vampire-Burn.png" id="7_5edc0"]
 [ext_resource type="Texture2D" uid="uid://blnwnjieejw6i" path="res://ASSets/Vampire-v2/Vampire-Levitate-24x24.png" id="7_7fake"]
 [ext_resource type="Script" uid="uid://d1m2ulshd7v5" path="res://weapons/Weapon.gd" id="7_7qpiw"]
@@ -343,6 +344,8 @@ position = Vector2(2, 0)
 shape = SubResource("RectangleShape2D_3c51y")
 
 [node name="HurtBox" parent="." unique_id=538028481 instance=ExtResource("2_q3yxo")]
+
+[node name="PickupBox" parent="." unique_id=502016375 instance=ExtResource("5_puunv")]
 
 [node name="Health" type="Node" parent="." unique_id=1059343717]
 script = ExtResource("3_tdtta")

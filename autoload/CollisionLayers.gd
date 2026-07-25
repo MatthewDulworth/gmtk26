@@ -1,0 +1,11 @@
+extends Node
+
+enum Layer {
+	WORLD = 1,
+	PLAYER_BODY = 2,
+	ENEMY_BODY = 3,
+	PLAYER_HURTBOX = 4,
+	ENEMY_HURTBOX = 5,
+	PLAYER_ATTACK = 6,
+	ENEMY_ATTACK = 7
+}

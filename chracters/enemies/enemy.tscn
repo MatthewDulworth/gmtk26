@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bdhvi88d3ihm2" path="res://chracters/enemies/EnemyData.gd" id="2_r7v4m"]
 [ext_resource type="Texture2D" uid="uid://ckdjpaasp8ydo" path="res://assets/Goose/Flap.png" id="4_cuw3f"]
 [ext_resource type="Texture2D" uid="uid://dhlpiecs6ndv8" path="res://assets/Goose/Idle.png" id="4_yhatl"]
+[ext_resource type="Texture2D" uid="uid://dsg1jdn6o5no3" path="res://assets/Plume 16x16.png" id="6_6sxb8"]
 [ext_resource type="Texture2D" uid="uid://cai7wvm13476g" path="res://assets/Goose/Run.png" id="6_r7v4m"]
 [ext_resource type="Texture2D" uid="uid://3to73gt4a5n0" path="res://assets/Goose/Walk.png" id="7_6sxb8"]
 
@@ -13,11 +14,9 @@
 script = ExtResource("2_r7v4m")
 metadata/_custom_type_script = "uid://bdhvi88d3ihm2"
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cwfla"]
-size = Vector2(30, 30)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6sxb8"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rhggh"]
-size = Vector2(30, 30)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vpdod"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jvj35"]
 atlas = ExtResource("4_cuw3f")
@@ -34,6 +33,10 @@ region = Rect2(128, 0, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_cixvs"]
 atlas = ExtResource("4_cuw3f")
 region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_slepv"]
+atlas = ExtResource("6_6sxb8")
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tjpt3"]
 atlas = ExtResource("4_yhatl")
@@ -90,8 +93,16 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cixvs")
 }],
-"loop": 1,
-"name": &"flap",
+"loop": 0,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_slepv")
+}],
+"loop": 0,
+"name": &"down_feather",
 "speed": 5.0
 }, {
 "frames": [{
@@ -101,7 +112,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_c5wvv")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"idle",
 "speed": 5.0
 }, {
@@ -148,7 +159,7 @@ hurtbox = NodePath("HurtBox")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=959522981]
 position = Vector2(1, -14)
-shape = SubResource("RectangleShape2D_cwfla")
+shape = SubResource("CapsuleShape2D_6sxb8")
 
 [node name="Health" type="Node" parent="." unique_id=796883036]
 script = ExtResource("1_sufvk")
@@ -161,10 +172,10 @@ metadata/_custom_type_script = "uid://duoe8w4fbx8fc"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1572569437]
 position = Vector2(1, -14)
-shape = SubResource("RectangleShape2D_rhggh")
+shape = SubResource("CapsuleShape2D_vpdod")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1927816173]
 sprite_frames = SubResource("SpriteFrames_r7v4m")
-animation = &"flap"
+animation = &"down_feather"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1165551425]

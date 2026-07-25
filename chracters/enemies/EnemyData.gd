@@ -6,7 +6,9 @@ class_name EnemyData
 @export var count_down_value: int = 1
 
 @export var animation_name_move: String = "run"
-@export var animation_name_die: String = "death2"
+@export var animation_name_die: String = "death"
+@export var animation_name_attack: String = "attack"
+@export var animation_name_feather: String = "down_feather"
 
 @export var attack_range: float = 1.0
 @export var attack_damage: float = 1.0

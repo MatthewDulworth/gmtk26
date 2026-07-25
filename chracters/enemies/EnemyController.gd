@@ -25,7 +25,8 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	$AnimatedSprite2D.play("flap")
 	#if (position.distance_to(target)) > 0.5:
-		
+	nav_agent_2d
+	move_and_slide()
 
 func _physics_process(_delta: float) ->  void:
 	pass

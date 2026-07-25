@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ckdjpaasp8ydo"
-path="res://.godot/imported/Flap.png-93478cd9f24be0a55c09128c4d33e7f7.ctex"
+path="res://.godot/imported/Flap.png-360ed390780281d266ab893d8076ecea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ASSets/Goose/Flap.png"
-dest_files=["res://.godot/imported/Flap.png-93478cd9f24be0a55c09128c4d33e7f7.ctex"]
+source_file="res://assets/Goose/Flap.png"
+dest_files=["res://.godot/imported/Flap.png-360ed390780281d266ab893d8076ecea.ctex"]
 
 [params]
 

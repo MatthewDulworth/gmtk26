@@ -11,13 +11,13 @@ var target: Vector2
 var is_attack_on_cooldown: bool = false
 
 const player_scan_time = 0.3 # Time in seconds until it scans for which player to chase
+const feather_pickup_text = preload("res://components/FloatingText.tscn")
 
 @onready var nav_agent_2d = $NavigationAgent2D
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_box: CollisionShape2D = $CollisionShape2D
 @onready var hitbox: Area2D = $HitBox
 @onready var hitbox_collision: CollisionShape2D = $HitBox/CollisionShape2D
-
 
 enum EnemyState {
 	SPAWN,
@@ -133,6 +133,12 @@ func _on_animation_complete() -> void:
 	
 func collect() -> void:
 	state = EnemyState.DEAD_COLLECTED
+	
+	var text_popup = feather_pickup_text.instantiate()
+	text_popup.setup(enemy_data.count_down_value)
+	text_popup.global_position = global_position
+	get_tree().current_scene.add_child(text_popup)
+	
 	queue_free()
 	
 func _set_hurtbox_collision_layer(layer: CollisionLayers.Layer) -> void:

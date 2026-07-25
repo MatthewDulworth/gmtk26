@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://ciidkousx5xwi"]
+
+[ext_resource type="Script" uid="uid://bhf76id4vfeir" path="res://level/level.gd" id="1_vkbyq"]
+[ext_resource type="PackedScene" uid="uid://d1wakfws1yses" path="res://chracters/enemies/enemy.tscn" id="2_ktfr2"]
+[ext_resource type="Texture2D" uid="uid://ddvd7nfqv3aku" path="res://level/tiles_prog_art.png" id="3_44x8d"]
+[ext_resource type="PackedScene" uid="uid://d33q7ngm2teb7" path="res://item/item.tscn" id="3_ktfr2"]
+[ext_resource type="Script" uid="uid://bdhvi88d3ihm2" path="res://chracters/enemies/EnemyData.gd" id="4_6gtgk"]
+[ext_resource type="PackedScene" uid="uid://d0fyntx0582l7" path="res://chracters/player/player.tscn" id="4_ivpvi"]
+[ext_resource type="Resource" uid="uid://bbiflcgguj78o" path="res://chracters/enemies/EnemyMed.tres" id="5_cw150"]
+[ext_resource type="Resource" uid="uid://d38xsxobsmd6k" path="res://chracters/enemies/EnemyFast.tres" id="6_xii2b"]
+[ext_resource type="Resource" uid="uid://bxhj8gcqqmkpd" path="res://chracters/enemies/EnemySlow.tres" id="7_rhqlf"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dgned"]
+texture = ExtResource("3_44x8d")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_76gxs"]
+sources/1 = SubResource("TileSetAtlasSource_dgned")
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_dgned"]
+vertices = PackedVector2Array(983.21094, 572.9297, -985.3594, 559.0625, -1026.6328, -563.0703, 1008.77344, -576.9219)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-1037, -573, 1019, -587, 993, 583, -995, 569)])
+
+[node name="Level" type="Node2D" unique_id=2040812864 node_paths=PackedStringArray("players")]
+script = ExtResource("1_vkbyq")
+enemy_scene = ExtResource("2_ktfr2")
+players = [NodePath("Player")]
+item_scene = ExtResource("3_ktfr2")
+enemy_data_types = Array[ExtResource("4_6gtgk")]([ExtResource("5_cw150"), ExtResource("6_xii2b"), ExtResource("7_rhqlf")])
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=624556665]
+tile_set = SubResource("TileSet_76gxs")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=615763250]
+
+[node name="Player" parent="." unique_id=1399235571 instance=ExtResource("4_ivpvi")]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=673393329]
+navigation_polygon = SubResource("NavigationPolygon_dgned")
+
+[node name="EnemySpawners" type="Node" parent="." unique_id=266415906]
+
+[node name="Marker2D" type="Marker2D" parent="EnemySpawners" unique_id=2024103763]
+position = Vector2(6, -561)
+
+[node name="Marker2D2" type="Marker2D" parent="EnemySpawners" unique_id=781313866]
+position = Vector2(5, 592)
+
+[node name="ItemSpawners" type="Node" parent="." unique_id=252757059]
+
+[node name="Marker2D2" type="Marker2D" parent="ItemSpawners" unique_id=1572802853]
+position = Vector2(595, 356)
+
+[node name="Marker2D" type="Marker2D" parent="ItemSpawners" unique_id=1859480833]
+position = Vector2(-299, -358)
+gizmo_extents = 27.5
+
+[node name="WaveLabel" type="Label" parent="." unique_id=1228904846]
+offset_left = -948.0
+offset_top = -523.0
+offset_right = -643.0
+offset_bottom = -387.0
+theme_override_font_sizes/font_size = 40
+
+[node name="KillsLabel" type="Label" parent="." unique_id=1242824465]
+offset_left = -500.0
+offset_top = -538.0
+offset_right = -460.0
+offset_bottom = -483.0
+theme_override_font_sizes/font_size = 40
+
+[node name="EnemyCount" type="Label" parent="." unique_id=365350781]
+offset_left = -112.0
+offset_top = -532.0
+offset_right = -72.0
+offset_bottom = -463.0
+theme_override_font_sizes/font_size = 50

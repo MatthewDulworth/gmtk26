@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://b054rjhksl5xl"]
+
+[ext_resource type="Script" uid="uid://ccggbmoxah0ka" path="res://autoload/audio_manager.gd" id="1_nbik8"]
+[ext_resource type="AudioStream" uid="uid://b4eeu1tm14lq3" path="res://ASSets/Audio/playholder_theme.mp3" id="2_jqjfi"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_jqjfi"]
+clip_count = 1
+clip_0/name = &"Playholder Theme"
+clip_0/stream = ExtResource("2_jqjfi")
+clip_0/auto_advance = 0
+
+[node name="AudioManager" type="Node2D" unique_id=1669834076]
+process_mode = 3
+script = ExtResource("1_nbik8")
+
+[node name="MainPlayer" type="AudioStreamPlayer" parent="." unique_id=2000200047]
+stream = SubResource("AudioStreamInteractive_jqjfi")
+
+[node name="AudioPlayerPool" type="Node" parent="." unique_id=130873380]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AudioPlayerPool" unique_id=523066287]
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="AudioPlayerPool" unique_id=1520334490]
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="AudioPlayerPool" unique_id=1930151709]
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="AudioPlayerPool" unique_id=1111812939]
+
+[node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="AudioPlayerPool" unique_id=23983494]
+
+[node name="AudioStreamPlayer6" type="AudioStreamPlayer" parent="AudioPlayerPool" unique_id=512482798]

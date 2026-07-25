@@ -6,6 +6,10 @@
 script = ExtResource("1_jc8jc")
 max_health = 3.0
 move_speed = 150.0
-move_animation_name = "walk"
+count_down_value = 5
+attack_range = 75.0
+attack_damage = 10.0
+attack_cooldown = 3.0
+attack_duration = 2.0
 size_scale = 3.0
 metadata/_custom_type_script = "uid://bdhvi88d3ihm2"

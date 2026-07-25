@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://db6xfhv2oq2d2"]
+
+[ext_resource type="Script" uid="uid://b10yltb2sx2m5" path="res://components/FloatingText.gd" id="1_qrhbl"]
+
+[sub_resource type="Animation" id="Animation_klo5a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qrhbl"]
+resource_name = "popup"
+length = 1.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -40)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fw10t"]
+_data = {
+&"RESET": SubResource("Animation_klo5a"),
+&"popup": SubResource("Animation_qrhbl")
+}
+
+[node name="FloatingText" type="Node2D" unique_id=1964903585]
+script = ExtResource("1_qrhbl")
+
+[node name="Label" type="Label" parent="." unique_id=1515396725]
+offset_right = 40.0
+offset_bottom = 34.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "+1"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1413174570]
+libraries/ = SubResource("AnimationLibrary_fw10t")
+autoplay = &"popup"

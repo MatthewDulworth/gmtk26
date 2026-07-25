@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://vht0s4s0u07e"
-path="res://.godot/imported/Vampire-Burn.png-d1416f82549399bde24694be28d932ab.ctex"
+path="res://.godot/imported/Vampire-Burn.png-3b148a2d2952c49e9f9859d1f72622d6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ASSets/Vampire-v2/Vampire-Burn.png"
-dest_files=["res://.godot/imported/Vampire-Burn.png-d1416f82549399bde24694be28d932ab.ctex"]
+source_file="res://assets/Vampire-v2/Vampire-Burn.png"
+dest_files=["res://.godot/imported/Vampire-Burn.png-3b148a2d2952c49e9f9859d1f72622d6.ctex"]
 
 [params]
 

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6yplr84qj8xy"]
+
+[ext_resource type="PackedScene" uid="uid://d1wakfws1yses" path="res://chracters/enemies/enemy.tscn" id="2_0xm2m"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Enemy" parent="." instance=ExtResource("2_0xm2m")]
+position = Vector2(19, 15)
+
+[node name="Camera2D" type="Camera2D" parent="."]

@@ -15,10 +15,11 @@ enum EnemyState {
 }
 
 func _ready() -> void:
-	health.initialize(enemy_data.max_health)
+	pass
+	#health.initialize(enemy_data.max_health)
 
 func _process(_delta: float) -> void:
-	pass
+	$AnimatedSprite2D.play("idle")
 
 func _physics_process(_delta: float) ->  void:
 	pass

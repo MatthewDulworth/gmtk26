@@ -29,4 +29,4 @@ func take_damage(damage: float) -> void:
 
 func heal(amount: float) -> void:
 	current_health = min(max_health, current_health + amount)
-	health_changed.emit()
+	health_changed.emit(current_health)

@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://d1wakfws1yses" path="res://chracters/enemies/enemy.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://d0fyntx0582l7" path="res://chracters/player/player.tscn" id="2_h2yge"]
 [ext_resource type="Resource" uid="uid://xcvhfebef7bm" path="res://chracters/player/Count.tres" id="3_5vw27"]
-[ext_resource type="Resource" uid="uid://bxhj8gcqqmkpd" path="res://chracters/enemies/EnemySlow.tres" id="4_5vw27"]
-[ext_resource type="Resource" uid="uid://d38xsxobsmd6k" path="res://chracters/enemies/EnemyFast.tres" id="6_kek77"]
-[ext_resource type="Resource" uid="uid://bbiflcgguj78o" path="res://chracters/enemies/EnemyMed.tres" id="7_5vw27"]
+[ext_resource type="Resource" uid="uid://bxhj8gcqqmkpd" path="res://chracters/enemies/variants/EnemySlow.tres" id="4_5vw27"]
+[ext_resource type="Resource" uid="uid://d38xsxobsmd6k" path="res://chracters/enemies/variants/EnemyFast.tres" id="6_kek77"]
+[ext_resource type="Resource" uid="uid://bbiflcgguj78o" path="res://chracters/enemies/variants/EnemyMed.tres" id="7_5vw27"]
 [ext_resource type="PackedScene" uid="uid://dktivciqkls6i" path="res://obstacles/Obstacle.tscn" id="7_272bh"]
 [ext_resource type="Script" path="res://components/ShakyCamera2D.gd" id="8_shake"]
 

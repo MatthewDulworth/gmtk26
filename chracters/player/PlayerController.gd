@@ -11,13 +11,23 @@ class_name PlayerController
 
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var pickup_box: Area2D = $PickupBox
+@onready var collision_box: CollisionShape2D = $CollisionShape2D
 
 var player_id: InputManager.PlayerID = InputManager.PlayerID.PLAYER_1
 var input: InputIntent
 var waiting_for_fire_release: bool = false
+var state: PlayerState
+
+enum PlayerState {
+	ALIVE,
+	DEAD
+}
 
 func pickup_weapon(data: WeaponData) -> void:
 	weapons_list.add_weapon(data)
+	
+func take_damage(damage: float) -> void:
+	health.take_damage(damage)
 
 func _ready() -> void:
 	health.initialize(player_data.max_health, player_data.health_regen_rate)
@@ -26,7 +36,9 @@ func _ready() -> void:
 	health.died.connect(_on_death)
 	weapons_list.initialize(player_data.starting_weapons)
 	_use_weapon(weapons_list.get_current_weapon())
-	animation.play("levitate")
+	state = PlayerState.ALIVE
+
+	animation.play(player_data.animation_name_move)
 
 	# Don't shoot ourself
 	_set_hurtbox_collision_layer(CollisionLayers.Layer.PLAYER_HURTBOX)
@@ -34,6 +46,7 @@ func _ready() -> void:
 	# Signals
 	pickup_box.area_entered.connect(_on_collect_feather)
 	weapon.reloaded.connect(_on_weapon_reloaded)
+	animation.animation_finished.connect(_on_animation_complete)
 
 func _process(_delta: float) -> void:
 	input = InputManager.get_input_intent(player_id)
@@ -69,7 +82,17 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func _on_death() -> void:
-	print(player_id, " died")
+	print("player ", player_id, " died.")
+	state = PlayerState.DEAD
+	set_process(false)
+	set_physics_process(false)
+	velocity = Vector2.ZERO
+	animation.play(player_data.animation_name_die)
+	
+	# Disable collision
+	collision_box.set_deferred("disabled", true)
+	pickup_box.set_deferred("disabled", true)
+	
 
 func _about_face() -> void:
 	if velocity.x > 0:
@@ -91,7 +114,8 @@ func _on_collect_feather(area: Area2D) -> void:
 			var enemy = area.get_parent() as EnemyController
 			if enemy and enemy.state == EnemyController.EnemyState.DEAD_PENDING_COLLECTION:
 				enemy.collect()
-
-func take_damage(damage: float) -> void:
-	print('im hit')
-	health.take_damage(damage)
+				
+func _on_animation_complete() -> void:
+	if animation.animation == player_data.animation_name_die:
+		animation.stop()
+		animation.frame = animation.sprite_frames.get_frame_count(player_data.animation_name_die) - 1

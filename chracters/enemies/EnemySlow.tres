@@ -4,5 +4,6 @@
 
 [resource]
 script = ExtResource("1_jc8jc")
-size_scale = 4.0
+move_speed = 150.0
+size_scale = 3.0
 metadata/_custom_type_script = "uid://bdhvi88d3ihm2"

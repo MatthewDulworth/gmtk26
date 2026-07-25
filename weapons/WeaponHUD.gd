@@ -88,3 +88,4 @@ func _process(_delta: float) -> void:
 		var elapsed = reload_time - weapon.reload_timer.time_left
 		var pct = clamp(elapsed / reload_time, 0.0, 1.0)
 		reload_cursor.position.x = RELOAD_TRACK_WIDTH * pct
+		reload_active_window.visible = not weapon.tried_active_reload

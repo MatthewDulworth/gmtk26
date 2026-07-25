@@ -12,9 +12,9 @@ const TRACER_FADE_TIME := 0.05
 
 const EXPLOSION_EFFECT_SCENE: PackedScene = preload("res://components/ExplosionEffect.tscn")
 const SCREEN_FLASH_SCENE: PackedScene = preload("res://components/ScreenFlash.tscn")
-const EXPLOSION_SHAKE_AMOUNT := 8.0
-const EXPLOSION_SHAKE_DURATION := 0.25
-const EXPLOSION_FLASH_INTENSITY := 0.4
+const EXPLOSION_SHAKE_AMOUNT := 12.0
+const EXPLOSION_SHAKE_DURATION := 0.3
+const EXPLOSION_FLASH_INTENSITY := 0.5
 
 var weapon_slot: WeaponSlot
 

@@ -14,6 +14,7 @@ class_name PlayerController
 
 var player_id: InputManager.PlayerID = InputManager.PlayerID.PLAYER_1
 var input: InputIntent
+var waiting_for_fire_release: bool = false
 
 func pickup_weapon(data: WeaponData) -> void:
 	weapons_list.add_weapon(data)
@@ -26,19 +27,23 @@ func _ready() -> void:
 	weapons_list.initialize(player_data.starting_weapons)
 	_use_weapon(weapons_list.get_current_weapon())
 	animation.play("levitate")
-	
+
 	# Don't shoot ourself
 	_set_hurtbox_collision_layer(CollisionLayers.Layer.PLAYER_HURTBOX)
-	
+
 	# Signals
 	pickup_box.area_entered.connect(_on_collect_feather)
+	weapon.reloaded.connect(_on_weapon_reloaded)
 
 func _process(_delta: float) -> void:
 	input = InputManager.get_input_intent(player_id)
-	
-	if input.fire_just_pressed or (input.fire_held and weapon.weapon_slot.weapon.full_auto):
+
+	if not input.fire_held:
+		waiting_for_fire_release = false
+
+	if input.fire_just_pressed or (input.fire_held and weapon.weapon_slot.weapon.full_auto and not weapon.reloading and not waiting_for_fire_release):
 		weapon.fire(input.facing)
-	
+
 	if input.reload:
 		weapon.reload()
 		
@@ -46,6 +51,10 @@ func _process(_delta: float) -> void:
 		_cycle_weapon(input.next)
 	
 	_about_face()
+
+func _on_weapon_reloaded(active: bool) -> void:
+	if active and input.fire_held:
+		waiting_for_fire_release = true
 
 func _use_weapon(slot: WeaponSlot) -> void:
 	print("using: ", slot.weapon.name, " n: ", slot.ammo.bullets_left, " m: ",  slot.ammo.mags_left)

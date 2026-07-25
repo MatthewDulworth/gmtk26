@@ -42,7 +42,6 @@ func reload() -> void:
 		var window_start = weapon_slot.weapon.active_reload_start
 		var window_end = weapon_slot.weapon.active_reload_end
 		var time = reload_timer.time_left
-		print ("try active reload")
 
 		if (time <= window_start and time >= window_end): # Active succeed?
 			print ("active reload success")
@@ -59,9 +58,7 @@ func _finish_reload(active: bool = false):
 		reload_timer.stop()
 
 func fire(dir: Vector2) -> void:
-	if reloading:
-		return
-	elif weapon_slot.ammo.bullets_left == 0:
+	if weapon_slot.ammo.bullets_left == 0:
 		reload()
 		return
 

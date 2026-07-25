@@ -31,6 +31,7 @@ func _physics_process(delta: float) -> void:
 		_deactivate()
 
 func _on_area_entered(area: Area2D) -> void:
+	print("entered", area)
 	if not (area is HurtBox):
 		return
 	area.take_damage(damage, self)

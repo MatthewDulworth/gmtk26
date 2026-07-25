@@ -16,6 +16,9 @@ metadata/_custom_type_script = "uid://bdhvi88d3ihm2"
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cwfla"]
 size = Vector2(30, 30)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rhggh"]
+size = Vector2(30, 30)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_jvj35"]
 atlas = ExtResource("4_cuw3f")
 region = Rect2(0, 0, 64, 64)
@@ -155,6 +158,10 @@ metadata/_custom_type_script = "uid://wbbbadomml83"
 script = ExtResource("2_fwkbl")
 health = NodePath("../Health")
 metadata/_custom_type_script = "uid://duoe8w4fbx8fc"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1572569437]
+position = Vector2(1, -14)
+shape = SubResource("RectangleShape2D_rhggh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1927816173]
 sprite_frames = SubResource("SpriteFrames_r7v4m")

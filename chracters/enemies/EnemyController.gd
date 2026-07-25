@@ -2,9 +2,9 @@ extends CharacterBody2D
 class_name EnemyController
 
 @export var enemy_data: EnemyData
+@export var players: Array[PlayerController]
 @export var health: Health
 @export var hurtbox: HurtBox
-@export var players: Array[PlayerController]
 
 var target: Vector2
 
@@ -24,6 +24,8 @@ func _ready() -> void:
 	scale = scale * enemy_data.size_scale;
 	health.died.connect(func(): queue_free())
 	health.initialize(enemy_data.max_health)
+	hurtbox.set_collision_layer_value(5, true) 
+
 
 func _process(_delta: float) -> void:
 	targetPlayer()
@@ -31,11 +33,10 @@ func _process(_delta: float) -> void:
 	if (position.distance_to(target)) <= 1.0:
 		velocity = Vector2(0, 0)
 		position = target
-		$AnimatedSprite2D.play("flap")
+	chooseAnimation()
 	
 func _physics_process(_delta: float) ->  void:
 	if (position.distance_to(target)) > 0.5:
-		$AnimatedSprite2D.play("run")
 		var pos = global_transform.origin
 		var new_pos = nav_agent_2d.get_next_path_position()
 		var new_vel = (new_pos - pos).normalized() * enemy_data.move_speed; # speed
@@ -49,6 +50,8 @@ func targetPlayer():
 func chooseAnimation():
 	if velocity == Vector2(0, 0):
 		$AnimatedSprite2D.play("flap")
+	else:
+		$AnimatedSprite2D.play("run")
 
 func getClosestPlayer():
 	var closestPlayer

@@ -22,6 +22,8 @@ func _process(_delta: float) -> void:
 	if (input.fire_just_pressed):
 		print(input.facing)
 		weapon.fire(input.facing)
+		
+	_about_face()
 
 func _use_weapon(data: WeaponData) -> void:
 	weapon.initialize(data)
@@ -32,3 +34,9 @@ func _physics_process(_delta: float) -> void:
 
 func _on_death() -> void:
 	print(player_id, " died")
+
+func _about_face() -> void:
+	if velocity.x > 0:
+		$AnimatedSprite2D.flip_h = -1
+	elif velocity.x < 0: 
+		$AnimatedSprite2D.flip_h = 0

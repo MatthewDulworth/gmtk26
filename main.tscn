@@ -7,7 +7,6 @@
 [ext_resource type="Resource" uid="uid://cchvlvuoyk60d" path="res://weapons/Pistol.tres" id="3_kek77"]
 [ext_resource type="Texture2D" uid="uid://cksn71qah5jih" path="res://ASSets/Cute_Fantasy_Free/Outdoor decoration/House_1_Wood_Base_Blue.png" id="4_1bvp3"]
 [ext_resource type="Resource" uid="uid://bxhj8gcqqmkpd" path="res://chracters/enemies/EnemySlow.tres" id="4_5vw27"]
-[ext_resource type="Resource" uid="uid://d38xsxobsmd6k" path="res://chracters/enemies/EnemyFast.tres" id="5_kek77"]
 [ext_resource type="Texture2D" uid="uid://xhj52ukglsw3" path="res://ASSets/Cute_Fantasy_Free/Tiles/Water_Middle.png" id="5_lquwl"]
 
 [sub_resource type="Resource" id="Resource_lquwl"]
@@ -29,14 +28,6 @@ player_data = SubResource("Resource_lquwl")
 
 [node name="Enemy" parent="." unique_id=1397981385 node_paths=PackedStringArray("players") instance=ExtResource("2_0xm2m")]
 position = Vector2(-478, 99)
-enemy_data = ExtResource("4_5vw27")
-players = [NodePath("../Player")]
-
-[node name="Enemy2" parent="." unique_id=976929462 node_paths=PackedStringArray("players") instance=ExtResource("2_0xm2m")]
-enemy_data = ExtResource("5_kek77")
-players = [NodePath("../Player")]
-
-[node name="Enemy3" parent="." unique_id=1094246431 node_paths=PackedStringArray("players") instance=ExtResource("2_0xm2m")]
 enemy_data = ExtResource("4_5vw27")
 players = [NodePath("../Player")]
 

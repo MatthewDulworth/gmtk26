@@ -2,8 +2,11 @@
 
 [ext_resource type="Script" uid="uid://duoe8w4fbx8fc" path="res://components/HurtBox.gd" id="1_4bt8n"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q3yxo"]
+
 [node name="HurtBox" type="Area2D" unique_id=538028481]
 script = ExtResource("1_4bt8n")
 metadata/_custom_type_script = "uid://duoe8w4fbx8fc"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=46759656]
+shape = SubResource("RectangleShape2D_q3yxo")

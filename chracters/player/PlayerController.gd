@@ -13,7 +13,7 @@ class_name PlayerController
 @onready var pickup_box: Area2D = $PickupBox
 @onready var collision_box: CollisionShape2D = $CollisionShape2D
 
-var player_id: InputManager.PlayerID = InputManager.PlayerID.PLAYER_1
+@export var player_id: InputManager.PlayerID = InputManager.PlayerID.PLAYER_1
 var input: InputIntent
 var waiting_for_fire_release: bool = false
 var state: PlayerState

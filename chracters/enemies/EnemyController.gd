@@ -76,6 +76,8 @@ func _get_closest_player() -> PlayerController:
 	var closestPlayer
 	var closestPlayerDistance = INF
 	for player: PlayerController in players:
+		if player.state == PlayerController.PlayerState.DEAD:
+			continue
 		var distance_to_player = position.distance_to(player.position)
 		if distance_to_player < closestPlayerDistance:
 			closestPlayerDistance = distance_to_player
@@ -84,6 +86,8 @@ func _get_closest_player() -> PlayerController:
 
 func _is_closest_player_to_right() -> bool:
 	var player = _get_closest_player()
+	if player == null:
+		return position.x < 0
 	return player.position.x > position.x
 
 func _face_player():

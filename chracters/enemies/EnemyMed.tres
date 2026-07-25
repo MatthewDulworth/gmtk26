@@ -5,5 +5,8 @@
 [resource]
 script = ExtResource("1_r0c0l")
 max_health = 2.0
+attack_range = 50.0
+attack_cooldown = 2.0
+attack_duration = 1.0
 size_scale = 2.0
 metadata/_custom_type_script = "uid://bdhvi88d3ihm2"

@@ -5,37 +5,43 @@ class_name EnemyController
 @export var players: Array[PlayerController]
 @export var health: Health
 @export var hurtbox: HurtBox
+@export var state: EnemyState
 
 var target: Vector2
 
 const player_scan_time = 0.3 # Time in seconds until it scans for which player to chase
 
 @onready var nav_agent_2d = $NavigationAgent2D
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+
 
 enum EnemyState {
 	SPAWN,
 	CHASE,
 	ATTACK,
 	DEAD,
+	PICKED_UP
 }
 
 func _ready() -> void:
-	targetPlayer()
+	_spawn()
+	_set_target_player()
 	scale = scale * enemy_data.size_scale;
 	health.initialize(enemy_data.max_health)
-	health.died.connect(func(): queue_free())
+	health.died.connect(_dead)
+	animated_sprite.animation_finished.connect(_on_death_animation_complete)
 	
 	# make sure hurtbox is on layer 5 so hitscanning detects it
-	hurtbox.set_collision_layer_value(5, true) 
+	_set_hurtbox_collision_layer(CollisionLayers.Layer.ENEMY_HURTBOX)
 
 
 func _process(_delta: float) -> void:
-	targetPlayer()
-	facePlayer()
+	_set_target_player()
+	_face_player()
 	if (position.distance_to(target)) <= 1.0:
 		velocity = Vector2(0, 0)
 		position = target
-	chooseAnimation()
+	_animate()
 	
 func _physics_process(_delta: float) ->  void:
 	if (position.distance_to(target)) > 0.5:
@@ -45,17 +51,21 @@ func _physics_process(_delta: float) ->  void:
 		velocity = new_vel
 		move_and_slide()
 		
-func targetPlayer():
-	target = Vector2(getClosestPlayer().position)
+func _set_target_player():
+	target = Vector2(_get_closest_player().position)
 	nav_agent_2d.set_target_position(target)
 	
-func chooseAnimation():
+func _animate():
+	if state == EnemyState.DEAD:
+		#animated_sprite.play("flap")
+		return
+	
 	if velocity == Vector2(0, 0):
-		$AnimatedSprite2D.play("flap")
+		animated_sprite.play("flap")
 	else:
-		$AnimatedSprite2D.play("run")
+		animated_sprite.play(enemy_data.move_animation_name)
 
-func getClosestPlayer():
+func _get_closest_player():
 	var closestPlayer
 	var closestPlayerDistance = INF
 	for player: PlayerController in players:
@@ -65,24 +75,50 @@ func getClosestPlayer():
 			closestPlayer = player
 	return closestPlayer
 
-func getIsClosestPlayerToTheRight() -> bool:
-	var player = getClosestPlayer()
+func _get_is_closest_player_to_right() -> bool:
+	var player = _get_closest_player()
 	return player.position.x > position.x
 
-func facePlayer():
-	if getIsClosestPlayerToTheRight():
-		$AnimatedSprite2D.flip_h = 0
+func _face_player():
+	if _get_is_closest_player_to_right():
+		animated_sprite.flip_h = 0
 	else:
-		$AnimatedSprite2D.flip_h = -1
+		animated_sprite.flip_h = -1
 
 func _spawn() -> void:
-	pass
+	state = EnemyState.SPAWN
 	
 func _chase() -> void:
-	pass
+	state = EnemyState.CHASE
 	
 func _attack() -> void: 
-	pass
+	state = EnemyState.ATTACK
 	
 func _dead() -> void:
-	pass
+	state = EnemyState.DEAD
+	
+	print("dead")
+	animated_sprite.play("death")
+	velocity = Vector2.ZERO
+	
+	# Put in enemy_body layer
+	_set_hurtbox_collision_layer(CollisionLayers.Layer.ENEMY_BODY)
+	$CollisionShape2D.set_deferred("disabled", true)
+	set_physics_process(false)
+	set_process(false)
+	
+func _on_death_animation_complete() -> void:
+	if animated_sprite.animation == "death":
+		animated_sprite.stop()
+		animated_sprite.play("down_feather") 
+	
+func _picked_up() -> void:
+	state = EnemyState.PICKED_UP
+	queue_free()
+	
+func _set_hurtbox_collision_layer(layer: CollisionLayers.Layer) -> void:
+	# Reset any previous layers
+	hurtbox.collision_layer = 0
+	hurtbox.collision_mask = 0
+	# Add to new layer
+	hurtbox.set_collision_layer_value(layer, true) 

@@ -4,7 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://d1wakfws1yses" path="res://chracters/enemies/enemy.tscn" id="2_ktfr2"]
 [ext_resource type="Texture2D" uid="uid://ddvd7nfqv3aku" path="res://level/tiles_prog_art.png" id="3_44x8d"]
 [ext_resource type="PackedScene" uid="uid://d33q7ngm2teb7" path="res://item/item.tscn" id="3_ktfr2"]
+[ext_resource type="Script" uid="uid://bdhvi88d3ihm2" path="res://chracters/enemies/EnemyData.gd" id="4_6gtgk"]
 [ext_resource type="PackedScene" uid="uid://d0fyntx0582l7" path="res://chracters/player/player.tscn" id="4_ivpvi"]
+[ext_resource type="Resource" uid="uid://bbiflcgguj78o" path="res://chracters/enemies/EnemyMed.tres" id="5_cw150"]
+[ext_resource type="Resource" uid="uid://d38xsxobsmd6k" path="res://chracters/enemies/EnemyFast.tres" id="6_xii2b"]
+[ext_resource type="Resource" uid="uid://bxhj8gcqqmkpd" path="res://chracters/enemies/EnemySlow.tres" id="7_rhqlf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dgned"]
 texture = ExtResource("3_44x8d")
@@ -26,6 +30,7 @@ script = ExtResource("1_vkbyq")
 enemy_scene = ExtResource("2_ktfr2")
 players = [NodePath("Player")]
 item_scene = ExtResource("3_ktfr2")
+enemy_data_types = Array[ExtResource("4_6gtgk")]([ExtResource("5_cw150"), ExtResource("6_xii2b"), ExtResource("7_rhqlf")])
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=624556665]
 tile_set = SubResource("TileSet_76gxs")

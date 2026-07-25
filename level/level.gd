@@ -3,6 +3,7 @@ extends Node2D
 @export var enemy_scene: PackedScene
 @export var players: Array[PlayerController]
 @export var item_scene: PackedScene
+@export var enemy_data_types: Array[EnemyData]
 var _time_since_last_spawn := 0.0
 var _time_since_wave_start := 0.0
 var _time_since_last_item_spawn := 0.0
@@ -54,6 +55,7 @@ func _process(delta: float) -> void:
 	
 	if _time_since_last_spawn > _current_enemy_spawn_rate:
 		var new_enemy: EnemyController = enemy_scene.instantiate()
+		new_enemy.enemy_data = enemy_data_types.pick_random()
 		new_enemy.players = players
 		new_enemy.health.died.connect(_on_enemy_death)
 		new_enemy.position = $EnemySpawners.get_children().pick_random().position

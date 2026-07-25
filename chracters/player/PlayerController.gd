@@ -20,7 +20,7 @@ func pickup_weapon(data: WeaponData) -> void:
 	weapons_list.add_weapon(data)
 
 func _ready() -> void:
-	health.initialize(player_data.max_health)
+	health.initialize(player_data.max_health, player_data.health_regen_rate)
 	health_bar.bind(health)
 	input = InputManager.get_input_intent(player_id)
 	health.died.connect(_on_death)

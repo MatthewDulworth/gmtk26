@@ -99,11 +99,11 @@ func _attack() -> void:
 	
 	# Scale animation based on duration
 	var sprite_frames = animation.sprite_frames
-	var frame_count = sprite_frames.get_frame_count("attack")
-	var base_fps = sprite_frames.get_animation_speed("attack")
+	var frame_count = sprite_frames.get_frame_count(enemy_data.animation_name_attack)
+	var base_fps = sprite_frames.get_animation_speed(enemy_data.animation_name_attack)
 	var native_duration = float(frame_count) / base_fps
 	animation.speed_scale = native_duration / enemy_data.attack_duration
-	animation.play("attack")
+	animation.play(enemy_data.animation_name_attack)
 	AudioManager.play(AudioManager.SFX.GOOSE_ATTACK)
 	
 func _dead_pending_collection() -> void:	
@@ -123,8 +123,8 @@ func _dead_pending_collection() -> void:
 func _on_animation_complete() -> void:
 	if animation.animation == enemy_data.animation_name_die:
 		animation.stop()
-		animation.play("down_feather") 
-	if animation.animation == "attack":
+		animation.play(enemy_data.animation_name_feather) 
+	if animation.animation == enemy_data.animation_name_attack:
 		animation.stop()
 		animation.speed_scale = 1.0 
 		

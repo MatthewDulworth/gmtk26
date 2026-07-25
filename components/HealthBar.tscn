@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://d4h7b5x0lxmtq"]
+
+[ext_resource type="Script" uid="uid://dflk3iu0vp8ri" path="res://components/HealthBar.gd" id="1_sah8w"]
+
+[node name="HealthBar" type="Node2D" unique_id=671079911]
+script = ExtResource("1_sah8w")
+
+[node name="ColorRectBackground" type="ColorRect" parent="." unique_id=365261133]
+offset_right = 20.0
+offset_bottom = 2.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRectHealth" type="ColorRect" parent="." unique_id=1934205175]
+offset_right = 10.0
+offset_bottom = 2.0
+color = Color(1, 0, 0, 1)

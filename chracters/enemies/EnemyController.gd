@@ -19,8 +19,8 @@ enum EnemyState {
 	SPAWN,
 	CHASE,
 	ATTACK,
-	DEAD,
-	PICKED_UP
+	DEAD_PENDING_COLLECTION,
+	DEAD_COLLECTED
 }
 
 func _ready() -> void:
@@ -28,7 +28,7 @@ func _ready() -> void:
 	_set_target_player()
 	scale = scale * enemy_data.size_scale;
 	health.initialize(enemy_data.max_health)
-	health.died.connect(_dead)
+	health.died.connect(_dead_pending_collection)
 	animated_sprite.animation_finished.connect(_on_death_animation_complete)
 	
 	# make sure hurtbox is on layer 5 so hitscanning detects it
@@ -56,7 +56,7 @@ func _set_target_player():
 	nav_agent_2d.set_target_position(target)
 	
 func _animate():
-	if state == EnemyState.DEAD:
+	if state == EnemyState.DEAD_PENDING_COLLECTION:
 		#animated_sprite.play("flap")
 		return
 	
@@ -94,8 +94,8 @@ func _chase() -> void:
 func _attack() -> void: 
 	state = EnemyState.ATTACK
 	
-func _dead() -> void:
-	state = EnemyState.DEAD
+func _dead_pending_collection() -> void:
+	state = EnemyState.DEAD_PENDING_COLLECTION
 	
 	print("dead")
 	animated_sprite.play("death")
@@ -112,8 +112,9 @@ func _on_death_animation_complete() -> void:
 		animated_sprite.stop()
 		animated_sprite.play("down_feather") 
 	
-func _picked_up() -> void:
-	state = EnemyState.PICKED_UP
+func collect() -> void:
+	state = EnemyState.DEAD_COLLECTED
+	print("collected")
 	queue_free()
 	
 func _set_hurtbox_collision_layer(layer: CollisionLayers.Layer) -> void:

@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://c7yaknwjn8i2u"]
+
+[ext_resource type="Script" uid="uid://c1nvliw5x2rji" path="res://components/PickupBox.gd" id="1_kb1kq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rhggh"]
+
+[node name="PickupBox" type="Area2D" unique_id=502016375]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_kb1kq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1398365140]
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_rhggh")

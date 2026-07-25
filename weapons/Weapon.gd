@@ -17,7 +17,9 @@ var reload_timer: Timer
 var reloading: bool
 var tried_active_reload: bool
 
+signal started_reload(weapon_data: WeaponData)
 signal reloaded(active: bool)
+signal fired(weapon_data: WeaponData)
 
 func _ready() -> void:
 	reload_timer = Timer.new()
@@ -33,10 +35,12 @@ func reload() -> void:
 	if mags <= 0: return
 	
 	if not reloading: # begin reloading
+		started_reload.emit(weapon_data)
 		reloading = true
 		tried_active_reload = false
 		reload_timer.start(weapon_data.reload_time)
 		print ("begin reload")
+		
 		
 	elif not tried_active_reload: # Attempt active reload
 		tried_active_reload = true
@@ -73,6 +77,7 @@ func fire(dir: Vector2) -> void:
 		
 	bullets_in_mag -= 1
 	print(bullets_in_mag)
+	fired.emit(weapon_data)
 
 func _fire_hitscan(dir: Vector2) -> void:
 	var space_state := get_world_2d().direct_space_state

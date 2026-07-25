@@ -27,12 +27,15 @@ var _current_enemy_count:
 
 var _current_wave = 0: 
 	set(v):
-		$WaveLabel.text = "Wave: %d" % v
-		_current_wave_length += 1
-		_current_enemy_spawn_rate -= 0.1
-		_time_since_wave_start = 0
-		_time_since_last_spawn = 0
-		_current_wave = v
+		if v - _current_wave == 1:
+			$WaveLabel.text = "Wave: %d" % v
+			_current_wave_length += 1
+			_current_enemy_spawn_rate -= 0.1
+			_time_since_wave_start = 0
+			_time_since_last_spawn = 0
+			_current_wave = v
+			
+			SignalBus.wave_started.emit()
 	get:
 		return _current_wave
 
@@ -46,6 +49,9 @@ func _process(delta: float) -> void:
 		new_item.position = $ItemSpawners.get_children().pick_random().position
 		print("new item!")
 		_time_since_last_item_spawn = 0
+		
+		
+		SignalBus.item_spawned.emit()
 		add_child(new_item)
 		
 	_time_since_last_item_spawn += delta
@@ -60,6 +66,8 @@ func _process(delta: float) -> void:
 		new_enemy.health.died.connect(_on_enemy_death)
 		new_enemy.position = $EnemySpawners.get_children().pick_random().position
 		_current_enemy_count += 1
+		
+		SignalBus.enemy_spawned.emit()
 		add_child(new_enemy)
 		
 		_time_since_last_spawn = 0

@@ -13,6 +13,8 @@ enum SFX {
 	PLAYER_SWITCHED_GUN, 
 	PLAYER_PICKED_UP_GUN,
 	PLAYER_PICKED_UP_FEATHER, 
+	RELOADING,
+	PICKED_UP_FEATHER,
 	
 	ENEMY_DIED,
 	ENEMY_ATTACKED, 
@@ -27,25 +29,27 @@ enum SFX {
 }
 
 const AUDIO_DICT := {
-	SFX.PLAYER_WALKING: preload("res://ASSets/Audio/placeholder_sfx.mp3"), 
-	SFX.PLAYER_DIED: preload("res://ASSets/Audio/placeholder_sfx.mp3"),
-	SFX.PLAYER_FIRED_WEAPON: preload("res://ASSets/Audio/placeholder_sfx.mp3"),
-	SFX.PLAYER_DAMAGED: preload("res://ASSets/Audio/placeholder_sfx.mp3"),
-	SFX.PLAYER_RELOADED: preload("res://ASSets/Audio/placeholder_sfx.mp3"),
-	SFX.PLAYER_SWITCHED_GUN: preload("res://ASSets/Audio/placeholder_sfx.mp3"),
-	SFX.PLAYER_PICKED_UP_GUN: preload("res://ASSets/Audio/placeholder_sfx.mp3"),
-	SFX.PLAYER_PICKED_UP_FEATHER: preload("res://ASSets/Audio/placeholder_sfx.mp3"),
+	SFX.PLAYER_WALKING: preload("res://ASSets/Audio/placeholder/u_3x9ga8wevj-walking-sound-effect-272246.mp3"), 
+	SFX.PLAYER_DIED: preload("res://ASSets/Audio/placeholder/universfield-male-scream-121085.mp3"),
+	SFX.PLAYER_FIRED_WEAPON: preload("res://ASSets/Audio/placeholder/universfield-gunshot-352466.mp3"),
+	SFX.PLAYER_DAMAGED: preload("res://ASSets/Audio/placeholder/frosted_52-ow-480197.mp3"),
+	SFX.PLAYER_RELOADED: preload("res://ASSets/Audio/placeholder/chieuk-coin-257878.mp3"),
+	SFX.PLAYER_SWITCHED_GUN: preload("res://ASSets/Audio/placeholder/freesound_community-pistol-gun-cock-89523.mp3"),
+	SFX.PLAYER_PICKED_UP_GUN: preload("res://ASSets/Audio/placeholder/freesound_community-pistol-gun-cock-89523.mp3"),
+	SFX.PLAYER_PICKED_UP_FEATHER: preload("res://ASSets/Audio/placeholder/chieuk-coin-257878.mp3"),
+	SFX.RELOADING: preload("res://ASSets/Audio/placeholder/dragon-studio-gun-reload-511309.mp3"),
 	
-	SFX.ENEMY_DIED: preload("res://ASSets/Audio/placeholder_sfx.mp3"),
-	SFX.ENEMY_ATTACKED: preload("res://ASSets/Audio/placeholder_sfx.mp3"),
-	SFX.ENEMY_DAMAGED: preload("res://ASSets/Audio/placeholder_sfx.mp3"),
-	SFX.ENEMY_WALKING: preload("res://ASSets/Audio/placeholder_sfx.mp3"),
+	SFX.ENEMY_DIED: preload("res://ASSets/Audio/placeholder/dragon-studio-car-honk-386166.mp3"),
+	SFX.ENEMY_ATTACKED: preload("res://ASSets/Audio/placeholder/sumaga123-knife-432147.mp3"),
+	SFX.ENEMY_DAMAGED: preload("res://ASSets/Audio/placeholder/dragon-studio-punch-431475.mp3"),
+	SFX.ENEMY_WALKING: preload("res://ASSets/Audio/placeholder/freesound_community-duck-quacking-37392.mp3"),
 	SFX.ENEMY_SPAWNED: preload("res://ASSets/Audio/placeholder_sfx.mp3"),
 	
-	SFX.ENEMY_WAVE_STARTED: preload("res://ASSets/Audio/placeholder_sfx.mp3"),
-	SFX.ENEMY_WAVE_ENDED: preload("res://ASSets/Audio/placeholder_sfx.mp3"),
+	SFX.ENEMY_WAVE_STARTED: preload("res://ASSets/Audio/placeholder/freesound_community-angry-elephant-40916.mp3"),
+	SFX.ENEMY_WAVE_ENDED: preload("res://ASSets/Audio/placeholder/freesound_community-success-1-6297.mp3"),
 	
 	SFX.ITEM_SPAWNED: preload("res://ASSets/Audio/placeholder_sfx.mp3"),
+	SFX.PICKED_UP_FEATHER: preload("res://ASSets/Audio/placeholder/chieuk-coin-257878.mp3"),
 }
 
 @onready var main_player: AudioStreamPlayer = $MainPlayer
@@ -55,16 +59,60 @@ const AUDIO_DICT := {
 @onready var _free_audio_player_queue: Array[AudioStreamPlayer] = []
 var deboog = true
 
-@export var falloff_curve: CurveTexture
-var _last_vol 
+var player_walking_stream: AudioStreamPlayer
+var enemy_walking_stream: AudioStreamPlayer
+var reloading_stream: AudioStreamPlayer
+
 func _ready() -> void:
 	_add_pool_members_to_audio_queue()
-	SignalBus.player_died.connect(func(): deboog = false)
+	SignalBus.enemy_damaged.connect(func(current_health): play(SFX.ENEMY_DAMAGED))
+	SignalBus.enemy_died.connect(func(): play(SFX.ENEMY_DIED))
+	SignalBus.enemy_attacked.connect(func(): play(SFX.ENEMY_ATTACKED))
+	SignalBus.enemy_spawned.connect(_on_enemy_spawn)
+	SignalBus.player_picked_up_feather.connect(func(): play(SFX.PICKED_UP_FEATHER))
+	
+	SignalBus.player_damaged.connect(func(current_health): play(SFX.PLAYER_DAMAGED))
+	SignalBus.player_died.connect(func(): play(SFX.PLAYER_DIED))
+	
+	SignalBus.player_fired_weapon.connect(func(weapon_data): play(SFX.PLAYER_FIRED_WEAPON))
+	SignalBus.started_reload.connect(_on_started_reload)
+	SignalBus.reloaded.connect(_on_reloaded)
+	
+	SignalBus.player_switched_weapon.connect(func(): play(SFX.PLAYER_SWITCHED_GUN))
+	
+	SignalBus.player_started_walking.connect(_on_player_started_walking)
+	SignalBus.player_stopped_walking.connect(_on_player_stopped_walking)
+	
+	
+	SignalBus.wave_started.connect(func(): play(SFX.ENEMY_WAVE_STARTED))
+	SignalBus.wave_ended.connect(func(): play(SFX.ENEMY_WAVE_ENDED))
+	
 	
 	main_player.play()
 	theme_stream = main_player.stream.get_clip_stream(0) as AudioStreamSynchronized
 	main_playback = main_player.get_stream_playback() as AudioStreamPlaybackInteractive
+
+func _on_enemy_spawn ():
+	play(SFX.ENEMY_SPAWNED)
+	#play_loop(SFX.ENEMY_WALKING)
+
+func _on_started_reload(weapon_data: WeaponData):
+	reloading_stream = play_loop(SFX.RELOADING)
 	
+func _on_reloaded(active: bool):
+	stop_loop(reloading_stream)
+
+func _on_player_started_walking():
+	player_walking_stream = play_loop(SFX.PLAYER_WALKING)
+	
+func _on_player_stopped_walking():
+	stop_loop(player_walking_stream)
+
+func _on_enemy_started_walking():
+	enemy_walking_stream = play_loop(SFX.ENEMY_WALKING)
+
+func _on_enemy_stopped_walking():
+	stop_loop(enemy_walking_stream)
 
 func _process(_delta: float) -> void:
 	pass

@@ -37,6 +37,7 @@ func _ready() -> void:
 
 	# Signals
 	health.died.connect(_dead_pending_collection)
+	health.health_changed.connect(func(current_health): SignalBus.enemy_damaged.emit(current_health))
 	animation.animation_finished.connect(_on_animation_complete)
 
 	# make sure hurtbox is on layer 5 so hitscanning detects it
@@ -104,10 +105,10 @@ func _attack() -> void:
 	var native_duration = float(frame_count) / base_fps
 	animation.speed_scale = native_duration / enemy_data.attack_duration
 	animation.play(enemy_data.animation_name_attack)
-	AudioManager.play(AudioManager.SFX.ENEMY_ATTACKED)
-
+	SignalBus.enemy_attacked.emit()
 
 func _dead_pending_collection() -> void:
+	SignalBus.enemy_died.emit()
 	state = EnemyState.DEAD_PENDING_COLLECTION
 	animation.speed_scale = 1.0
 	animation.play(enemy_data.animation_name_die)

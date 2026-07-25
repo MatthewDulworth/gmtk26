@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://3to73gt4a5n0" path="res://ASSets/Goose/Walk.png" id="7_6sxb8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cwfla"]
+size = Vector2(30, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jvj35"]
 atlas = ExtResource("4_cuw3f")
@@ -135,6 +136,7 @@ animations = [{
 script = ExtResource("1_yhatl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=959522981]
+position = Vector2(1, -14)
 shape = SubResource("RectangleShape2D_cwfla")
 
 [node name="Health" type="Node" parent="." unique_id=796883036]

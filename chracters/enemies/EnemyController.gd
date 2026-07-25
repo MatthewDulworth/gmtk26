@@ -5,6 +5,12 @@ class_name EnemyController
 @export var health: Health
 @export var hurtbox: HurtBox
 
+@onready var nav_agent_2d = $NavigationAgent2D
+
+@export var players: Array[PlayerController]
+
+var target: Vector2
+
 const player_scan_time = 0.3 # Time in seconds until it scans for which player to chase
 
 enum EnemyState {
@@ -15,13 +21,33 @@ enum EnemyState {
 }
 
 func _ready() -> void:
-	health.initialize(enemy_data.max_health)
+	targetPlayer()
+	scale = scale * enemy_data.size_scale;
+	#health.initialize(enemy_data.max_health)
 
 func _process(_delta: float) -> void:
-	pass
-
+	targetPlayer()
+	if (position.distance_to(target)) <= 1.0:
+		velocity = Vector2(0, 0)
+		position = target
+		$AnimatedSprite2D.play("flap")
+	
 func _physics_process(_delta: float) ->  void:
-	pass
+	if (position.distance_to(target)) > 0.5:
+		$AnimatedSprite2D.play("run")
+		var pos = global_transform.origin
+		var new_pos = nav_agent_2d.get_next_path_position()
+		var new_vel = (new_pos - pos).normalized() * enemy_data.move_speed; # speed
+		velocity = new_vel
+		move_and_slide()
+		
+func targetPlayer():
+	target = Vector2(players.get(0).position)
+	nav_agent_2d.set_target_position(target)
+	
+func chooseAnimation():
+	if velocity == Vector2(0, 0):
+		$AnimatedSprite2D.play("flap")
 
 func _spawn() -> void:
 	pass

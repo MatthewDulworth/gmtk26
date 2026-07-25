@@ -15,9 +15,11 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="gmtk26"
-run/main_scene="uid://c0b5phmxypmb5"
+run/main_scene="uid://c6yplr84qj8xy"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
+<<<<<<<HEADrun/main_scene="uid://c0b5phmxypmb5"
+|||||||parentofe7fcd9e(gooseidle)config/features=PackedStringArray("4.7", "GL Compatibility")
 
 [autoload]
 

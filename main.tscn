@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://c6yplr84qj8xy"]
+
+[ext_resource type="PackedScene" uid="uid://d1wakfws1yses" path="res://chracters/enemies/enemy.tscn" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://b1ltxks71q21v" path="res://chracters/player/PlayerData.gd" id="2_7mycd"]
+[ext_resource type="PackedScene" uid="uid://d0fyntx0582l7" path="res://chracters/player/player.tscn" id="2_h2yge"]
+[ext_resource type="Texture2D" uid="uid://cpcbv6c2ulvbx" path="res://ASSets/Cute_Fantasy_Free/Outdoor decoration/Oak_Tree.png" id="3_h2yge"]
+[ext_resource type="Texture2D" uid="uid://cksn71qah5jih" path="res://ASSets/Cute_Fantasy_Free/Outdoor decoration/House_1_Wood_Base_Blue.png" id="4_1bvp3"]
+[ext_resource type="Resource" uid="uid://bxhj8gcqqmkpd" path="res://chracters/enemies/EnemySlow.tres" id="4_5vw27"]
+[ext_resource type="Resource" uid="uid://d38xsxobsmd6k" path="res://chracters/enemies/EnemyFast.tres" id="5_kek77"]
+[ext_resource type="Texture2D" uid="uid://xhj52ukglsw3" path="res://ASSets/Cute_Fantasy_Free/Tiles/Water_Middle.png" id="5_lquwl"]
+
+[sub_resource type="Resource" id="Resource_lquwl"]
+script = ExtResource("2_7mycd")
+move_speed = 400.0
+metadata/_custom_type_script = "uid://b1ltxks71q21v"
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ig7tw"]
+vertices = PackedVector2Array(210, 285.85938, 560.0078, 301.03906, -563.90625, 305.95313, 43.507813, 288.14063, -95.5625, 93, -74.5, 28.117188, 60.40625, -69.828125, -101.46094, 228.86719, -260.3203, 215.04688, -243.72656, 93, -559.0703, -304.02344, -226.88281, -304.89844, -237.34375, 44.0625, -55.617188, -305.35156, 560.97656, -306.96875, 210, -89.390625)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 3, 7), PackedInt32Array(7, 3, 2, 8), PackedInt32Array(9, 8, 2, 10, 11, 12), PackedInt32Array(4, 9, 12, 5), PackedInt32Array(6, 5, 13), PackedInt32Array(6, 13, 14, 15), PackedInt32Array(15, 14, 1, 0)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-569, -314, 571, -317, 570, 311, -574, 316), PackedVector2Array(-217, -301, -227, 33, -84, 19, -66, -299), PackedVector2Array(-235, 103, -249, 206, -111, 218, -106, 103), PackedVector2Array(70, -61, 54, 278, 200, 276, 200, -78)])
+
+[node name="Main" type="Node2D" unique_id=699210955]
+
+[node name="Player" parent="." unique_id=1399235571 instance=ExtResource("2_h2yge")]
+position = Vector2(343, 173)
+player_data = SubResource("Resource_lquwl")
+
+[node name="Enemy" parent="." unique_id=1397981385 node_paths=PackedStringArray("players") instance=ExtResource("2_0xm2m")]
+position = Vector2(-478, 99)
+enemy_data = ExtResource("4_5vw27")
+players = [NodePath("../Player")]
+
+[node name="Enemy2" parent="." unique_id=976929462 node_paths=PackedStringArray("players") instance=ExtResource("2_0xm2m")]
+enemy_data = ExtResource("5_kek77")
+players = [NodePath("../Player")]
+
+[node name="Enemy3" parent="." unique_id=1094246431 node_paths=PackedStringArray("players") instance=ExtResource("2_0xm2m")]
+enemy_data = ExtResource("4_5vw27")
+players = [NodePath("../Player")]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1687995481]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=162539292]
+navigation_polygon = SubResource("NavigationPolygon_ig7tw")
+
+[node name="Sprite2D" type="Sprite2D" parent="NavigationRegion2D" unique_id=1231217404]
+position = Vector2(-160.00002, -127)
+scale = Vector2(2.953125, 4.0625)
+texture = ExtResource("3_h2yge")
+
+[node name="Sprite2D2" type="Sprite2D" parent="NavigationRegion2D" unique_id=1897545419]
+position = Vector2(-183, 163)
+texture = ExtResource("4_1bvp3")
+
+[node name="Sprite2D3" type="Sprite2D" parent="NavigationRegion2D" unique_id=1543252647]
+position = Vector2(124.5, 112.99999)
+scale = Vector2(6.8125005, 21.625)
+texture = ExtResource("5_lquwl")

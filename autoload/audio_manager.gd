@@ -5,11 +5,47 @@ const POOL_RESIZE_FACTOR := 1.5
 #var end_stream = preload("res://Audio/end_theme.tres")
 
 enum SFX {
-	GOOSE_ATTACK, 
+	PLAYER_WALKING,
+	PLAYER_DIED,
+	PLAYER_FIRED_WEAPON,
+	PLAYER_DAMAGED, 
+	PLAYER_RELOADED, 
+	PLAYER_SWITCHED_GUN, 
+	PLAYER_PICKED_UP_GUN,
+	PLAYER_PICKED_UP_FEATHER, 
+	
+	ENEMY_DIED,
+	ENEMY_ATTACKED, 
+	ENEMY_DAMAGED,
+	ENEMY_WALKING, 
+	ENEMY_SPAWNED,
+	
+	ENEMY_WAVE_STARTED,  
+	ENEMY_WAVE_ENDED,
+	
+	ITEM_SPAWNED,
 }
 
 const AUDIO_DICT := {
-	SFX.GOOSE_ATTACK: preload("res://ASSets/Audio/placeholder_sfx.mp3"),
+	SFX.PLAYER_WALKING: preload("res://ASSets/Audio/placeholder_sfx.mp3"), 
+	SFX.PLAYER_DIED: preload("res://ASSets/Audio/placeholder_sfx.mp3"),
+	SFX.PLAYER_FIRED_WEAPON: preload("res://ASSets/Audio/placeholder_sfx.mp3"),
+	SFX.PLAYER_DAMAGED: preload("res://ASSets/Audio/placeholder_sfx.mp3"),
+	SFX.PLAYER_RELOADED: preload("res://ASSets/Audio/placeholder_sfx.mp3"),
+	SFX.PLAYER_SWITCHED_GUN: preload("res://ASSets/Audio/placeholder_sfx.mp3"),
+	SFX.PLAYER_PICKED_UP_GUN: preload("res://ASSets/Audio/placeholder_sfx.mp3"),
+	SFX.PLAYER_PICKED_UP_FEATHER: preload("res://ASSets/Audio/placeholder_sfx.mp3"),
+	
+	SFX.ENEMY_DIED: preload("res://ASSets/Audio/placeholder_sfx.mp3"),
+	SFX.ENEMY_ATTACKED: preload("res://ASSets/Audio/placeholder_sfx.mp3"),
+	SFX.ENEMY_DAMAGED: preload("res://ASSets/Audio/placeholder_sfx.mp3"),
+	SFX.ENEMY_WALKING: preload("res://ASSets/Audio/placeholder_sfx.mp3"),
+	SFX.ENEMY_SPAWNED: preload("res://ASSets/Audio/placeholder_sfx.mp3"),
+	
+	SFX.ENEMY_WAVE_STARTED: preload("res://ASSets/Audio/placeholder_sfx.mp3"),
+	SFX.ENEMY_WAVE_ENDED: preload("res://ASSets/Audio/placeholder_sfx.mp3"),
+	
+	SFX.ITEM_SPAWNED: preload("res://ASSets/Audio/placeholder_sfx.mp3"),
 }
 
 @onready var main_player: AudioStreamPlayer = $MainPlayer
@@ -34,7 +70,7 @@ func _process(_delta: float) -> void:
 	pass
 	#var cur_scene_ID = SceneManager.get_current_scene_ID()
 	#var x = black_hole_distance
-	#
+	
 	#if cur_scene_ID in SceneManager.LEVELS:
 		#var cur_vol = falloff_curve.curve.sample(x)
 		#

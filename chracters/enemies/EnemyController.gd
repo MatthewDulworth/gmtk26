@@ -104,7 +104,7 @@ func _attack() -> void:
 	var native_duration = float(frame_count) / base_fps
 	animation.speed_scale = native_duration / enemy_data.attack_duration
 	animation.play("attack")
-	AudioManager.play(AudioManager.SFX.GOOSE_ATTACK)
+	AudioManager.play(AudioManager.SFX.ENEMY_ATTACKED)
 	
 func _dead_pending_collection() -> void:	
 	state = EnemyState.DEAD_PENDING_COLLECTION

@@ -41,6 +41,7 @@ func _process(_delta: float) -> void:
 
 func _use_weapon(data: WeaponData) -> void:
 	weapon.initialize(data)
+	SignalBus.player_fired_weapon.emit(data)
 
 func _physics_process(_delta: float) -> void:
 	velocity = input.move * player_data.move_speed

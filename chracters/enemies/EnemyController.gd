@@ -12,7 +12,8 @@ var target: Vector2
 const player_scan_time = 0.3 # Time in seconds until it scans for which player to chase
 
 @onready var nav_agent_2d = $NavigationAgent2D
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animation: AnimatedSprite2D = $AnimatedSprite2D
+@onready var collision_box: CollisionShape2D = $CollisionShape2D
 
 
 enum EnemyState {
@@ -29,7 +30,7 @@ func _ready() -> void:
 	scale = scale * enemy_data.size_scale;
 	health.initialize(enemy_data.max_health)
 	health.died.connect(_dead_pending_collection)
-	animated_sprite.animation_finished.connect(_on_death_animation_complete)
+	animation.animation_finished.connect(_on_death_animation_complete)
 	
 	# make sure hurtbox is on layer 5 so hitscanning detects it
 	_set_hurtbox_collision_layer(CollisionLayers.Layer.ENEMY_HURTBOX)
@@ -57,13 +58,13 @@ func _set_target_player():
 	
 func _animate():
 	if state == EnemyState.DEAD_PENDING_COLLECTION:
-		#animated_sprite.play("flap")
+		# Don't play an animation because we don't want it to be replayed in processing loop
 		return
 	
 	if velocity == Vector2(0, 0):
-		animated_sprite.play("flap")
+		animation.play("flap")
 	else:
-		animated_sprite.play(enemy_data.move_animation_name)
+		animation.play(enemy_data.move_animation_name)
 
 func _get_closest_player():
 	var closestPlayer
@@ -81,9 +82,9 @@ func _get_is_closest_player_to_right() -> bool:
 
 func _face_player():
 	if _get_is_closest_player_to_right():
-		animated_sprite.flip_h = 0
+		animation.flip_h = 0
 	else:
-		animated_sprite.flip_h = -1
+		animation.flip_h = -1
 
 func _spawn() -> void:
 	state = EnemyState.SPAWN
@@ -96,25 +97,22 @@ func _attack() -> void:
 	
 func _dead_pending_collection() -> void:
 	state = EnemyState.DEAD_PENDING_COLLECTION
-	
-	print("dead")
-	animated_sprite.play("death")
+	animation.play("death")
 	velocity = Vector2.ZERO
 	
 	# Put in enemy_body layer
 	_set_hurtbox_collision_layer(CollisionLayers.Layer.ENEMY_BODY)
-	$CollisionShape2D.set_deferred("disabled", true)
+	collision_box.set_deferred("disabled", true)
 	set_physics_process(false)
 	set_process(false)
 	
 func _on_death_animation_complete() -> void:
-	if animated_sprite.animation == "death":
-		animated_sprite.stop()
-		animated_sprite.play("down_feather") 
+	if animation.animation == "death":
+		animation.stop()
+		animation.play("down_feather") 
 	
 func collect() -> void:
 	state = EnemyState.DEAD_COLLECTED
-	print("collected")
 	queue_free()
 	
 func _set_hurtbox_collision_layer(layer: CollisionLayers.Layer) -> void:

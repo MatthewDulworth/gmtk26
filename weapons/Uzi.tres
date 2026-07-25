@@ -1,3 +1,12 @@
-[gd_resource type="Resource" format=3 uid="uid://dapcnrc6ggwk"]
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://dapcnrc6ggwk"]
+
+[ext_resource type="Script" uid="uid://cx6lerykt0y5s" path="res://weapons/WeaponData.gd" id="1_uzi"]
 
 [resource]
+script = ExtResource("1_uzi")
+name = "Uzi"
+full_auto = true
+fire_rate = 15.0
+damage = 0.15
+bullet_spread = 0.08
+hitscan_range = 3000.0

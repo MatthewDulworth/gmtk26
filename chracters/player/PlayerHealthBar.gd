@@ -1,5 +1,5 @@
 extends Node2D
-class_name HealthBar
+class_name PlayerHealthBar
 
 @export var width: float = 40.0
 

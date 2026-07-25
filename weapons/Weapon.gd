@@ -14,6 +14,7 @@ var weapon_slot: WeaponSlot
 var reload_timer: Timer
 var reloading: bool
 var tried_active_reload: bool
+var fire_cooldown: float = 0.0
 
 signal reloaded(active: bool)
 signal ammo_changed
@@ -27,7 +28,12 @@ func initialize(slot: WeaponSlot) -> void:
 	weapon_slot = slot
 	reloading = false
 	tried_active_reload = false
+	fire_cooldown = 0.0
 	reload_timer.stop()
+
+func _process(delta: float) -> void:
+	if fire_cooldown > 0:
+		fire_cooldown -= delta
 
 func reload() -> void:
 	if weapon_slot.ammo.mags_left <= 0: return
@@ -64,11 +70,15 @@ func fire(dir: Vector2) -> void:
 		reload()
 		return
 
+	if fire_cooldown > 0:
+		return
+
 	if (weapon_slot.weapon.hitscan):
 		_fire_hitscan(dir)
 	else:
 		_fire_projectile(dir)
 
+	fire_cooldown = 1.0 / max(weapon_slot.weapon.fire_rate, 0.01)
 	weapon_slot.ammo.bullets_left -= 1
 	ammo_changed.emit()
 	print(weapon_slot.ammo.bullets_left)

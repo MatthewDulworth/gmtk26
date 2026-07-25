@@ -6,7 +6,7 @@ class_name PlayerController
 @export var hurtbox: HurtBox
 @export var weapon: Weapon
 @export var weapons_list: WeaponsList
-@export var health_bar: HealthBar
+@export var health_bar: PlayerHealthBar
 @export var weapon_hud: WeaponHUD
 
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
@@ -23,7 +23,7 @@ func _ready() -> void:
 	health_bar.bind(health)
 	input = InputManager.get_input_intent(player_id)
 	health.died.connect(_on_death)
-	weapons_list.initialize([player_data.starting_weapon])
+	weapons_list.initialize(player_data.starting_weapons)
 	_use_weapon(weapons_list.get_current_weapon())
 	animation.play("levitate")
 	
@@ -36,7 +36,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	input = InputManager.get_input_intent(player_id)
 	
-	if input.fire_just_pressed:
+	if input.fire_just_pressed or (input.fire_held and weapon.weapon_slot.weapon.full_auto):
 		weapon.fire(input.facing)
 	
 	if input.reload:

@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://cai7wvm13476g" path="res://assets/Goose/Run.png" id="6_r7v4m"]
 [ext_resource type="Texture2D" uid="uid://3to73gt4a5n0" path="res://assets/Goose/Walk.png" id="7_6sxb8"]
 [ext_resource type="Texture2D" uid="uid://cwmh8k1jxx3fy" path="res://assets/Goose/Attack.png" id="8_jvj35"]
-[ext_resource type="PackedScene" path="res://components/HealthBar.tscn" id="9_hpbar"]
 
 [sub_resource type="Resource" id="Resource_dgned"]
 script = ExtResource("2_r7v4m")
@@ -221,12 +220,11 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Enemy" type="CharacterBody2D" unique_id=976929462 node_paths=PackedStringArray("health", "hurtbox", "health_bar")]
+[node name="Enemy" type="CharacterBody2D" unique_id=976929462 node_paths=PackedStringArray("health", "hurtbox")]
 script = ExtResource("1_yhatl")
 enemy_data = SubResource("Resource_dgned")
 health = NodePath("Health")
 hurtbox = NodePath("HurtBox")
-health_bar = NodePath("HealthBar")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=959522981]
 position = Vector2(1, -14)
@@ -252,6 +250,3 @@ sprite_frames = SubResource("SpriteFrames_r7v4m")
 animation = &"death2"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1165551425]
-
-[node name="HealthBar" parent="." instance=ExtResource("9_hpbar")]
-position = Vector2(1, -30)

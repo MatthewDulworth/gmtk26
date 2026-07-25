@@ -20,9 +20,10 @@ func activate(_damage: float, _source: Node, radius: float, dir: Vector2, speed:
 	var shape := CircleShape2D.new()
 	shape.radius = radius
 	$CollisionShape2D.shape = shape
-	monitoring = true
+	set_deferred("monitoring", true)
 	visible = true
 	set_physics_process(true)
+	print("projectile exists")
 
 func _physics_process(delta: float) -> void:
 	position += velocity * delta
@@ -38,7 +39,7 @@ func _on_area_entered(area: Area2D) -> void:
 	_deactivate()
 
 func _deactivate() -> void:
-	monitoring = false
+	set_deferred("monitoring", false)
 	visible = false
 	set_physics_process(false)
 	ProjectilePool.release(self)

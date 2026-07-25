@@ -1,8 +1,8 @@
 extends Node2D
 class_name Weapon
 
-const WORLD_LAYER := 1 << 0 # obstacles (see project.godot [layer_names])
-const ENEMY_HURTBOX_LAYER := 1 << 4 # enemy_hurtbox (see project.godot [layer_names])
+const WORLD_LAYER := 1 << 0 # world layer bitmask
+const ENEMY_HURTBOX_LAYER := 1 << 4 # enemy_hurtbox layer bitmask
 const HITSCAN_MASK := WORLD_LAYER | ENEMY_HURTBOX_LAYER
 
 const TRACER_WIDTH := 4.0
@@ -13,22 +13,66 @@ var weapon_data: WeaponData
 var mags: int
 var bullets_in_mag: int
 
+var reload_timer: Timer
+var reloading: bool
+var tried_active_reload: bool
+
+signal reloaded(active: bool)
+
+func _ready() -> void:
+	reload_timer = Timer.new()
+	add_child(reload_timer)
+	reload_timer.timeout.connect(_finish_reload)
+
 func initialize(data: WeaponData) -> void:
 	weapon_data = data
 	mags = weapon_data.num_mags
 	bullets_in_mag = weapon_data.mag_size
 
 func reload() -> void:
-	pass
+	if mags <= 0: return
+	
+	if not reloading: # begin reloading
+		reloading = true
+		tried_active_reload = false
+		reload_timer.start(weapon_data.reload_time)
+		print ("begin reload")
+		
+	elif not tried_active_reload: # Attempt active reload
+		tried_active_reload = true
+		var window_start = weapon_data.active_reload_start
+		var window_end = weapon_data.active_reload_end
+		var time = reload_timer.time_left
+		print ("try active reload")
+		
+		if (time <= window_start and time >= window_end): # Active succeed?
+			print ("active reload success")
+			reload_timer.stop()
+			_finish_reload(true)
+
+func _finish_reload(active: bool = false):
+	if (mags > 0):
+		reloading = false
+		bullets_in_mag = weapon_data.mag_size
+		mags -= 1
+		reloaded.emit(active)
+		print("reloaded")
+		reload_timer.stop()
 
 func fire(dir: Vector2) -> void:
-	if (bullets_in_mag == 0):
+	if reloading:
+		return
+	elif bullets_in_mag == 0:
 		reload()
-	
+		return
+		
 	if (weapon_data.hitscan):
 		_fire_hitscan(dir)
 	else:
 		_fire_projectile(dir)
+		
+	bullets_in_mag -= 1
+	print(bullets_in_mag)
 
 func _fire_hitscan(dir: Vector2) -> void:
 	var space_state := get_world_2d().direct_space_state

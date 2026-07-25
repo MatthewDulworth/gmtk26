@@ -8,8 +8,8 @@ class_name WeaponData
 @export var damage: float = 1.0
 
 @export var reload_time: float = 2.0
-@export var active_reload_start: float = 0.75
-@export var active_reload_time: float = 0.5
+@export var active_reload_start: float = 1.25
+@export var active_reload_end: float = 0.75
 
 @export var num_bullets: int = 1
 @export var bullet_spread: float = 0.0

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c6yplr84qj8xy"]
 
-[ext_resource type="Texture2D" uid="uid://dpoqqd8opsx0t" path="res://assets/Cute_Fantasy_Free/Tiles/Grass_Middle.png" id="1_272bh"]
+[ext_resource type="Texture2D" uid="uid://dpoqqd8opsx0t" path="res://ASSets/Cute_Fantasy_Free/Tiles/Grass_Middle.png" id="1_272bh"]
 [ext_resource type="PackedScene" uid="uid://d1wakfws1yses" path="res://chracters/enemies/enemy.tscn" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://b1ltxks71q21v" path="res://chracters/player/PlayerData.gd" id="2_7mycd"]
 [ext_resource type="PackedScene" uid="uid://d0fyntx0582l7" path="res://chracters/player/player.tscn" id="2_h2yge"]

@@ -23,9 +23,11 @@ func _process(_delta: float) -> void:
 	input = InputManager.get_input_intent(player_id)
 	
 	if (input.fire_just_pressed):
-		print(input.facing)
 		weapon.fire(input.facing)
-		
+	
+	if (input.reload):
+		weapon.reload()
+	
 	_about_face()
 
 func _use_weapon(data: WeaponData) -> void:

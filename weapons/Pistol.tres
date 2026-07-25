@@ -6,5 +6,7 @@
 script = ExtResource("1_nld4i")
 name = "Pistol"
 bullet_spread = 0.02
-mag_size = 999
 hitscan_range = 4000.0
+bullet_speed = 10.0
+bullet_radius = 5.0
+bullet_lifetime = 10.0

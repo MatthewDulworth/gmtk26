@@ -5,11 +5,11 @@
 [ext_resource type="Script" uid="uid://b1ltxks71q21v" path="res://chracters/player/PlayerData.gd" id="2_tdtta"]
 [ext_resource type="Resource" uid="uid://cchvlvuoyk60d" path="res://weapons/Pistol.tres" id="3_7eplg"]
 [ext_resource type="Script" uid="uid://wbbbadomml83" path="res://components/Health.gd" id="3_tdtta"]
-[ext_resource type="Texture2D" uid="uid://vht0s4s0u07e" path="res://assets/Vampire-v2/Vampire-Burn.png" id="7_5edc0"]
-[ext_resource type="Texture2D" uid="uid://blnwnjieejw6i" path="res://assets/Vampire-v2/Vampire-Levitate-24x24.png" id="7_7fake"]
+[ext_resource type="Texture2D" uid="uid://vht0s4s0u07e" path="res://ASSets/Vampire-v2/Vampire-Burn.png" id="7_5edc0"]
+[ext_resource type="Texture2D" uid="uid://blnwnjieejw6i" path="res://ASSets/Vampire-v2/Vampire-Levitate-24x24.png" id="7_7fake"]
 [ext_resource type="Script" uid="uid://d1m2ulshd7v5" path="res://weapons/Weapon.gd" id="7_7qpiw"]
-[ext_resource type="Texture2D" uid="uid://bvmjk8wd8luvw" path="res://assets/Vampire-v2/Vampire-Glide.png" id="8_7fake"]
-[ext_resource type="Texture2D" uid="uid://ulwh5l54q11x" path="res://assets/Vampire-v2/Vampire-DustExplosion-Sheet.png" id="9_lt451"]
+[ext_resource type="Texture2D" uid="uid://bvmjk8wd8luvw" path="res://ASSets/Vampire-v2/Vampire-Glide.png" id="8_7fake"]
+[ext_resource type="Texture2D" uid="uid://ulwh5l54q11x" path="res://ASSets/Vampire-v2/Vampire-DustExplosion-Sheet.png" id="9_lt451"]
 
 [sub_resource type="Resource" id="Resource_pxe5x"]
 script = ExtResource("2_tdtta")

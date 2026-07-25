@@ -122,17 +122,9 @@ func _on_animation_complete() -> void:
 	if animation.animation == "attack":
 		animation.stop()
 		animation.speed_scale = 1.0 # Reset speed back to normal for movement
-		
-		# 1. Trigger the recovery block now that the visual strike is over
 		is_attack_on_cooldown = true
-		
-		# 2. Return to CHASE state so they start moving toward the player instantly
 		_chase() 
-		
-		# 3. Force them to wait/chase for the exact recovery duration
 		await get_tree().create_timer(enemy_data.attack_cooldown).timeout
-		
-		# 4. Cooldown finishes, allowing another strike
 		is_attack_on_cooldown = false
 	
 func collect() -> void:

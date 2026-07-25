@@ -5,6 +5,7 @@ class_name EnemyController
 @export var players: Array[PlayerController]
 @export var health: Health
 @export var hurtbox: HurtBox
+@export var health_bar: HealthBar
 @export var state: EnemyState
 
 var target: Vector2
@@ -32,7 +33,8 @@ func _ready() -> void:
 	_set_target_player()
 	scale = scale * enemy_data.size_scale;
 	health.initialize(enemy_data.max_health)
-	
+	health_bar.bind(health)
+
 	hitbox_collision.disabled = true
 	
 	# Signals

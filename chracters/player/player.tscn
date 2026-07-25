@@ -7,9 +7,11 @@
 [ext_resource type="Script" uid="uid://wbbbadomml83" path="res://components/Health.gd" id="3_tdtta"]
 [ext_resource type="PackedScene" uid="uid://c7yaknwjn8i2u" path="res://components/PickupBox.tscn" id="5_puunv"]
 [ext_resource type="Resource" uid="uid://7ovfvi5xec8f" path="res://weapons/RocketLauncher.tres" id="5_t7shh"]
+[ext_resource type="PackedScene" path="res://components/HealthBar.tscn" id="6_hpbar"]
 [ext_resource type="Texture2D" uid="uid://vht0s4s0u07e" path="res://ASSets/Vampire-v2/Vampire-Burn.png" id="7_5edc0"]
 [ext_resource type="Texture2D" uid="uid://blnwnjieejw6i" path="res://ASSets/Vampire-v2/Vampire-Levitate-24x24.png" id="7_7fake"]
 [ext_resource type="Script" uid="uid://d1m2ulshd7v5" path="res://weapons/Weapon.gd" id="7_7qpiw"]
+[ext_resource type="PackedScene" path="res://weapons/WeaponHUD.tscn" id="7_whud"]
 [ext_resource type="Texture2D" uid="uid://bvmjk8wd8luvw" path="res://ASSets/Vampire-v2/Vampire-Glide.png" id="8_7fake"]
 [ext_resource type="Texture2D" uid="uid://ulwh5l54q11x" path="res://ASSets/Vampire-v2/Vampire-DustExplosion-Sheet.png" id="9_lt451"]
 [ext_resource type="Script" uid="uid://cx6lerykt0y5s" path="res://weapons/WeaponData.gd" id="10_wdata"]
@@ -333,7 +335,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D" unique_id=1399235571 node_paths=PackedStringArray("health", "hurtbox", "weapon", "weapons_list")]
+[node name="Player" type="CharacterBody2D" unique_id=1399235571 node_paths=PackedStringArray("health", "hurtbox", "weapon", "weapons_list", "health_bar", "weapon_hud")]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_6ele1")
@@ -342,6 +344,8 @@ health = NodePath("Health")
 hurtbox = NodePath("HurtBox")
 weapon = NodePath("Weapon")
 weapons_list = NodePath("WeaponsList")
+health_bar = NodePath("HealthBar")
+weapon_hud = NodePath("WeaponHUD")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1634337190]
 position = Vector2(2, 0)
@@ -368,3 +372,10 @@ animation = &"burn"
 script = ExtResource("14_dyqbq")
 weapons = Array[ExtResource("10_wdata")]([ExtResource("3_7eplg"), ExtResource("5_t7shh")])
 metadata/_custom_type_script = "uid://c8ihojc5e8qiw"
+
+[node name="HealthBar" parent="." unique_id=1151305661 instance=ExtResource("6_hpbar")]
+position = Vector2(2, -50)
+
+[node name="WeaponHUD" parent="." unique_id=1919452286 node_paths=PackedStringArray("weapon") instance=ExtResource("7_whud")]
+position = Vector2(2, -65)
+weapon = NodePath("../Weapon")

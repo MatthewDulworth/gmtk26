@@ -4,8 +4,10 @@ class_name PlayerController
 @export var player_data: PlayerData
 @export var health: Health
 @export var hurtbox: HurtBox
-@export var weapon: Weapon 
+@export var weapon: Weapon
 @export var weapons_list: WeaponsList
+@export var health_bar: HealthBar
+@export var weapon_hud: WeaponHUD
 
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var pickup_box: Area2D = $PickupBox
@@ -18,6 +20,7 @@ func pickup_weapon(data: WeaponData) -> void:
 
 func _ready() -> void:
 	health.initialize(player_data.max_health)
+	health_bar.bind(health)
 	input = InputManager.get_input_intent(player_id)
 	health.died.connect(_on_death)
 	weapons_list.initialize([player_data.starting_weapon])
@@ -47,6 +50,7 @@ func _process(_delta: float) -> void:
 func _use_weapon(slot: WeaponSlot) -> void:
 	print("using: ", slot.weapon.name, " n: ", slot.ammo.bullets_left, " m: ",  slot.ammo.mags_left)
 	weapon.initialize(slot)
+	weapon_hud.bind(slot)
 
 func _cycle_weapon(forwards: bool) -> void:
 	_use_weapon(weapons_list.switch_weapon(forwards))

@@ -16,6 +16,7 @@ var reloading: bool
 var tried_active_reload: bool
 
 signal reloaded(active: bool)
+signal ammo_changed
 
 func _ready() -> void:
 	reload_timer = Timer.new()
@@ -54,11 +55,12 @@ func _finish_reload(active: bool = false):
 		weapon_slot.ammo.bullets_left = weapon_slot.weapon.mag_size
 		weapon_slot.ammo.mags_left -= 1
 		reloaded.emit(active)
+		ammo_changed.emit()
 		print("reloaded")
 		reload_timer.stop()
 
 func fire(dir: Vector2) -> void:
-	if weapon_slot.ammo.bullets_left == 0:
+	if reloading or weapon_slot.ammo.bullets_left == 0:
 		reload()
 		return
 
@@ -68,6 +70,7 @@ func fire(dir: Vector2) -> void:
 		_fire_projectile(dir)
 
 	weapon_slot.ammo.bullets_left -= 1
+	ammo_changed.emit()
 	print(weapon_slot.ammo.bullets_left)
 
 func _fire_hitscan(dir: Vector2) -> void:

@@ -22,6 +22,7 @@ enum EnemyState {
 
 func _ready() -> void:
 	targetPlayer()
+	scale = scale * enemy_data.size_scale;
 	#health.initialize(enemy_data.max_health)
 
 func _process(_delta: float) -> void:
@@ -36,13 +37,17 @@ func _physics_process(_delta: float) ->  void:
 		$AnimatedSprite2D.play("run")
 		var pos = global_transform.origin
 		var new_pos = nav_agent_2d.get_next_path_position()
-		var new_vel = (new_pos - pos).normalized() * 200; # speed
+		var new_vel = (new_pos - pos).normalized() * enemy_data.move_speed; # speed
 		velocity = new_vel
 		move_and_slide()
 		
 func targetPlayer():
 	target = Vector2(players.get(0).position)
 	nav_agent_2d.set_target_position(target)
+	
+func chooseAnimation():
+	if velocity == Vector2(0, 0):
+		$AnimatedSprite2D.play("flap")
 
 func _spawn() -> void:
 	pass

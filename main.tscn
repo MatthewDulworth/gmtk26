@@ -1,16 +1,21 @@
-[gd_scene format=3 uid="uid://bnnltubrrrjsm"]
+[gd_scene format=3 uid="uid://c6yplr84qj8xy"]
 
 [ext_resource type="PackedScene" uid="uid://d1wakfws1yses" path="res://chracters/enemies/enemy.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://d0fyntx0582l7" path="res://chracters/player/player.tscn" id="2_h2yge"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ig7tw"]
-vertices = PackedVector2Array(-559.0703, -304.02344, 560.97656, -306.96875, 72.046875, -125.00781, -187.04688, -100.078125, -563.90625, 305.95313, -185.9375, 89.59375, 560.0078, 301.03906, 70.953125, 100.42969)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(6, 4, 5, 7), PackedInt32Array(1, 6, 7, 2)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-569, -314, 571, -317, 570, 311, -574, 316), PackedVector2Array(-177, -91, -176, 80, 61, 90, 62, -114)])
+vertices = PackedVector2Array(210, 285.85938, 560.0078, 301.03906, -563.90625, 305.95313, 43.507813, 288.14063, -95.5625, 93, -74.5, 28.117188, 60.40625, -69.828125, -101.46094, 228.86719, -260.3203, 215.04688, -243.72656, 93, -559.0703, -304.02344, -226.88281, -304.89844, -237.34375, 44.0625, -55.617188, -305.35156, 560.97656, -306.96875, 210, -89.390625)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 3, 7), PackedInt32Array(7, 3, 2, 8), PackedInt32Array(9, 8, 2, 10, 11, 12), PackedInt32Array(4, 9, 12, 5), PackedInt32Array(6, 5, 13), PackedInt32Array(6, 13, 14, 15), PackedInt32Array(15, 14, 1, 0)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-569, -314, 571, -317, 570, 311, -574, 316), PackedVector2Array(-217, -301, -227, 33, -84, 19, -66, -299), PackedVector2Array(-235, 103, -249, 206, -111, 218, -106, 103), PackedVector2Array(70, -61, 54, 278, 200, 276, 200, -78)])
 
 [node name="Main" type="Node2D" unique_id=699210955]
 
-[node name="Enemy" parent="." unique_id=1397981385 instance=ExtResource("2_0xm2m")]
-position = Vector2(19, 15)
+[node name="Player" parent="." unique_id=1399235571 instance=ExtResource("2_h2yge")]
+position = Vector2(343, 173)
+
+[node name="Enemy" parent="." unique_id=1397981385 node_paths=PackedStringArray("players") instance=ExtResource("2_0xm2m")]
+position = Vector2(-474, -225)
+players = [NodePath("../Player")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1687995481]
 

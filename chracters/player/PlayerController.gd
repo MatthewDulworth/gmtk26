@@ -61,11 +61,9 @@ func _set_hurtbox_collision_layer(layer: CollisionLayers.Layer) -> void:
 	hurtbox.set_collision_layer_value(layer, true) 
 	
 func _on_collect_feather(area: Area2D) -> void:
-	print('area', area)
-	# Check if the area belongs to an Enemy HurtBox
 	if area is HurtBox:
-		# Get the EnemyController parent owning this HurtBox
-		var enemy = area.get_parent() as EnemyController
-		
-		if enemy and enemy.state == EnemyController.EnemyState.DEAD_PENDING_COLLECTION:
-			enemy.collect()
+		var parent = area.get_parent()
+		if parent is EnemyController:
+			var enemy = area.get_parent() as EnemyController
+			if enemy and enemy.state == EnemyController.EnemyState.DEAD_PENDING_COLLECTION:
+				enemy.collect()

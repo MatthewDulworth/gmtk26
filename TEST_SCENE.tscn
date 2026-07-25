@@ -2,12 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://dn0winq5cq6u2" path="res://Checkerboard_pattern.svg" id="1_pxe5x"]
 [ext_resource type="PackedScene" uid="uid://d0fyntx0582l7" path="res://chracters/player/player.tscn" id="2_n2x8j"]
-[ext_resource type="PackedScene" uid="uid://c45dnc7c85agi" path="res://components/HurtBox.tscn" id="3_n2x8j"]
-[ext_resource type="Script" uid="uid://wbbbadomml83" path="res://components/Health.gd" id="4_health"]
-[ext_resource type="Script" uid="uid://cd778sn756psr" path="res://TEST_SCENE.gd" id="5_testscene"]
 
 [node name="TestScene" type="Node2D" unique_id=142124800]
-script = ExtResource("5_testscene")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1921022134]
 position = Vector2(1, 3.0517578e-05)
@@ -15,17 +11,6 @@ scale = Vector2(3.238, 2.55)
 texture = ExtResource("1_pxe5x")
 
 [node name="Player" parent="." unique_id=1399235571 instance=ExtResource("2_n2x8j")]
-position = Vector2(-436, 2)
+position = Vector2(-86, -55)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2082388378]
-
-[node name="HurtBox" parent="." unique_id=538028481 node_paths=PackedStringArray("health") instance=ExtResource("3_n2x8j")]
-position = Vector2(1.000061, 2)
-scale = Vector2(10, 10)
-collision_layer = 16
-collision_mask = 4
-health = NodePath("Health")
-
-[node name="Health" type="Node" parent="HurtBox" unique_id=1824084182]
-script = ExtResource("4_health")
-metadata/_custom_type_script = "uid://wbbbadomml83"

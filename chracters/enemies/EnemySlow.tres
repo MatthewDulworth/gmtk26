@@ -4,10 +4,5 @@
 
 [resource]
 script = ExtResource("1_jc8jc")
-<<<<<<< HEAD
 size_scale = 4.0
-=======
-move_speed = 150.0
-size_scale = 3.0
->>>>>>> 284ddeb873b986e3719ac2504002848059bc7580
 metadata/_custom_type_script = "uid://bdhvi88d3ihm2"

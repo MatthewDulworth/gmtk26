@@ -24,7 +24,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 InputManager="*res://autoload/InputManager.gd"
-ProjectilePool="*res://autoload/ProjectilePool.gd"
 
 [input]
 

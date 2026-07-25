@@ -137,17 +137,11 @@ animations = [{
 "speed": 5.0
 }]
 
-<<<<<<< HEAD
 [node name="Enemy" type="CharacterBody2D" unique_id=976929462 node_paths=PackedStringArray("health", "hurtbox")]
 script = ExtResource("1_yhatl")
 enemy_data = SubResource("Resource_cuw3f")
 health = NodePath("Health")
 hurtbox = NodePath("HurtBox")
-=======
-[node name="Enemy" type="CharacterBody2D" unique_id=976929462 node_paths=PackedStringArray("health")]
-script = ExtResource("1_yhatl")
-health = NodePath("Health")
->>>>>>> 284ddeb873b986e3719ac2504002848059bc7580
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=959522981]
 position = Vector2(1, -14)

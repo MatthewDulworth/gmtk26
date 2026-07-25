@@ -5,8 +5,6 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q3yxo"]
 
 [node name="HurtBox" type="Area2D" unique_id=538028481]
-collision_layer = 2
-collision_mask = 2
 script = ExtResource("1_4bt8n")
 metadata/_custom_type_script = "uid://duoe8w4fbx8fc"
 

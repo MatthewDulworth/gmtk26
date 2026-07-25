@@ -20,6 +20,7 @@ const feather_pickup_text = preload("res://components/FloatingText.tscn")
 @onready var hitbox_collision: CollisionShape2D = $HitBox/CollisionShape2D
 
 enum EnemyState {
+	IDLE,
 	SPAWN,
 	CHASE,
 	ATTACK,
@@ -55,6 +56,9 @@ func _process(_delta: float) -> void:
 	if _should_begin_attack():
 		_attack()
 
+	elif _is_all_players_dead():
+		animation.play("walk")
+
 func _physics_process(_delta: float) ->  void:
 	if state == EnemyState.ATTACK or state == EnemyState.DEAD_PENDING_COLLECTION:
 		return
@@ -62,14 +66,20 @@ func _physics_process(_delta: float) ->  void:
 	if (position.distance_to(target)) > 5.0:
 		_move_towards_target()
 
-func _set_target_player():
-	target = Vector2(_get_closest_player().position)
+func _set_target_player() -> void:
+	# If all players are dead, go to the middle
+	if _is_all_players_dead():
+		target = Vector2(0, 0)
+	else:
+		target = Vector2(_get_closest_player().position)
 	nav_agent_2d.set_target_position(target)
 
-func _get_closest_player():
+func _get_closest_player() -> PlayerController:
 	var closestPlayer
 	var closestPlayerDistance = INF
 	for player: PlayerController in players:
+		if player.state == PlayerController.PlayerState.DEAD:
+			continue
 		var distance_to_player = position.distance_to(player.position)
 		if distance_to_player < closestPlayerDistance:
 			closestPlayerDistance = distance_to_player
@@ -78,6 +88,8 @@ func _get_closest_player():
 
 func _is_closest_player_to_right() -> bool:
 	var player = _get_closest_player()
+	if player == null:
+		return position.x < 0
 	return player.position.x > position.x
 
 func _face_player():
@@ -158,7 +170,7 @@ func _move_towards_target():
 	move_and_slide()
 
 func _should_begin_attack() -> bool:
-	return position.distance_to(target) < enemy_data.attack_range and state == EnemyState.CHASE and not is_attack_on_cooldown
+	return position.distance_to(target) < enemy_data.attack_range and state == EnemyState.CHASE and not is_attack_on_cooldown and not _is_all_players_dead()
 
 func _is_dead() -> bool:
 	return state == EnemyState.DEAD_PENDING_COLLECTION or state == EnemyState.DEAD_COLLECTED
@@ -172,7 +184,6 @@ func _deal_damage_on_final_frame() -> void:
 
 	# If player is overlapping, deal damage
 	var hit_areas = hitbox.get_overlapping_areas()
-	print(hit_areas)
 	for area in hit_areas:
 		var parent = area.get_parent()
 		if parent is PlayerController:
@@ -185,3 +196,6 @@ func _cooldown_attack() -> void:
 	_chase()
 	await get_tree().create_timer(enemy_data.attack_cooldown).timeout
 	is_attack_on_cooldown = false
+
+func _is_all_players_dead() -> bool:
+		return players.all(func(p): return p.state == PlayerController.PlayerState.DEAD)

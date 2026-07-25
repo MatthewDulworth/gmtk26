@@ -6,6 +6,7 @@ class_name WeaponData
 @export var full_auto: bool = false
 @export var fire_rate: float = 1.0
 @export var damage: float = 1.0
+@export var knockback: float = 2.0
 
 @export var reload_time: float = 2.0
 @export var active_reload_start: float = 1.25
@@ -22,3 +23,6 @@ class_name WeaponData
 @export var bullet_speed: float
 @export var bullet_radius: float
 @export var bullet_lifetime: float = 2.0
+
+@export var hit_explosion: bool = false
+@export var hit_explosion_radius: float = 10.0

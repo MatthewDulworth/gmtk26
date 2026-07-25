@@ -3,10 +3,13 @@
 [ext_resource type="Script" uid="uid://bl4qta4i4ucy4" path="res://obstacles/Obstacle.gd" id="1_fqy7a"]
 [ext_resource type="Texture2D" uid="uid://cksn71qah5jih" path="res://assets/Cute_Fantasy_Free/Outdoor decoration/House_1_Wood_Base_Blue.png" id="2_emqbp"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rhggh"]
-size = Vector2(70.25, 113.75)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rhggh"]
+radius = 35.0
+height = 110.0
 
-[node name="Obstacle" type="Area2D" unique_id=1943589396]
+[node name="Obstacle" type="StaticBody2D" unique_id=1943589396]
+collision_layer = 128
+collision_mask = 0
 script = ExtResource("1_fqy7a")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1487069667]
@@ -15,4 +18,4 @@ texture = ExtResource("2_emqbp")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1910922974]
 visible = false
 position = Vector2(-0.125, -6.125)
-shape = SubResource("RectangleShape2D_rhggh")
+shape = SubResource("CapsuleShape2D_rhggh")

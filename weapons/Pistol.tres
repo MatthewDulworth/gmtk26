@@ -5,6 +5,8 @@
 [resource]
 script = ExtResource("1_nld4i")
 name = "Pistol"
+fire_rate = 10.0
+reload_time = 1.5
 bullet_spread = 0.02
 hitscan_range = 4000.0
 bullet_speed = 10.0

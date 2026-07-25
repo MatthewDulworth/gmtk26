@@ -14,7 +14,7 @@ height = 12
 
 [node name="Projectile" type="Area2D" unique_id=1365435706]
 collision_layer = 5
-collision_mask = 17
+collision_mask = 145
 script = ExtResource("1_0nlcc")
 metadata/_custom_type_script = "uid://d3sowafpw7a4o"
 

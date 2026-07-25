@@ -3,6 +3,7 @@ class_name Weapon
 
 const WORLD_LAYER := 1 << 0 # world layer bitmask
 const ENEMY_HURTBOX_LAYER := 1 << 4 # enemy_hurtbox layer bitmask
+const OBSTACLE_LAYER := 1 << 7 # obstacle layer bitmask
 const HITSCAN_MASK := WORLD_LAYER | ENEMY_HURTBOX_LAYER
 
 const TRACER_WIDTH := 4.0
@@ -96,11 +97,21 @@ func _fire_hitscan(dir: Vector2) -> void:
 		var shot_dir := dir.rotated(spread)
 		var from := global_position
 		var to := from + shot_dir * weapon_slot.weapon.hitscan_range
-		var query := PhysicsRayQueryParameters2D.create(from, to)
-		query.collision_mask = HITSCAN_MASK
-		query.collide_with_areas = true
-		query.collide_with_bodies = false
-		var result := space_state.intersect_ray(query)
+
+		var hurtbox_query := PhysicsRayQueryParameters2D.create(from, to)
+		hurtbox_query.collision_mask = HITSCAN_MASK
+		hurtbox_query.collide_with_areas = true
+		hurtbox_query.collide_with_bodies = false
+		var result := space_state.intersect_ray(hurtbox_query)
+
+		var obstacle_query := PhysicsRayQueryParameters2D.create(from, to)
+		obstacle_query.collision_mask = OBSTACLE_LAYER
+		obstacle_query.collide_with_areas = false
+		obstacle_query.collide_with_bodies = true
+		var obstacle_result := space_state.intersect_ray(obstacle_query)
+		if obstacle_result and (not result or from.distance_squared_to(obstacle_result.position) < from.distance_squared_to(result.position)):
+			result = obstacle_result
+
 		if result:
 			to = result.position
 			if weapon_slot.weapon.hit_explosion:

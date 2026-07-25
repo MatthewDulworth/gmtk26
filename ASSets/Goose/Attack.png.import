@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvmjk8wd8luvw"
-path="res://.godot/imported/Vampire-Glide.png-6e751912e2f1852d27c5a7d798cd0c2e.ctex"
+uid="uid://cwmh8k1jxx3fy"
+path="res://.godot/imported/Attack.png-b6910f746e5337d63eb23485a7d725d1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Vampire-v2/Vampire-Glide.png"
-dest_files=["res://.godot/imported/Vampire-Glide.png-6e751912e2f1852d27c5a7d798cd0c2e.ctex"]
+source_file="res://assets/Goose/Attack.png"
+dest_files=["res://.godot/imported/Attack.png-b6910f746e5337d63eb23485a7d725d1.ctex"]
 
 [params]
 

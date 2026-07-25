@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dsg1jdn6o5no3" path="res://assets/Plume 16x16.png" id="6_6sxb8"]
 [ext_resource type="Texture2D" uid="uid://cai7wvm13476g" path="res://assets/Goose/Run.png" id="6_r7v4m"]
 [ext_resource type="Texture2D" uid="uid://3to73gt4a5n0" path="res://assets/Goose/Walk.png" id="7_6sxb8"]
+[ext_resource type="Texture2D" uid="uid://cwmh8k1jxx3fy" path="res://assets/Goose/Attack.png" id="8_jvj35"]
 
 [sub_resource type="Resource" id="Resource_dgned"]
 script = ExtResource("2_r7v4m")
@@ -17,6 +18,22 @@ metadata/_custom_type_script = "uid://bdhvi88d3ihm2"
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6sxb8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vpdod"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7kud"]
+atlas = ExtResource("8_jvj35")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q2m78"]
+atlas = ExtResource("8_jvj35")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_as34a"]
+atlas = ExtResource("8_jvj35")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ieer7"]
+atlas = ExtResource("8_jvj35")
+region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jvj35"]
 atlas = ExtResource("4_cuw3f")
@@ -80,6 +97,23 @@ region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_r7v4m"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c7kud")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q2m78")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_as34a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ieer7")
+}],
+"loop": 0,
+"name": &"attack",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jvj35")
@@ -176,6 +210,6 @@ shape = SubResource("CapsuleShape2D_vpdod")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1927816173]
 sprite_frames = SubResource("SpriteFrames_r7v4m")
-animation = &"down_feather"
+animation = &"attack"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1165551425]

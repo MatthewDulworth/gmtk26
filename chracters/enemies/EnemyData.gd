@@ -7,6 +7,7 @@ class_name EnemyData
 
 @export var attack_range: float = 1.0
 @export var attack_damage: float = 1.0
-@export var attack_cooldown: float = 1.0
+@export var attack_cooldown: float = 1.0   # (seconds) Time between attack animations
+@export var attack_duration: float = 0.5   # (seconds) Time of attack animation
 
 @export var size_scale: float = 1.0

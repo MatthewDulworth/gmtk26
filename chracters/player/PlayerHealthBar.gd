@@ -11,10 +11,10 @@ func bind(_health: Health) -> void:
 	health = _health
 	health.health_changed.connect(_update)
 	health.died.connect(_on_died)
-	_update()
+	_update(health.current_health)
 
-func _update() -> void:
-	var pct = health.current_health / health.max_health
+func _update(new_health) -> void:
+	var pct = new_health / health.max_health
 	fill.size.x = width * pct
 	fill.color = Color.GREEN.lerp(Color.RED, 1.0 - pct)
 

@@ -1,15 +1,15 @@
 [gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://bxhj8gcqqmkpd"]
 
-[ext_resource type="Script" uid="uid://bdhvi88d3ihm2" path="res://chracters/enemies/EnemyData.gd" id="1_jc8jc"]
+[ext_resource type="Script" uid="uid://bdhvi88d3ihm2" path="res://chracters/enemies/EnemyData.gd" id="1_v5nes"]
 
 [resource]
-script = ExtResource("1_jc8jc")
+script = ExtResource("1_v5nes")
 max_health = 3.0
 move_speed = 150.0
 count_down_value = 5
+animation_name_move = "walk"
 attack_range = 75.0
 attack_damage = 10.0
-attack_cooldown = 3.0
-attack_duration = 2.0
+attack_cooldown = 2.0
 size_scale = 3.0
 metadata/_custom_type_script = "uid://bdhvi88d3ihm2"

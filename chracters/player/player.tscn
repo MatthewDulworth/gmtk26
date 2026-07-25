@@ -4,17 +4,17 @@
 [ext_resource type="PackedScene" uid="uid://c45dnc7c85agi" path="res://components/HurtBox.tscn" id="2_q3yxo"]
 [ext_resource type="Script" uid="uid://b1ltxks71q21v" path="res://chracters/player/PlayerData.gd" id="2_tdtta"]
 [ext_resource type="Resource" uid="uid://cchvlvuoyk60d" path="res://weapons/Pistol.tres" id="3_7eplg"]
-[ext_resource type="Resource" uid="uid://dapcnrc6ggwk" path="res://weapons/Uzi.tres" id="3_uzi"]
 [ext_resource type="Script" uid="uid://wbbbadomml83" path="res://components/Health.gd" id="3_tdtta"]
+[ext_resource type="Resource" uid="uid://dapcnrc6ggwk" path="res://weapons/Uzi.tres" id="3_uzi"]
 [ext_resource type="PackedScene" uid="uid://c7yaknwjn8i2u" path="res://components/PickupBox.tscn" id="5_puunv"]
 [ext_resource type="Resource" uid="uid://7ovfvi5xec8f" path="res://weapons/RocketLauncher.tres" id="5_t7shh"]
 [ext_resource type="PackedScene" path="res://chracters/player/PlayerHealthBar.tscn" id="6_hpbar"]
-[ext_resource type="Texture2D" uid="uid://vht0s4s0u07e" path="res://ASSets/Vampire-v2/Vampire-Burn.png" id="7_5edc0"]
-[ext_resource type="Texture2D" uid="uid://blnwnjieejw6i" path="res://ASSets/Vampire-v2/Vampire-Levitate-24x24.png" id="7_7fake"]
+[ext_resource type="Texture2D" uid="uid://vht0s4s0u07e" path="res://assets/Vampire-v2/Vampire-Burn.png" id="7_5edc0"]
+[ext_resource type="Texture2D" uid="uid://blnwnjieejw6i" path="res://assets/Vampire-v2/Vampire-Levitate-24x24.png" id="7_7fake"]
 [ext_resource type="Script" uid="uid://d1m2ulshd7v5" path="res://weapons/Weapon.gd" id="7_7qpiw"]
 [ext_resource type="PackedScene" path="res://weapons/WeaponHUD.tscn" id="7_whud"]
-[ext_resource type="Texture2D" uid="uid://bvmjk8wd8luvw" path="res://ASSets/Vampire-v2/Vampire-Glide.png" id="8_7fake"]
-[ext_resource type="Texture2D" uid="uid://ulwh5l54q11x" path="res://ASSets/Vampire-v2/Vampire-DustExplosion-Sheet.png" id="9_lt451"]
+[ext_resource type="Texture2D" uid="uid://bvmjk8wd8luvw" path="res://assets/Vampire-v2/Vampire-Glide.png" id="8_7fake"]
+[ext_resource type="Texture2D" uid="uid://ulwh5l54q11x" path="res://assets/Vampire-v2/Vampire-DustExplosion-Sheet.png" id="9_lt451"]
 [ext_resource type="Script" uid="uid://cx6lerykt0y5s" path="res://weapons/WeaponData.gd" id="10_wdata"]
 [ext_resource type="Script" uid="uid://c8ihojc5e8qiw" path="res://weapons/WeaponsList.gd" id="14_dyqbq"]
 
@@ -109,10 +109,6 @@ region = Rect2(216, 0, 24, 24)
 [sub_resource type="AtlasTexture" id="AtlasTexture_jgun2"]
 atlas = ExtResource("9_lt451")
 region = Rect2(240, 0, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kwcku"]
-atlas = ExtResource("9_lt451")
-region = Rect2(264, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t08ad"]
 atlas = ExtResource("8_7fake")
@@ -260,11 +256,8 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jgun2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kwcku")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"die",
 "speed": 5.0
 }, {
@@ -367,7 +360,7 @@ metadata/_custom_type_script = "uid://d1m2ulshd7v5"
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=754190705]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_rhggh")
-animation = &"burn"
+animation = &"die"
 
 [node name="WeaponsList" type="Node" parent="." unique_id=1890540205]
 script = ExtResource("14_dyqbq")

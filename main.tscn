@@ -7,9 +7,9 @@
 [ext_resource type="Resource" uid="uid://cchvlvuoyk60d" path="res://weapons/Pistol.tres" id="3_kek77"]
 [ext_resource type="Resource" uid="uid://dapcnrc6ggwk" path="res://weapons/Uzi.tres" id="3_uzi"]
 [ext_resource type="Script" uid="uid://cx6lerykt0y5s" path="res://weapons/WeaponData.gd" id="3_wdata"]
-[ext_resource type="Resource" uid="uid://bxhj8gcqqmkpd" path="res://chracters/enemies/EnemySlow.tres" id="4_5vw27"]
-[ext_resource type="Resource" uid="uid://d38xsxobsmd6k" path="res://chracters/enemies/EnemyFast.tres" id="6_kek77"]
-[ext_resource type="Resource" uid="uid://bbiflcgguj78o" path="res://chracters/enemies/EnemyMed.tres" id="7_5vw27"]
+[ext_resource type="Resource" uid="uid://bxhj8gcqqmkpd" path="res://chracters/enemies/variants/EnemySlow.tres" id="4_5vw27"]
+[ext_resource type="Resource" uid="uid://d38xsxobsmd6k" path="res://chracters/enemies/variants/EnemyFast.tres" id="6_kek77"]
+[ext_resource type="Resource" uid="uid://bbiflcgguj78o" path="res://chracters/enemies/variants/EnemyMed.tres" id="7_5vw27"]
 [ext_resource type="PackedScene" uid="uid://dktivciqkls6i" path="res://obstacles/Obstacle.tscn" id="7_272bh"]
 
 [sub_resource type="Resource" id="Resource_lquwl"]

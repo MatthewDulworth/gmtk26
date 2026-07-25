@@ -57,13 +57,7 @@ func _set_target_player():
 	nav_agent_2d.set_target_position(target)
 	
 func _animate():
-	if state == EnemyState.DEAD_PENDING_COLLECTION:
-		# Don't play an animation because we don't want it to be replayed in processing loop
-		return
-	
-	if velocity == Vector2(0, 0):
-		animation.play("flap")
-	else:
+	if state == EnemyState.CHASE:
 		animation.play(enemy_data.move_animation_name)
 
 func _get_closest_player():
@@ -87,7 +81,8 @@ func _face_player():
 		animation.flip_h = -1
 
 func _spawn() -> void:
-	state = EnemyState.SPAWN
+	# Spawn in ready to chase
+	_chase()
 	
 func _chase() -> void:
 	state = EnemyState.CHASE

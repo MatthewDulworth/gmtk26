@@ -47,7 +47,7 @@ func _fire_hitscan(dir: Vector2) -> void:
 			if result.collider is HurtBox:
 				result.collider.take_damage(weapon_data.damage, self)
 		_draw_tracer(from, to)
-
+ 
 func _draw_tracer(from: Vector2, to: Vector2) -> void:
 	var line := Line2D.new()
 	line.top_level = true

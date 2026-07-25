@@ -9,9 +9,7 @@ const TRACER_WIDTH := 4.0
 const TRACER_COLOR := Color.RED
 const TRACER_FADE_TIME := 0.05
 
-var weapon_data: WeaponData
-var mags: int
-var bullets_in_mag: int
+var weapon_slot: WeaponSlot
 
 var reload_timer: Timer
 var reloading: bool
@@ -24,37 +22,38 @@ func _ready() -> void:
 	add_child(reload_timer)
 	reload_timer.timeout.connect(_finish_reload)
 
-func initialize(data: WeaponData) -> void:
-	weapon_data = data
-	mags = weapon_data.num_mags
-	bullets_in_mag = weapon_data.mag_size
+func initialize(slot: WeaponSlot) -> void:
+	weapon_slot = slot
+	reloading = false
+	tried_active_reload = false
+	reload_timer.stop()
 
 func reload() -> void:
-	if mags <= 0: return
-	
+	if weapon_slot.ammo.mags_left <= 0: return
+
 	if not reloading: # begin reloading
 		reloading = true
 		tried_active_reload = false
-		reload_timer.start(weapon_data.reload_time)
+		reload_timer.start(weapon_slot.weapon.reload_time)
 		print ("begin reload")
-		
+
 	elif not tried_active_reload: # Attempt active reload
 		tried_active_reload = true
-		var window_start = weapon_data.active_reload_start
-		var window_end = weapon_data.active_reload_end
+		var window_start = weapon_slot.weapon.active_reload_start
+		var window_end = weapon_slot.weapon.active_reload_end
 		var time = reload_timer.time_left
 		print ("try active reload")
-		
+
 		if (time <= window_start and time >= window_end): # Active succeed?
 			print ("active reload success")
 			reload_timer.stop()
 			_finish_reload(true)
 
 func _finish_reload(active: bool = false):
-	if (mags > 0):
+	if (weapon_slot.ammo.mags_left > 0):
 		reloading = false
-		bullets_in_mag = weapon_data.mag_size
-		mags -= 1
+		weapon_slot.ammo.bullets_left = weapon_slot.weapon.mag_size
+		weapon_slot.ammo.mags_left -= 1
 		reloaded.emit(active)
 		print("reloaded")
 		reload_timer.stop()
@@ -62,25 +61,25 @@ func _finish_reload(active: bool = false):
 func fire(dir: Vector2) -> void:
 	if reloading:
 		return
-	elif bullets_in_mag == 0:
+	elif weapon_slot.ammo.bullets_left == 0:
 		reload()
 		return
-		
-	if (weapon_data.hitscan):
+
+	if (weapon_slot.weapon.hitscan):
 		_fire_hitscan(dir)
 	else:
 		_fire_projectile(dir)
-		
-	bullets_in_mag -= 1
-	print(bullets_in_mag)
+
+	weapon_slot.ammo.bullets_left -= 1
+	print(weapon_slot.ammo.bullets_left)
 
 func _fire_hitscan(dir: Vector2) -> void:
 	var space_state := get_world_2d().direct_space_state
-	for i in weapon_data.num_bullets:
-		var spread := randf_range(-weapon_data.bullet_spread, weapon_data.bullet_spread)
+	for i in weapon_slot.weapon.num_bullets:
+		var spread := randf_range(-weapon_slot.weapon.bullet_spread, weapon_slot.weapon.bullet_spread)
 		var shot_dir := dir.rotated(spread)
 		var from := global_position
-		var to := from + shot_dir * weapon_data.hitscan_range
+		var to := from + shot_dir * weapon_slot.weapon.hitscan_range
 		var query := PhysicsRayQueryParameters2D.create(from, to)
 		query.collision_mask = HITSCAN_MASK
 		query.collide_with_areas = true
@@ -89,7 +88,7 @@ func _fire_hitscan(dir: Vector2) -> void:
 		if result:
 			to = result.position
 			if result.collider is HurtBox:
-				result.collider.take_damage(weapon_data.damage, self)
+				result.collider.take_damage(weapon_slot.weapon.damage, self)
 		_draw_tracer(from, to)
  
 func _draw_tracer(from: Vector2, to: Vector2) -> void:
@@ -105,8 +104,8 @@ func _draw_tracer(from: Vector2, to: Vector2) -> void:
 	tween.tween_callback(line.queue_free)
 
 func _fire_projectile(dir: Vector2) -> void:
-	for i in weapon_data.num_bullets:
-		var spread := randf_range(-weapon_data.bullet_spread, weapon_data.bullet_spread)
+	for i in weapon_slot.weapon.num_bullets:
+		var spread := randf_range(-weapon_slot.weapon.bullet_spread, weapon_slot.weapon.bullet_spread)
 		var bullet_dir := dir.rotated(spread)
 		var projectile := ProjectilePool.acquire()
-		projectile.activate(weapon_data.damage, self, weapon_data.bullet_radius, bullet_dir, weapon_data.bullet_speed, global_position, weapon_data.bullet_lifetime)
+		projectile.activate(weapon_slot.weapon.damage, self, weapon_slot.weapon.bullet_radius, bullet_dir, weapon_slot.weapon.bullet_speed, global_position, weapon_slot.weapon.bullet_lifetime)

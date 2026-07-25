@@ -22,3 +22,6 @@ class_name WeaponData
 @export var bullet_speed: float
 @export var bullet_radius: float
 @export var bullet_lifetime: float = 2.0
+
+@export var hit_explosion: bool = false
+@export var hit_explosion_radius: float = 10.0

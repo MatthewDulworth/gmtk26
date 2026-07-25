@@ -5,19 +5,23 @@ class_name PlayerController
 @export var health: Health
 @export var hurtbox: HurtBox
 @export var weapon: Weapon 
+@export var weapons_list: WeaponsList
 
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var pickup_box: Area2D = $PickupBox
 
-
 var player_id: InputManager.PlayerID = InputManager.PlayerID.PLAYER_1
 var input: InputIntent
+
+func pickup_weapon(data: WeaponData) -> void:
+	weapons_list.add_weapon(data)
 
 func _ready() -> void:
 	health.initialize(player_data.max_health)
 	input = InputManager.get_input_intent(player_id)
 	health.died.connect(_on_death)
-	_use_weapon(player_data.starting_weapon)
+	weapons_list.initialize([player_data.starting_weapon])
+	_use_weapon(weapons_list.get_current_weapon())
 	animation.play("levitate")
 	
 	# Don't shoot ourself
@@ -26,21 +30,26 @@ func _ready() -> void:
 	# Signals
 	pickup_box.area_entered.connect(_on_collect_feather)
 
-	
-
 func _process(_delta: float) -> void:
 	input = InputManager.get_input_intent(player_id)
 	
-	if (input.fire_just_pressed):
+	if input.fire_just_pressed:
 		weapon.fire(input.facing)
 	
-	if (input.reload):
+	if input.reload:
 		weapon.reload()
+		
+	if input.next or input.prev:
+		_cycle_weapon(input.next)
 	
 	_about_face()
 
-func _use_weapon(data: WeaponData) -> void:
-	weapon.initialize(data)
+func _use_weapon(slot: WeaponSlot) -> void:
+	print("using: ", slot.weapon.name, " n: ", slot.ammo.bullets_left, " m: ",  slot.ammo.mags_left)
+	weapon.initialize(slot)
+
+func _cycle_weapon(forwards: bool) -> void:
+	_use_weapon(weapons_list.switch_weapon(forwards))
 
 func _physics_process(_delta: float) -> void:
 	velocity = input.move * player_data.move_speed

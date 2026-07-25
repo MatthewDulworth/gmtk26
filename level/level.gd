@@ -9,7 +9,7 @@ var _time_since_last_item_spawn := 0.0
 
 var kills := 0 :
 	set(v):
-		$KillsLabel.text = str(v)
+		$KillsLabel.text =  "Kills  %d" % v
 		kills = v
 
 var _current_item_spawn_rate := 2.0
@@ -21,12 +21,12 @@ var _current_enemy_count:
 		if v == 0:
 			_current_wave += 1
 		
-		$EnemyCount.text = str(v)
+		$EnemyCount.text = "Enemies: %d" % v
 		_current_enemy_count = v
 
 var _current_wave = 0: 
 	set(v):
-		$Label.text = str(v)
+		$WaveLabel.text = "Wave: %d" % v
 		_current_wave_length += 1
 		_current_enemy_spawn_rate -= 0.1
 		_time_since_wave_start = 0

@@ -17,9 +17,9 @@ texture = ExtResource("3_44x8d")
 sources/1 = SubResource("TileSetAtlasSource_dgned")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_dgned"]
-vertices = PackedVector2Array(533.39844, 235.6875, -505.9922, 314.28906, -565.9922, -301.1797, 558.52344, -320.8125)
+vertices = PackedVector2Array(983.21094, 572.9297, -985.3594, 559.0625, -1026.6328, -563.0703, 1008.77344, -576.9219)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-577, -311, 569, -331, 543, 245, -515, 325)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-1037, -573, 1019, -587, 993, 583, -995, 569)])
 
 [node name="Level" type="Node2D" unique_id=2040812864 node_paths=PackedStringArray("players")]
 script = ExtResource("1_vkbyq")
@@ -40,13 +40,10 @@ navigation_polygon = SubResource("NavigationPolygon_dgned")
 [node name="EnemySpawners" type="Node" parent="." unique_id=266415906]
 
 [node name="Marker2D" type="Marker2D" parent="EnemySpawners" unique_id=2024103763]
-position = Vector2(-660, -433)
+position = Vector2(6, -561)
 
 [node name="Marker2D2" type="Marker2D" parent="EnemySpawners" unique_id=781313866]
-position = Vector2(687, -410)
-
-[node name="Marker2D3" type="Marker2D" parent="EnemySpawners" unique_id=1337668099]
-position = Vector2(-199, 428)
+position = Vector2(5, 592)
 
 [node name="ItemSpawners" type="Node" parent="." unique_id=252757059]
 
@@ -57,23 +54,23 @@ position = Vector2(595, 356)
 position = Vector2(-299, -358)
 gizmo_extents = 27.5
 
-[node name="Label" type="Label" parent="." unique_id=1228904846]
-offset_left = -196.0
-offset_top = -369.0
-offset_right = 109.0
-offset_bottom = -233.0
+[node name="WaveLabel" type="Label" parent="." unique_id=1228904846]
+offset_left = -948.0
+offset_top = -523.0
+offset_right = -643.0
+offset_bottom = -387.0
 theme_override_font_sizes/font_size = 40
 
 [node name="KillsLabel" type="Label" parent="." unique_id=1242824465]
-offset_left = 238.0
-offset_top = -132.0
-offset_right = 278.0
-offset_bottom = -109.0
+offset_left = -500.0
+offset_top = -538.0
+offset_right = -460.0
+offset_bottom = -483.0
 theme_override_font_sizes/font_size = 40
 
 [node name="EnemyCount" type="Label" parent="." unique_id=365350781]
-offset_left = 64.0
-offset_top = -228.0
-offset_right = 104.0
-offset_bottom = -159.0
+offset_left = -112.0
+offset_top = -532.0
+offset_right = -72.0
+offset_bottom = -463.0
 theme_override_font_sizes/font_size = 50

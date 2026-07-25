@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ddvd7nfqv3aku"
-path="res://.godot/imported/tiles_prog_art.png-46b74c20dc676e40a92318c8c966d48f.ctex"
+path="res://.godot/imported/tiles_prog_art.png-7a919d9d292cb7e26be6704c7671c895.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://lukes_level_DONT_TOUCH/tiles_prog_art.png"
-dest_files=["res://.godot/imported/tiles_prog_art.png-46b74c20dc676e40a92318c8c966d48f.ctex"]
+source_file="res://level/tiles_prog_art.png"
+dest_files=["res://.godot/imported/tiles_prog_art.png-7a919d9d292cb7e26be6704c7671c895.ctex"]
 
 [params]
 

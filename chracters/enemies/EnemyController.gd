@@ -3,6 +3,7 @@ class_name EnemyController
 
 @export var enemy_data: EnemyData
 @export var health: Health
+@export var hurtbox: HurtBox
 
 const player_scan_time = 0.3 # Time in seconds until it scans for which player to chase
 

@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://d0fyntx0582l7"]
 
 [ext_resource type="Script" uid="uid://biod4xyo0ps34" path="res://chracters/player/PlayerController.gd" id="1_6ele1"]
+[ext_resource type="PackedScene" uid="uid://c45dnc7c85agi" path="res://components/HurtBox.tscn" id="2_q3yxo"]
+[ext_resource type="Script" uid="uid://wbbbadomml83" path="res://components/Health.gd" id="3_tdtta"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3c51y"]
 
@@ -9,3 +11,9 @@ script = ExtResource("1_6ele1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1634337190]
 shape = SubResource("RectangleShape2D_3c51y")
+
+[node name="HurtBox" parent="." unique_id=538028481 instance=ExtResource("2_q3yxo")]
+
+[node name="Health" type="Node" parent="." unique_id=1059343717]
+script = ExtResource("3_tdtta")
+metadata/_custom_type_script = "uid://wbbbadomml83"

@@ -14,13 +14,22 @@ texture = ExtResource("1_2rkgw")
 [sub_resource type="TileSet" id="TileSet_76gxs"]
 sources/1 = SubResource("TileSetAtlasSource_dgned")
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_dgned"]
+vertices = PackedVector2Array(533.39844, 235.6875, -505.9922, 314.28906, -565.9922, -301.1797, 558.52344, -320.8125)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-577, -311, 569, -331, 543, 245, -515, 325)])
+
 [node name="Level" type="Node2D" unique_id=2040812864]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=624556665]
 tile_set = SubResource("TileSet_76gxs")
 
-[node name="EnemySpawner" parent="." unique_id=1096881686 instance=ExtResource("2_dgned")]
+[node name="EnemySpawner" parent="." unique_id=1096881686 node_paths=PackedStringArray("players") instance=ExtResource("2_dgned")]
+players = [NodePath("../Player")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=615763250]
 
 [node name="Player" parent="." unique_id=1399235571 instance=ExtResource("5_lo1vg")]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=673393329]
+navigation_polygon = SubResource("NavigationPolygon_dgned")

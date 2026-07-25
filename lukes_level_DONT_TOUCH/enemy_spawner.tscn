@@ -4,10 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://d1wakfws1yses" path="res://chracters/enemies/enemy.tscn" id="2_7uwqm"]
 [ext_resource type="Texture2D" uid="uid://dqe135mpyt608" path="res://icon.svg" id="3_bpjgk"]
 
-[node name="EnemySpawner" type="Marker2D" unique_id=1096881686 node_paths=PackedStringArray("players")]
+[node name="EnemySpawner" type="Marker2D" unique_id=1096881686]
 script = ExtResource("1_pqdvj")
 enemy_scene = ExtResource("2_7uwqm")
-players = [NodePath("")]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=479449729]
 texture = ExtResource("3_bpjgk")

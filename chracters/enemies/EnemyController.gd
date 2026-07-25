@@ -21,7 +21,13 @@ enum EnemyState {
 }
 
 func _ready() -> void:
+
 	targetPlayer()
+
+	health.initialize(enemy_data.max_health)
+	target = Vector2(100, 100)
+	nav_agent_2d.set_target_position(target)
+
 	#health.initialize(enemy_data.max_health)
 
 func _process(_delta: float) -> void:
@@ -30,7 +36,7 @@ func _process(_delta: float) -> void:
 		velocity = Vector2(0, 0)
 		position = target
 		$AnimatedSprite2D.play("flap")
-	
+
 func _physics_process(_delta: float) ->  void:
 	if (position.distance_to(target)) > 0.5:
 		$AnimatedSprite2D.play("run")
@@ -39,19 +45,19 @@ func _physics_process(_delta: float) ->  void:
 		var new_vel = (new_pos - pos).normalized() * 200; # speed
 		velocity = new_vel
 		move_and_slide()
-		
+
 func targetPlayer():
 	target = Vector2(players.get(0).position)
 	nav_agent_2d.set_target_position(target)
 
 func _spawn() -> void:
 	pass
-	
+
 func _chase() -> void:
 	pass
-	
-func _attack() -> void: 
+
+func _attack() -> void:
 	pass
-	
+
 func _dead() -> void:
 	pass

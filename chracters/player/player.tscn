@@ -354,7 +354,8 @@ weapon_hud = NodePath("WeaponHUD")
 position = Vector2(2, 0)
 shape = SubResource("CapsuleShape2D_3c51y")
 
-[node name="HurtBox" parent="." unique_id=538028481 instance=ExtResource("2_q3yxo")]
+[node name="HurtBox" parent="." unique_id=538028481 node_paths=PackedStringArray("health") instance=ExtResource("2_q3yxo")]
+health = NodePath("../Health")
 
 [node name="PickupBox" parent="." unique_id=502016375 instance=ExtResource("5_puunv")]
 

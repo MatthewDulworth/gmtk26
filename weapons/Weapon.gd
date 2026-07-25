@@ -2,9 +2,11 @@ extends Node2D
 class_name Weapon
 
 const WORLD_LAYER := 1 << 0 # world layer bitmask
+const PLAYER_HURTBOX_LAYER := 1 << 3 # player_hurtbox layer bitmask
 const ENEMY_HURTBOX_LAYER := 1 << 4 # enemy_hurtbox layer bitmask
 const OBSTACLE_LAYER := 1 << 7 # obstacle layer bitmask
 const HITSCAN_MASK := WORLD_LAYER | ENEMY_HURTBOX_LAYER
+const EXPLOSION_MASK := PLAYER_HURTBOX_LAYER | ENEMY_HURTBOX_LAYER
 
 const TRACER_WIDTH := 4.0
 const TRACER_COLOR := Color.RED
@@ -139,7 +141,7 @@ func _fire_projectile(dir: Vector2) -> void:
 		var projectile := ProjectilePool.acquire()
 		projectile.activate(weapon_slot.weapon.damage, self, weapon_slot.weapon.bullet_radius, bullet_dir, weapon_slot.weapon.bullet_speed, global_position, weapon_slot.weapon.bullet_lifetime, weapon_slot.weapon.hit_explosion, weapon_slot.weapon.hit_explosion_radius)
 
-# Damages every HurtBox on the enemy hurtbox layer within `radius` of `position`.
+# Damages every player or enemy HurtBox within `radius` of `position`.
 static func explode(from_node: Node2D, position: Vector2, radius: float, damage: float, source: Node) -> void:
 	var space_state := from_node.get_world_2d().direct_space_state
 	var shape := CircleShape2D.new()
@@ -147,7 +149,7 @@ static func explode(from_node: Node2D, position: Vector2, radius: float, damage:
 	var query := PhysicsShapeQueryParameters2D.new()
 	query.shape = shape
 	query.transform = Transform2D(0, position)
-	query.collision_mask = ENEMY_HURTBOX_LAYER
+	query.collision_mask = EXPLOSION_MASK
 	query.collide_with_areas = true
 	query.collide_with_bodies = false
 	for result in space_state.intersect_shape(query):

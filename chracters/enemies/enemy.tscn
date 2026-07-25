@@ -9,9 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://cai7wvm13476g" path="res://ASSets/Goose/Run.png" id="6_r7v4m"]
 [ext_resource type="Texture2D" uid="uid://3to73gt4a5n0" path="res://ASSets/Goose/Walk.png" id="7_6sxb8"]
 
-[sub_resource type="Resource" id="Resource_dgned"]
+[sub_resource type="Resource" id="Resource_cuw3f"]
 script = ExtResource("2_r7v4m")
-max_health = 10.0
 metadata/_custom_type_script = "uid://bdhvi88d3ihm2"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cwfla"]
@@ -140,7 +139,7 @@ animations = [{
 
 [node name="Enemy" type="CharacterBody2D" unique_id=976929462 node_paths=PackedStringArray("health", "hurtbox")]
 script = ExtResource("1_yhatl")
-enemy_data = SubResource("Resource_dgned")
+enemy_data = SubResource("Resource_cuw3f")
 health = NodePath("Health")
 hurtbox = NodePath("HurtBox")
 
@@ -152,8 +151,9 @@ shape = SubResource("RectangleShape2D_cwfla")
 script = ExtResource("1_sufvk")
 metadata/_custom_type_script = "uid://wbbbadomml83"
 
-[node name="HurtBox" type="Area2D" parent="." unique_id=1940937216]
+[node name="HurtBox" type="Area2D" parent="." unique_id=1940937216 node_paths=PackedStringArray("health")]
 script = ExtResource("2_fwkbl")
+health = NodePath("../Health")
 metadata/_custom_type_script = "uid://duoe8w4fbx8fc"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1927816173]

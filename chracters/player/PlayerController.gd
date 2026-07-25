@@ -15,6 +15,9 @@ func _ready() -> void:
 	health.died.connect(_on_death)
 	_use_weapon(player_data.starting_weapon)
 	$AnimatedSprite2D.play("levitate")
+	
+	# Layer 3 so that gun doesn't shoot ourself
+	hurtbox.set_collision_layer_value(3, true) 
 
 func _process(_delta: float) -> void:
 	input = InputManager.get_input_intent(player_id)

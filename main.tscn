@@ -1,13 +1,14 @@
 [gd_scene format=3 uid="uid://c6yplr84qj8xy"]
 
+[ext_resource type="Texture2D" uid="uid://dpoqqd8opsx0t" path="res://assets/Cute_Fantasy_Free/Tiles/Grass_Middle.png" id="1_272bh"]
 [ext_resource type="PackedScene" uid="uid://d1wakfws1yses" path="res://chracters/enemies/enemy.tscn" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://b1ltxks71q21v" path="res://chracters/player/PlayerData.gd" id="2_7mycd"]
 [ext_resource type="PackedScene" uid="uid://d0fyntx0582l7" path="res://chracters/player/player.tscn" id="2_h2yge"]
-[ext_resource type="Texture2D" uid="uid://cpcbv6c2ulvbx" path="res://ASSets/Cute_Fantasy_Free/Outdoor decoration/Oak_Tree.png" id="3_h2yge"]
 [ext_resource type="Resource" uid="uid://cchvlvuoyk60d" path="res://weapons/Pistol.tres" id="3_kek77"]
-[ext_resource type="Texture2D" uid="uid://cksn71qah5jih" path="res://ASSets/Cute_Fantasy_Free/Outdoor decoration/House_1_Wood_Base_Blue.png" id="4_1bvp3"]
 [ext_resource type="Resource" uid="uid://bxhj8gcqqmkpd" path="res://chracters/enemies/EnemySlow.tres" id="4_5vw27"]
-[ext_resource type="Texture2D" uid="uid://xhj52ukglsw3" path="res://ASSets/Cute_Fantasy_Free/Tiles/Water_Middle.png" id="5_lquwl"]
+[ext_resource type="Resource" uid="uid://d38xsxobsmd6k" path="res://chracters/enemies/EnemyFast.tres" id="6_kek77"]
+[ext_resource type="Resource" uid="uid://bbiflcgguj78o" path="res://chracters/enemies/EnemyMed.tres" id="7_5vw27"]
+[ext_resource type="PackedScene" uid="uid://dktivciqkls6i" path="res://obstacles/Obstacle.tscn" id="7_272bh"]
 
 [sub_resource type="Resource" id="Resource_lquwl"]
 script = ExtResource("2_7mycd")
@@ -16,43 +17,86 @@ starting_weapon = ExtResource("3_kek77")
 metadata/_custom_type_script = "uid://b1ltxks71q21v"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ig7tw"]
-vertices = PackedVector2Array(210, 285.85938, 560.0078, 301.03906, -563.90625, 305.95313, 43.507813, 288.14063, -95.5625, 93, -74.5, 28.117188, 60.40625, -69.828125, -101.46094, 228.86719, -260.3203, 215.04688, -243.72656, 93, -559.0703, -304.02344, -226.88281, -304.89844, -237.34375, 44.0625, -55.617188, -305.35156, 560.97656, -306.96875, 210, -89.390625)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 3, 7), PackedInt32Array(7, 3, 2, 8), PackedInt32Array(9, 8, 2, 10, 11, 12), PackedInt32Array(4, 9, 12, 5), PackedInt32Array(6, 5, 13), PackedInt32Array(6, 13, 14, 15), PackedInt32Array(15, 14, 1, 0)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-569, -314, 571, -317, 570, 311, -574, 316), PackedVector2Array(-217, -301, -227, 33, -84, 19, -66, -299), PackedVector2Array(-235, 103, -249, 206, -111, 218, -106, 103), PackedVector2Array(70, -61, 54, 278, 200, 276, 200, -78)])
+vertices = PackedVector2Array(315.3125, 77.21875, 947, -531.96094, 947, 528.02344, 302.46875, 328.5703, 330.3828, -248.32031, 311.1797, -9.3828125, -947.0078, 532.96875, 67.890625, 314.95313, -84.640625, 303.35938, 46.921875, 311.46094, -308, 295.65625, 177.35156, 2.2578125, 62.492188, -25.601563, -100.63281, -23, 49.046875, 91.75, -92.15625, 81.02344, -196.14063, -0.84375, -308, 91.28125, -948.97656, -526.03125, -320.17188, -23, -85.71875, -251.97656, 50.789063, -244.71875, -315.92188, -272.78906, 176.20313, -378.78125, -203.47656, -365.3828)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 1, 0, 5), PackedInt32Array(3, 2, 6, 7), PackedInt32Array(8, 9, 7, 6, 10), PackedInt32Array(5, 0, 11), PackedInt32Array(12, 5, 11), PackedInt32Array(13, 12, 11, 14, 15, 16), PackedInt32Array(17, 10, 6, 18, 19), PackedInt32Array(14, 9, 8, 15), PackedInt32Array(13, 20, 21, 12), PackedInt32Array(19, 13, 16), PackedInt32Array(19, 16, 17), PackedInt32Array(22, 19, 18), PackedInt32Array(1, 4, 23), PackedInt32Array(18, 1, 23, 24), PackedInt32Array(24, 22, 18), PackedInt32Array(24, 23, 21, 20)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-959, -536, 957, -542, 957, 538, -957, 543), PackedVector2Array(-306, -268, -310, -33, -110, -33, -96, -248, -204, -352), PackedVector2Array(69, 305, 293, 318, 305, 83, 178, 14, 59, 97, 57, 303), PackedVector2Array(72, -35, 302, -20, 320, -244, 177, -365, 61, -241), PackedVector2Array(-298, 286, -95, 293, -102, 86, -196, 12, -298, 96)])
 
 [node name="Main" type="Node2D" unique_id=699210955]
 
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1409314398]
+offset_left = -1016.0
+offset_top = -587.0
+offset_right = 1035.0
+offset_bottom = 614.0
+texture = ExtResource("1_272bh")
+stretch_mode = 1
+
 [node name="Player" parent="." unique_id=1399235571 instance=ExtResource("2_h2yge")]
-position = Vector2(343, 173)
 player_data = SubResource("Resource_lquwl")
 
 [node name="Enemy" parent="." unique_id=1397981385 node_paths=PackedStringArray("players") instance=ExtResource("2_0xm2m")]
-position = Vector2(-478, 99)
-enemy_data = ExtResource("4_5vw27")
+position = Vector2(-6, -500)
+enemy_data = ExtResource("6_kek77")
 players = [NodePath("../Player")]
 
 [node name="Enemy2" parent="." unique_id=976929462 node_paths=PackedStringArray("players") instance=ExtResource("2_0xm2m")]
-enemy_data = ExtResource("4_5vw27")
+position = Vector2(-789, -441)
+enemy_data = ExtResource("6_kek77")
 players = [NodePath("../Player")]
 
 [node name="Enemy3" parent="." unique_id=976956025 node_paths=PackedStringArray("players") instance=ExtResource("2_0xm2m")]
+position = Vector2(899, -452)
+enemy_data = ExtResource("6_kek77")
+players = [NodePath("../Player")]
+
+[node name="Enemy4" parent="." unique_id=2013723635 node_paths=PackedStringArray("players") instance=ExtResource("2_0xm2m")]
+position = Vector2(734, 349)
+enemy_data = ExtResource("4_5vw27")
 players = [NodePath("../Player")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1687995481]
 
+[node name="Enemy5" parent="." unique_id=446114064 node_paths=PackedStringArray("players") instance=ExtResource("2_0xm2m")]
+position = Vector2(786, 470)
+enemy_data = ExtResource("4_5vw27")
+players = [NodePath("../Player")]
+
+[node name="Enemy6" parent="." unique_id=1105890933 node_paths=PackedStringArray("players") instance=ExtResource("2_0xm2m")]
+position = Vector2(660, 513)
+enemy_data = ExtResource("4_5vw27")
+players = [NodePath("../Player")]
+
+[node name="Enemy7" parent="." unique_id=600845757 node_paths=PackedStringArray("players") instance=ExtResource("2_0xm2m")]
+position = Vector2(-903, 300)
+enemy_data = ExtResource("7_5vw27")
+players = [NodePath("../Player")]
+
+[node name="Enemy8" parent="." unique_id=1266231419 node_paths=PackedStringArray("players") instance=ExtResource("2_0xm2m")]
+position = Vector2(-796, 289)
+enemy_data = ExtResource("7_5vw27")
+players = [NodePath("../Player")]
+
+[node name="Enemy9" parent="." unique_id=46070260 node_paths=PackedStringArray("players") instance=ExtResource("2_0xm2m")]
+position = Vector2(-841, 200)
+enemy_data = ExtResource("7_5vw27")
+players = [NodePath("../Player")]
+
+[node name="Obstacle" parent="." unique_id=1943589396 instance=ExtResource("7_272bh")]
+position = Vector2(-200, 176)
+scale = Vector2(2, 2)
+
+[node name="Obstacle2" parent="." unique_id=228674016 instance=ExtResource("7_272bh")]
+position = Vector2(179, 180)
+scale = Vector2(2, 2)
+
+[node name="Obstacle3" parent="." unique_id=1739876072 instance=ExtResource("7_272bh")]
+position = Vector2(179, -164)
+scale = Vector2(2, 2)
+
+[node name="Obstacle4" parent="." unique_id=1630993546 instance=ExtResource("7_272bh")]
+position = Vector2(-201, -164)
+scale = Vector2(2, 2)
+
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=162539292]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_ig7tw")
-
-[node name="Sprite2D" type="Sprite2D" parent="NavigationRegion2D" unique_id=1231217404]
-position = Vector2(-160.00002, -127)
-scale = Vector2(2.953125, 4.0625)
-texture = ExtResource("3_h2yge")
-
-[node name="Sprite2D2" type="Sprite2D" parent="NavigationRegion2D" unique_id=1897545419]
-position = Vector2(-183, 163)
-texture = ExtResource("4_1bvp3")
-
-[node name="Sprite2D3" type="Sprite2D" parent="NavigationRegion2D" unique_id=1543252647]
-position = Vector2(124.5, 112.99999)
-scale = Vector2(6.8125005, 21.625)
-texture = ExtResource("5_lquwl")

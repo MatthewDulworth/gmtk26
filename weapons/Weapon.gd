@@ -1,10 +1,12 @@
 extends Node2D
 class_name Weapon
 
-const HITSCAN_MASK := 1 << 4 # enemy_hurtbox (see project.godot [layer_names])
+const WORLD_LAYER := 1 << 0 # obstacles (see project.godot [layer_names])
+const ENEMY_HURTBOX_LAYER := 1 << 4 # enemy_hurtbox (see project.godot [layer_names])
+const HITSCAN_MASK := WORLD_LAYER | ENEMY_HURTBOX_LAYER
 
-const TRACER_WIDTH := 2.0
-const TRACER_COLOR := Color.YELLOW
+const TRACER_WIDTH := 4.0
+const TRACER_COLOR := Color.RED
 const TRACER_FADE_TIME := 0.05
 
 var weapon_data: WeaponData

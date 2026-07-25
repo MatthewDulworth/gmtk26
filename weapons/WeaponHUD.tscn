@@ -25,6 +25,7 @@ theme_override_font_sizes/font_size = 14
 text = "0"
 
 [node name="ReloadBar" type="Node2D" parent="."]
+position = Vector2(-30, 0)
 
 [node name="Track" type="ColorRect" parent="ReloadBar"]
 offset_left = 0.0

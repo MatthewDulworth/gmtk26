@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://d3sowafpw7a4o" path="res://components/Projectile.gd" id="1_0nlcc"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_4tixy"]
+
 [sub_resource type="Gradient" id="Gradient_0nlcc"]
 colors = PackedColorArray(0.8774911, 0.70638186, 0.12227415, 1, 0.8774911, 0.70638186, 0.12227415, 1)
 
@@ -17,6 +19,7 @@ script = ExtResource("1_0nlcc")
 metadata/_custom_type_script = "uid://d3sowafpw7a4o"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=788130803]
+shape = SubResource("CircleShape2D_4tixy")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1639909233]
 texture = SubResource("GradientTexture2D_0nlcc")

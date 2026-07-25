@@ -9,6 +9,12 @@ const TRACER_WIDTH := 4.0
 const TRACER_COLOR := Color.RED
 const TRACER_FADE_TIME := 0.05
 
+const EXPLOSION_EFFECT_SCENE: PackedScene = preload("res://components/ExplosionEffect.tscn")
+const SCREEN_FLASH_SCENE: PackedScene = preload("res://components/ScreenFlash.tscn")
+const EXPLOSION_SHAKE_AMOUNT := 8.0
+const EXPLOSION_SHAKE_DURATION := 0.25
+const EXPLOSION_FLASH_INTENSITY := 0.4
+
 var weapon_slot: WeaponSlot
 
 var reload_timer: Timer
@@ -97,7 +103,9 @@ func _fire_hitscan(dir: Vector2) -> void:
 		var result := space_state.intersect_ray(query)
 		if result:
 			to = result.position
-			if result.collider is HurtBox:
+			if weapon_slot.weapon.hit_explosion:
+				Weapon.explode(self, to, weapon_slot.weapon.hit_explosion_radius, weapon_slot.weapon.damage, self)
+			elif result.collider is HurtBox:
 				result.collider.take_damage(weapon_slot.weapon.damage, self)
 		_draw_tracer(from, to)
  
@@ -118,4 +126,38 @@ func _fire_projectile(dir: Vector2) -> void:
 		var spread := randf_range(-weapon_slot.weapon.bullet_spread, weapon_slot.weapon.bullet_spread)
 		var bullet_dir := dir.rotated(spread)
 		var projectile := ProjectilePool.acquire()
-		projectile.activate(weapon_slot.weapon.damage, self, weapon_slot.weapon.bullet_radius, bullet_dir, weapon_slot.weapon.bullet_speed, global_position, weapon_slot.weapon.bullet_lifetime)
+		projectile.activate(weapon_slot.weapon.damage, self, weapon_slot.weapon.bullet_radius, bullet_dir, weapon_slot.weapon.bullet_speed, global_position, weapon_slot.weapon.bullet_lifetime, weapon_slot.weapon.hit_explosion, weapon_slot.weapon.hit_explosion_radius)
+
+# Damages every HurtBox on the enemy hurtbox layer within `radius` of `position`.
+static func explode(from_node: Node2D, position: Vector2, radius: float, damage: float, source: Node) -> void:
+	var space_state := from_node.get_world_2d().direct_space_state
+	var shape := CircleShape2D.new()
+	shape.radius = radius
+	var query := PhysicsShapeQueryParameters2D.new()
+	query.shape = shape
+	query.transform = Transform2D(0, position)
+	query.collision_mask = ENEMY_HURTBOX_LAYER
+	query.collide_with_areas = true
+	query.collide_with_bodies = false
+	for result in space_state.intersect_shape(query):
+		var collider = result.collider
+		if collider is HurtBox:
+			collider.take_damage(damage, source)
+
+	_spawn_explosion_fx(from_node, position, radius)
+
+static func _spawn_explosion_fx(from_node: Node2D, position: Vector2, radius: float) -> void:
+	var current_scene := from_node.get_tree().current_scene
+
+	var effect: ExplosionEffect = EXPLOSION_EFFECT_SCENE.instantiate()
+	current_scene.add_child(effect)
+	effect.global_position = position
+	effect.setup(radius)
+
+	var flash: ScreenFlash = SCREEN_FLASH_SCENE.instantiate()
+	current_scene.add_child(flash)
+	flash.setup(EXPLOSION_FLASH_INTENSITY)
+
+	var camera := from_node.get_viewport().get_camera_2d()
+	if camera and camera.has_method("shake"):
+		camera.shake(EXPLOSION_SHAKE_AMOUNT, EXPLOSION_SHAKE_DURATION)

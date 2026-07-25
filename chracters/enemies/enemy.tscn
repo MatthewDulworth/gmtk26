@@ -222,6 +222,9 @@ animations = [{
 }]
 
 [node name="Enemy" type="CharacterBody2D" unique_id=976929462 node_paths=PackedStringArray("health", "hurtbox")]
+motion_mode = 1
+collision_layer = 4
+collision_mask = 3
 script = ExtResource("1_yhatl")
 enemy_data = SubResource("Resource_dgned")
 health = NodePath("Health")

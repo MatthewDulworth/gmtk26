@@ -7,7 +7,7 @@ var _available: Array[Projectile] = []
 func acquire() -> Projectile:
 	if _available.is_empty():
 		var projectile: Projectile = PROJECTILE_SCENE.instantiate()
-		add_child(projectile)
+		get_tree().current_scene.add_child(projectile)
 		return projectile
 	return _available.pop_back()
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://yonvm0x20k8e"
-path="res://.godot/imported/Bat-Flying.png-f794b570a507c75a3b1c3735b0d3df81.ctex"
+path="res://.godot/imported/Bat-Flying.png-b0fc24de7841141655acacaeb635eb6f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Vampire-v2/Bat-Flying.png"
-dest_files=["res://.godot/imported/Bat-Flying.png-f794b570a507c75a3b1c3735b0d3df81.ctex"]
+source_file="res://ASSets/Vampire-v2/Bat-Flying.png"
+dest_files=["res://.godot/imported/Bat-Flying.png-b0fc24de7841141655acacaeb635eb6f.ctex"]
 
 [params]
 

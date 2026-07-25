@@ -14,6 +14,7 @@ func _ready() -> void:
 	input = InputManager.get_input_intent(player_id)
 	health.died.connect(_on_death)
 	_use_weapon(player_data.starting_weapon)
+	$AnimatedSprite2D.play("levitate")
 
 func _process(_delta: float) -> void:
 	input = InputManager.get_input_intent(player_id)

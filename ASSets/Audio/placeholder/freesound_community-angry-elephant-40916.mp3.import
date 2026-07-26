@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://dr342wl73xryw"
-path="res://.godot/imported/freesound_community-angry-elephant-40916.mp3-889485a126157aeadabfd4707ab5fcbc.mp3str"
+path="res://.godot/imported/freesound_community-angry-elephant-40916.mp3-77784a746463589712daef87b5f1a9a5.mp3str"
 
 [deps]
 
-source_file="res://ASSets/Audio/placeholder/freesound_community-angry-elephant-40916.mp3"
-dest_files=["res://.godot/imported/freesound_community-angry-elephant-40916.mp3-889485a126157aeadabfd4707ab5fcbc.mp3str"]
+source_file="res://assets/Audio/placeholder/freesound_community-angry-elephant-40916.mp3"
+dest_files=["res://.godot/imported/freesound_community-angry-elephant-40916.mp3-77784a746463589712daef87b5f1a9a5.mp3str"]
 
 [params]
 

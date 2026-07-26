@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://d27kaibmyv44y"
-path="res://.godot/imported/sumaga123-knife-432147.mp3-ed1244b9fe64d66b6f4116303e67c202.mp3str"
+path="res://.godot/imported/sumaga123-knife-432147.mp3-75d2b2d6671c10a07c06e06c1e1f56d0.mp3str"
 
 [deps]
 
-source_file="res://ASSets/Audio/placeholder/sumaga123-knife-432147.mp3"
-dest_files=["res://.godot/imported/sumaga123-knife-432147.mp3-ed1244b9fe64d66b6f4116303e67c202.mp3str"]
+source_file="res://assets/Audio/placeholder/sumaga123-knife-432147.mp3"
+dest_files=["res://.godot/imported/sumaga123-knife-432147.mp3-75d2b2d6671c10a07c06e06c1e1f56d0.mp3str"]
 
 [params]
 

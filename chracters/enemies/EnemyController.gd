@@ -10,18 +10,15 @@ class_name EnemyController
 		if v == EnemyState.CHASE and state !=  EnemyState.CHASE:
 			SignalBus.enemy_started_walking.emit(self)
 		elif v != EnemyState.CHASE:
-
 			SignalBus.enemy_stopped_walking.emit(self)
-
 		state = v
-
-@export var knockback_decay: float = 10.0
-
 
 var knockback_velocity: Vector2 = Vector2.ZERO
 var target: Vector2
 var is_attack_on_cooldown: bool = false
 
+const knockback_decay: float = 10.0 # Rate of knockback decay
+const knockback_threshold = 10.0 # Only knockback applies when knock back velocity magnitude is more than this 
 const player_scan_time = 0.3 # Time in seconds until it scans for which player to chase
 const feather_pickup_text = preload("res://components/FloatingText.tscn")
 
@@ -75,20 +72,26 @@ func _process(_delta: float) -> void:
 func _physics_process(delta: float) ->  void:
 	if state == EnemyState.DEAD_PENDING_COLLECTION or state == EnemyState.DEAD_COLLECTED:
 		return
-
+		
 	# Degrade knockback
 	knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_decay * delta * 100.0)
-
-	# Can only slide from a weapon impact
-	if state == EnemyState.ATTACK:
+	
+	# When in knockback, can't move (outside of knockback)
+	if knockback_velocity.length() > knockback_threshold:
 		velocity = knockback_velocity
+		move_and_slide()
+		return
+
+	# Handle regular state logic when not experiencing knockback
+	if state == EnemyState.ATTACK:
+		velocity = Vector2.ZERO
 		move_and_slide()
 		return
 
 	if (position.distance_to(target)) > 5.0:
 		_move_towards_target()
 	else:
-		velocity = knockback_velocity
+		velocity = Vector2.ZERO
 		move_and_slide()
 
 func _set_target_player() -> void:
@@ -193,16 +196,18 @@ func _set_hurtbox_collision_layer(layer: CollisionLayers.Layer) -> void:
 func _move_towards_target():
 	if nav_agent_2d.is_navigation_finished():
 		return
-
 	var pos = global_transform.origin
 	var new_pos = nav_agent_2d.get_next_path_position()
-	# Combine knock back and move vel
 	var move_vel = (new_pos - pos).normalized() * enemy_data.move_speed
-	velocity = move_vel + knockback_velocity
+	velocity = move_vel
 	move_and_slide()
-
+	
 func _should_begin_attack() -> bool:
-	return position.distance_to(target) < enemy_data.attack_range and state == EnemyState.CHASE and not is_attack_on_cooldown and not _is_all_players_dead()
+	return position.distance_to(target) < enemy_data.attack_range \
+		and state == EnemyState.CHASE \
+		and not is_attack_on_cooldown \
+		and not _is_all_players_dead() \
+		and knockback_velocity.length() <= knockback_threshold
 
 func _is_dead() -> bool:
 	return state == EnemyState.DEAD_PENDING_COLLECTION or state == EnemyState.DEAD_COLLECTED

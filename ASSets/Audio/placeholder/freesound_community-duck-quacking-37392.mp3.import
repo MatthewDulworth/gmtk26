@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://3bxogh1o4pcw"
-path="res://.godot/imported/freesound_community-duck-quacking-37392.mp3-1984beaa891942b644e7b05a7d0f8c17.mp3str"
+path="res://.godot/imported/freesound_community-duck-quacking-37392.mp3-a04511f90c44828cea4ef613bdacb70d.mp3str"
 
 [deps]
 
-source_file="res://ASSets/Audio/placeholder/freesound_community-duck-quacking-37392.mp3"
-dest_files=["res://.godot/imported/freesound_community-duck-quacking-37392.mp3-1984beaa891942b644e7b05a7d0f8c17.mp3str"]
+source_file="res://assets/Audio/placeholder/freesound_community-duck-quacking-37392.mp3"
+dest_files=["res://.godot/imported/freesound_community-duck-quacking-37392.mp3-a04511f90c44828cea4ef613bdacb70d.mp3str"]
 
 [params]
 

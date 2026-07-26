@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://bf4evk34eykw3"
-path="res://.godot/imported/Game Jame 2026.mp3-4b00a76ebd2305f59647ed3666b92dac.mp3str"
+path="res://.godot/imported/Game Jame 2026.mp3-38cd0147d6b5455a47e41e6f00d854dc.mp3str"
 
 [deps]
 
-source_file="res://ASSets/Audio/Game Jame 2026.mp3"
-dest_files=["res://.godot/imported/Game Jame 2026.mp3-4b00a76ebd2305f59647ed3666b92dac.mp3str"]
+source_file="res://assets/Audio/Game Jame 2026.mp3"
+dest_files=["res://.godot/imported/Game Jame 2026.mp3-38cd0147d6b5455a47e41e6f00d854dc.mp3str"]
 
 [params]
 

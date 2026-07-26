@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bp3vun771c1ev"
-path="res://.godot/imported/move without FX.png-72035b6bb28f7b99396ff87cf4705dec.ctex"
+path="res://.godot/imported/move without FX.png-c61cc176aee1dd72edf8c9b96a9020d2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ASSets/Bot Wheel/move without FX.png"
-dest_files=["res://.godot/imported/move without FX.png-72035b6bb28f7b99396ff87cf4705dec.ctex"]
+source_file="res://assets/Bot Wheel/move without FX.png"
+dest_files=["res://.godot/imported/move without FX.png-c61cc176aee1dd72edf8c9b96a9020d2.ctex"]
 
 [params]
 

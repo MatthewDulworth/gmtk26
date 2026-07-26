@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://d33q7ngm2teb7"]
+[gd_scene format=3 uid="uid://dsj7xo8pg3eag"]
 
 [ext_resource type="Script" uid="uid://ds2ne1jaho5v8" path="res://item/Item.gd" id="1_6t40p"]
 [ext_resource type="Texture2D" uid="uid://bcb3y3iianhf1" path="res://ASSets/Chest 1.png" id="2_nb2m6"]

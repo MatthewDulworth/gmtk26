@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://b1wokojgkvrxs"
-path="res://.godot/imported/freesound_community-wing-flap-1-6434.mp3-2352e196a122d26934e081bb88009724.mp3str"
+path="res://.godot/imported/freesound_community-wing-flap-1-6434.mp3-ba6f624eda7f41895e28f9e051cad0ba.mp3str"
 
 [deps]
 
-source_file="res://ASSets/Audio/placeholder/freesound_community-wing-flap-1-6434.mp3"
-dest_files=["res://.godot/imported/freesound_community-wing-flap-1-6434.mp3-2352e196a122d26934e081bb88009724.mp3str"]
+source_file="res://assets/Audio/placeholder/freesound_community-wing-flap-1-6434.mp3"
+dest_files=["res://.godot/imported/freesound_community-wing-flap-1-6434.mp3-ba6f624eda7f41895e28f9e051cad0ba.mp3str"]
 
 [params]
 

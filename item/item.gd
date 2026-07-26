@@ -1,6 +1,8 @@
 extends Area2D
 class_name Item
 
+@export var weapon_data: WeaponData
+
 @onready var box: ColorRect = $ColorRect
 
 # Optional: Reuse your floating text popup for the box too!
@@ -8,11 +10,10 @@ const FLOATING_TEXT_SCENE = preload("res://components/FloatingText.tscn")
 
 func collect() -> void:
 	var text_popup = FLOATING_TEXT_SCENE.instantiate()
-	text_popup.setup("new gun") 
+	text_popup.setup("new gun")
 	get_tree().current_scene.add_child(text_popup)
 	text_popup.global_position = global_position
-		
-	# TODO: inventory
+
 	queue_free()
 
 func _ready() -> void:

@@ -2,8 +2,9 @@ extends Node2D
 @export var main_scene: PackedScene
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.pressed:
-		get_tree().change_scene_to_packed(main_scene)
+	if event is InputEventKey and event.pressed:
+		if event.keycode == KEY_ENTER or event.keycode == KEY_KP_ENTER:
+			get_tree().change_scene_to_packed(main_scene)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -12,3 +13,10 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+
+func _on_button_pressed() -> void:
+	%player1.visible =  !%player1.visible 
+	%player2.visible = !%player2.visible
+	$Player2.visible = !$Player2.visible
+	AudioManager.two_players = !AudioManager.two_players

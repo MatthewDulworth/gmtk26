@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dsg1jdn6o5no3"
-path="res://.godot/imported/Plume 16x16.png-044f4f36fb1446ccf312f7cded8fcdb0.ctex"
+path="res://.godot/imported/Plume 16x16.png-8ef36fab59c408377fa4869080af7642.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Plume 16x16.png"
-dest_files=["res://.godot/imported/Plume 16x16.png-044f4f36fb1446ccf312f7cded8fcdb0.ctex"]
+source_file="res://ASSets/Plume 16x16.png"
+dest_files=["res://.godot/imported/Plume 16x16.png-8ef36fab59c408377fa4869080af7642.ctex"]
 
 [params]
 

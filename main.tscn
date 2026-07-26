@@ -30,12 +30,11 @@ vertices = PackedVector2Array(315.3125, 77.21875, 947, -531.96094, 947, 528.0234
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 1, 0, 5), PackedInt32Array(3, 2, 6, 7), PackedInt32Array(8, 9, 7, 6, 10), PackedInt32Array(5, 0, 11), PackedInt32Array(12, 5, 11), PackedInt32Array(13, 12, 11, 14, 15, 16), PackedInt32Array(17, 10, 6, 18, 19), PackedInt32Array(14, 9, 8, 15), PackedInt32Array(13, 20, 21, 12), PackedInt32Array(19, 13, 16), PackedInt32Array(19, 16, 17), PackedInt32Array(22, 19, 18), PackedInt32Array(1, 4, 23), PackedInt32Array(18, 1, 23, 24), PackedInt32Array(24, 22, 18), PackedInt32Array(24, 23, 21, 20)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-959, -536, 957, -542, 957, 538, -957, 543), PackedVector2Array(-306, -268, -310, -33, -110, -33, -96, -248, -204, -352), PackedVector2Array(69, 305, 293, 318, 305, 83, 178, 14, 59, 97, 57, 303), PackedVector2Array(72, -35, 302, -20, 320, -244, 177, -365, 61, -241), PackedVector2Array(-298, 286, -95, 293, -102, 86, -196, 12, -298, 96)])
 
-[node name="Main" type="Node2D" unique_id=699210955 node_paths=PackedStringArray("players")]
+[node name="Main" type="Node2D" unique_id=699210955]
 script = ExtResource("1_yaehf")
 master_weapon_catalog = Array[ExtResource("2_getpj")]([ExtResource("3_1u8w0"), ExtResource("4_0odxb"), ExtResource("5_lswn8")])
 weapon_pool = Array[ExtResource("2_getpj")]([ExtResource("3_ryguw")])
 enemy_scene = ExtResource("2_0xm2m")
-players = [NodePath("Player"), NodePath("Player2")]
 item_scene = ExtResource("3_vivmo")
 enemy_data_types = Array[ExtResource("4_cegan")]([ExtResource("7_5vw27"), ExtResource("6_kek77"), ExtResource("4_5vw27")])
 

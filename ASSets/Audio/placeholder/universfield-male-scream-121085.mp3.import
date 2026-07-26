@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://d0ii00j3rh88r"
-path="res://.godot/imported/universfield-male-scream-121085.mp3-38876a0dad26afae519a6e75b4e90032.mp3str"
+path="res://.godot/imported/universfield-male-scream-121085.mp3-63b61d392a07482aa4a0e0f187877cc2.mp3str"
 
 [deps]
 
-source_file="res://assets/Audio/placeholder/universfield-male-scream-121085.mp3"
-dest_files=["res://.godot/imported/universfield-male-scream-121085.mp3-38876a0dad26afae519a6e75b4e90032.mp3str"]
+source_file="res://ASSets/Audio/placeholder/universfield-male-scream-121085.mp3"
+dest_files=["res://.godot/imported/universfield-male-scream-121085.mp3-63b61d392a07482aa4a0e0f187877cc2.mp3str"]
 
 [params]
 

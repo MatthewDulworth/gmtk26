@@ -3,18 +3,12 @@
 [ext_resource type="Script" uid="uid://ccggbmoxah0ka" path="res://autoload/audio_manager.gd" id="1_nbik8"]
 [ext_resource type="AudioStream" uid="uid://bf4evk34eykw3" path="res://ASSets/Audio/Game Jame 2026.mp3" id="2_jqjfi"]
 
-[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_jqjfi"]
-clip_count = 1
-clip_0/name = &"Playholder Theme"
-clip_0/stream = ExtResource("2_jqjfi")
-clip_0/auto_advance = 0
-
 [node name="AudioManager" type="Node2D" unique_id=1669834076]
 process_mode = 3
 script = ExtResource("1_nbik8")
 
 [node name="MainPlayer" type="AudioStreamPlayer" parent="." unique_id=2000200047]
-stream = SubResource("AudioStreamInteractive_jqjfi")
+stream = ExtResource("2_jqjfi")
 
 [node name="AudioPlayerPool" type="Node" parent="." unique_id=130873380]
 

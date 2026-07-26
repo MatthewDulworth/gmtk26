@@ -62,6 +62,11 @@ func _on_down_collected(val):
 func _ready() -> void:
 	_current_enemy_count = 0
 	SignalBus.player_picked_up_feather.connect(_on_down_collected)
+	players.append($Player)
+	if AudioManager.two_players == true:
+		players.append($Player2)
+	else: 
+		$Player2.queue_free()
 
 
 func _process(delta: float) -> void:

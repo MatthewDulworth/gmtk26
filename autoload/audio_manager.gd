@@ -1,7 +1,7 @@
 extends Node
 
 const POOL_RESIZE_FACTOR := 3.0
-
+var two_players = false
 #var end_stream = preload("res://Audio/end_theme.tres")
 
 enum SFX {
@@ -86,8 +86,8 @@ func _ready() -> void:
 	SignalBus.wave_ended.connect(func(): play(SFX.ENEMY_WAVE_ENDED))
 	
 
-	main_player.play()
-	theme_stream = main_player.stream.get_clip_stream(0) as AudioStreamSynchronized
+	main_player.play(50)
+	#theme_stream = main_player.stream.get_clip_stream(0) as AudioStreamSynchronized
 	main_playback = main_player.get_stream_playback() as AudioStreamPlaybackInteractive
 
 # add weapon sfx types here

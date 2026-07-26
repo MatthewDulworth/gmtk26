@@ -104,7 +104,7 @@ func _on_enemy_stopped_walking(enemy):
 	stop_loop(enemy_walking_streams[enemy])
 
 func _on_player_died(player):
-	if player_walking_streams[player]: stop_loop(player_walking_streams[player])
+	if player in player_walking_streams and player_walking_streams[player]: stop_loop(player_walking_streams[player])
 	play(SFX.PLAYER_DIED)
 
 func _on_enemy_spawn ():

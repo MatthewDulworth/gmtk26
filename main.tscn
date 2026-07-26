@@ -169,3 +169,5 @@ offset_top = -532.0
 offset_right = -72.0
 offset_bottom = -463.0
 theme_override_font_sizes/font_size = 50
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1009543401]

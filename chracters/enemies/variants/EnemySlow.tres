@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://bxhj8gcqqmkpd"]
 
+[ext_resource type="PackedScene" uid="uid://d33q7ngm2teb7" path="res://item/Item.tscn" id="1_jsjyd"]
 [ext_resource type="Script" uid="uid://bdhvi88d3ihm2" path="res://chracters/enemies/EnemyData.gd" id="1_v5nes"]
 
 [resource]
@@ -8,7 +9,7 @@ max_health = 3.0
 move_speed = 150.0
 count_down_value = 5
 mass = 4.0
-animation_name_move = "walk"
+animation_name_move = "devil_walk"
 attack_range = 75.0
 attack_damage = 10.0
 attack_cooldown = 2.0

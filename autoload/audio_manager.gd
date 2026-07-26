@@ -43,12 +43,12 @@ const AUDIO_DICT := {
 	SFX.ENEMY_ATTACKED: preload("res://ASSets/Audio/placeholder/sumaga123-knife-432147.mp3"),
 	SFX.ENEMY_DAMAGED: preload("res://ASSets/Audio/placeholder/dragon-studio-punch-431475.mp3"),
 	SFX.ENEMY_WALKING: preload("res://ASSets/Audio/placeholder/freesound_community-duck-quacking-37392.mp3"),
-	SFX.ENEMY_SPAWNED: preload("res://ASSets/Audio/placeholder_sfx.mp3"),
+	SFX.ENEMY_SPAWNED: preload("res://ASSets/Audio/placeholder/placeholder_sfx.mp3"),
 	
 	SFX.ENEMY_WAVE_STARTED: preload("res://ASSets/Audio/placeholder/freesound_community-angry-elephant-40916.mp3"),
 	SFX.ENEMY_WAVE_ENDED: preload("res://ASSets/Audio/placeholder/freesound_community-success-1-6297.mp3"),
 	
-	SFX.ITEM_SPAWNED: preload("res://ASSets/Audio/placeholder_sfx.mp3"),
+	SFX.ITEM_SPAWNED: preload("res://ASSets/Audio/placeholder/placeholder_sfx.mp3"),
 	SFX.PICKED_UP_FEATHER: preload("res://ASSets/Audio/placeholder/chieuk-coin-257878.mp3"),
 }
 
@@ -82,8 +82,8 @@ func _ready() -> void:
 	
 	SignalBus.player_started_walking.connect(_on_player_started_walking)
 	SignalBus.player_stopped_walking.connect(_on_player_stopped_walking)
-	SignalBus.enemy_started_walking.connect(_on_enemy_started_walking)
-	SignalBus.enemy_stopped_walking.connect(_on_enemy_stopped_walking)
+	#SignalBus.enemy_started_walking.connect(_on_enemy_started_walking)
+	#SignalBus.enemy_stopped_walking.connect(_on_enemy_stopped_walking)
 	
 	SignalBus.wave_started.connect(func(): play(SFX.ENEMY_WAVE_STARTED))
 	SignalBus.wave_ended.connect(func(): play(SFX.ENEMY_WAVE_ENDED))
@@ -154,6 +154,7 @@ func _process(_delta: float) -> void:
 
 ## Plays the audio clip of the given name, optionally applies the given AudioPlayer params
 func play(clip_name: SFX, params: Dictionary = {}) -> void:
+	
 	var audio_player = _get_and_start_audio_player(clip_name, params)
 	
 	await audio_player.finished
@@ -183,6 +184,8 @@ func _get_and_start_audio_player(clip_name: SFX, params: Dictionary = {})->Audio
 		
 	if params.has("volume"):
 		audio_player.set_volume_db(params.volume)
+		
+	audio_player.volume_db -= 30
 	audio_player.play()
 	
 	return audio_player

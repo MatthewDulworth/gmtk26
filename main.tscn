@@ -57,8 +57,80 @@ player_data = ExtResource("3_5vw27")
 player_id = 1
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1687995481 node_paths=PackedStringArray("players")]
+z_index = 10
+z_as_relative = false
 script = ExtResource("8_shake")
 players = [NodePath("../Player")]
+
+[node name="WaveBanner" type="ColorRect" parent="Camera2D" unique_id=871645624]
+unique_name_in_owner = true
+offset_left = -858.0
+offset_top = -205.0
+offset_right = 894.0
+offset_bottom = 169.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+color = Color(0, 0, 0, 1)
+
+[node name="WaveLabel" type="Label" parent="Camera2D/WaveBanner" unique_id=187716494]
+unique_name_in_owner = true
+z_index = 10
+layout_mode = 0
+offset_left = 27.0
+offset_top = 33.0
+offset_right = 1721.0
+offset_bottom = 334.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(1, 0.16000003, 0.16000003, 1)
+theme_override_font_sizes/font_size = 300
+text = "Wave: 0"
+
+[node name="Down" type="Label" parent="Camera2D" unique_id=465614195]
+unique_name_in_owner = true
+z_index = 10
+offset_left = -298.0
+offset_top = -509.0
+offset_right = 230.0
+offset_bottom = -468.0
+theme_override_font_sizes/font_size = 40
+text = "Down Gathered: 0"
+horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D" unique_id=1203925479]
+offset_left = -336.0
+offset_top = -602.0
+offset_right = 273.0
+offset_bottom = -440.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Camera2D" unique_id=296517561]
+offset_left = -1001.0
+offset_top = 454.0
+offset_right = -302.0
+offset_bottom = 569.0
+color = Color(0, 0, 0, 1)
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Camera2D" unique_id=2040907303]
+offset_left = -939.0
+offset_top = 478.0
+offset_right = -386.0
+offset_bottom = 519.0
+theme_override_constants/separation = 50
+
+[node name="KillsLabel" type="Label" parent="Camera2D/HBoxContainer2" unique_id=243365851]
+unique_name_in_owner = true
+z_index = 20
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.16078432, 0.16078432, 1)
+theme_override_font_sizes/font_size = 40
+text = "Kills: 0"
+
+[node name="EnemyCount" type="Label" parent="Camera2D/HBoxContainer2" unique_id=762859231]
+unique_name_in_owner = true
+z_index = 10
+layout_mode = 2
+theme_override_colors/font_color = Color(0.84910774, 0.41350687, 7.70092e-07, 1)
+theme_override_font_sizes/font_size = 40
+text = "Enemies: 0"
 
 [node name="Obstacle" parent="." unique_id=1943589396 instance=ExtResource("7_272bh")]
 position = Vector2(-200, 176)
@@ -148,26 +220,5 @@ position = Vector2(595, 356)
 [node name="Marker2D" type="Marker2D" parent="ItemSpawners" unique_id=991410245]
 position = Vector2(-299, -358)
 gizmo_extents = 27.5
-
-[node name="WaveLabel" type="Label" parent="." unique_id=187716494]
-offset_left = -948.0
-offset_top = -523.0
-offset_right = -643.0
-offset_bottom = -387.0
-theme_override_font_sizes/font_size = 40
-
-[node name="KillsLabel" type="Label" parent="." unique_id=243365851]
-offset_left = -500.0
-offset_top = -538.0
-offset_right = -460.0
-offset_bottom = -483.0
-theme_override_font_sizes/font_size = 40
-
-[node name="EnemyCount" type="Label" parent="." unique_id=762859231]
-offset_left = -112.0
-offset_top = -532.0
-offset_right = -72.0
-offset_bottom = -463.0
-theme_override_font_sizes/font_size = 50
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1009543401]

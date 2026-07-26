@@ -12,7 +12,7 @@ var _time_since_last_item_spawn := 0.0
 
 var kills := 0 :
 	set(v):
-		$KillsLabel.text =  "Kills  %d" % v
+		%KillsLabel.text =  "Kills  %d" % v
 		kills = v
 
 var _current_item_spawn_rate := 2.0
@@ -25,25 +25,37 @@ var _current_enemy_count:
 			_current_wave += 1
 			weapon_pool.append(master_weapon_catalog.pick_random())
 		
-		$EnemyCount.text = "Enemies: %d" % v
+		%EnemyCount.text = "Enemies: %d" % v
 		_current_enemy_count = v
 
 var _current_wave = 0: 
 	set(v):
 		if v - _current_wave == 1:
-			$WaveLabel.text = "Wave: %d" % v
+			SignalBus.wave_started.emit()
+			%WaveBanner.scale = Vector2(1.0, 1.0)
+			await get_tree().create_timer(2).timeout
+			%WaveLabel.text = "Wave: %d" % v
+			var tween := create_tween()
+			tween.tween_property(%WaveBanner, "scale", Vector2(0, 0), 0.1)
 			_current_wave_length += 1
 			_current_enemy_spawn_rate -= 0.1
 			_time_since_wave_start = 0
 			_time_since_last_spawn = 0
 			_current_wave = v
 			
-			SignalBus.wave_started.emit()
+			
 	get:
 		return _current_wave
 
+var down_collected = 0 
+func _on_down_collected():
+	down_collected += 1
+	%Down.text = "Down Gathered: %d" % down_collected
+
 func _ready() -> void:
 	_current_enemy_count = 0
+	SignalBus.player_picked_up_feather.connect(_on_down_collected)
+
 
 func _process(delta: float) -> void:
 	if _time_since_last_item_spawn > _current_item_spawn_rate:

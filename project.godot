@@ -32,6 +32,10 @@ SignalBus="*uid://8eh8s11xtdut"
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 
+[gui]
+
+theme/custom_font="uid://davsu4bs28vrw"
+
 [input]
 
 move_left={

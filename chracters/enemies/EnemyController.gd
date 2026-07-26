@@ -43,6 +43,8 @@ func _ready() -> void:
 	scale = scale * enemy_data.size_scale;
 	health.initialize(enemy_data.max_health)
 
+	# Scale hitbox
+	hitbox.scale = hitbox.scale * enemy_data.size_scale
 	hitbox_collision.disabled = true
 
 	# Signals

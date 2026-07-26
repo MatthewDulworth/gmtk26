@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://l8f43ufubehu"]
+
+[ext_resource type="Script" uid="uid://bxn4pw2dgnss8" path="res://shaders/PostProcessing.gd" id="1_56rgi"]
+[ext_resource type="Script" uid="uid://b6x4eokdoycgd" path="res://death.gd" id="1_r6ms4"]
+[ext_resource type="Material" path="res://shaders/crt_shader.tres" id="2_r6ms4"]
+[ext_resource type="Material" path="res://shaders/crt_luminance.tres" id="3_jxpam"]
+[ext_resource type="Material" path="res://shaders/vhs_post_processing.tres" id="4_idukc"]
+[ext_resource type="Material" path="res://shaders/psx_horror.tres" id="5_ktdw2"]
+[ext_resource type="Material" path="res://shaders/analog_monitor.tres" id="6_0oy2w"]
+[ext_resource type="Material" path="res://shaders/windows_lcd.tres" id="7_3cu04"]
+
+[node name="Death" type="Node2D" unique_id=593423015]
+script = ExtResource("1_r6ms4")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2017023098]
+
+[node name="PostProcessing" type="CanvasLayer" parent="." unique_id=1305494238]
+layer = 10
+script = ExtResource("1_56rgi")
+
+[node name="CRT" type="ColorRect" parent="PostProcessing" unique_id=849647032]
+visible = false
+material = ExtResource("2_r6ms4")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="CRTLuminance" type="ColorRect" parent="PostProcessing" unique_id=2084079001]
+visible = false
+material = ExtResource("3_jxpam")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="VHS" type="ColorRect" parent="PostProcessing" unique_id=1947152381]
+visible = false
+material = ExtResource("4_idukc")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="PSXHorror" type="ColorRect" parent="PostProcessing" unique_id=25488237]
+visible = false
+material = ExtResource("5_ktdw2")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="AnalogMonitor" type="ColorRect" parent="PostProcessing" unique_id=1019918025]
+visible = false
+material = ExtResource("6_0oy2w")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="WindowsLCD" type="ColorRect" parent="PostProcessing" unique_id=40136548]
+visible = false
+material = ExtResource("7_3cu04")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1393370892]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="." unique_id=2081060616]
+offset_left = -922.0
+offset_top = -174.0
+offset_right = 1902.0
+offset_bottom = 427.0
+theme_override_font_sizes/font_size = 400
+text = "DEATH"

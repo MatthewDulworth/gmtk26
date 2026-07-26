@@ -52,6 +52,8 @@ var down_collected = 10:
 		%Down.text = "Count Down: %d" % v
 		count_down_rate = clamp(2.0 / (1.0 + down_collected * 0.05), 0.1, 2.0)
 		down_collected = v
+		if v <= 0:
+			get_tree().change_scene_to_file("res://death.tscn")
 
 var count_down_rate = 1.0 
 var time_since_last_count_down = 0

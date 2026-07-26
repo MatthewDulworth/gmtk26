@@ -10,12 +10,15 @@ class_name EnemyController
 		if v == EnemyState.CHASE and state !=  EnemyState.CHASE:
 			SignalBus.enemy_started_walking.emit(self)
 		elif v != EnemyState.CHASE:
-			
-			SignalBus.enemy_stopped_walking.emit(self)
-			
-		state = v
-		
 
+			SignalBus.enemy_stopped_walking.emit(self)
+
+		state = v
+
+@export var knockback_decay: float = 10.0
+
+
+var knockback_velocity: Vector2 = Vector2.ZERO
 var target: Vector2
 var is_attack_on_cooldown: bool = false
 
@@ -49,6 +52,7 @@ func _ready() -> void:
 	health.died.connect(_dead_pending_collection)
 	health.health_changed.connect(func(current_health): SignalBus.enemy_damaged.emit(current_health))
 	animation.animation_finished.connect(_on_animation_complete)
+	hurtbox.hit.connect(_on_hurtbox_hit)
 
 	# make sure hurtbox is on layer 5 so hitscanning detects it
 	_set_hurtbox_collision_layer(CollisionLayers.Layer.ENEMY_HURTBOX)
@@ -68,28 +72,40 @@ func _process(_delta: float) -> void:
 	elif _is_all_players_dead():
 		animation.play("walk")
 
-func _physics_process(_delta: float) ->  void:
-	if state == EnemyState.ATTACK or state == EnemyState.DEAD_PENDING_COLLECTION:
+func _physics_process(delta: float) ->  void:
+	if state == EnemyState.DEAD_PENDING_COLLECTION or state == EnemyState.DEAD_COLLECTED:
+		return
+
+	# Degrade knockback
+	knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_decay * delta * 100.0)
+
+	# Can only slide from a weapon impact
+	if state == EnemyState.ATTACK:
+		velocity = knockback_velocity
+		move_and_slide()
 		return
 
 	if (position.distance_to(target)) > 5.0:
 		_move_towards_target()
+	else:
+		velocity = knockback_velocity
+		move_and_slide()
 
 func _set_target_player() -> void:
 	# If all players are dead, go to the middle
 	if _is_all_players_dead():
 		target = Vector2(0, 0)
 	else:
-		target = Vector2(_get_closest_player().position)
+		target = _get_closest_player().position
 	nav_agent_2d.set_target_position(target)
 
 func _get_closest_player() -> PlayerController:
 	var closestPlayer
-	var closestPlayerDistance = INF
+	var closestPlayerDistance: float = INF
 	for player: PlayerController in players:
 		if player.state == PlayerController.PlayerState.DEAD:
 			continue
-		var distance_to_player = position.distance_to(player.position)
+		var distance_to_player = position.distance_squared_to(player.position)
 		if distance_to_player < closestPlayerDistance:
 			closestPlayerDistance = distance_to_player
 			closestPlayer = player
@@ -147,7 +163,13 @@ func _on_animation_complete() -> void:
 	if animation.animation == enemy_data.animation_name_die:
 		animation.stop()
 		animation.play(enemy_data.animation_name_feather)
+<<<<<<< HEAD
 	if animation.animation == enemy_data.animation_name_attack:
+=======
+		var tween = _bounce_animation(10)
+		tween.tween_callback(queue_free)
+	elif animation.animation == enemy_data.animation_name_attack:
+>>>>>>> b370f1637933fc1ed830df7c825b0d56d5557b20
 		animation.stop()
 		animation.speed_scale = 1.0
 
@@ -156,13 +178,14 @@ func _on_animation_complete() -> void:
 
 func collect() -> void:
 	state = EnemyState.DEAD_COLLECTED
+	_show_value_text_popup()
+	queue_free()
 
+func _show_value_text_popup() -> void:
 	var text_popup = feather_pickup_text.instantiate()
 	text_popup.setup(enemy_data.count_down_value)
 	text_popup.global_position = global_position
 	get_tree().current_scene.add_child(text_popup)
-
-	queue_free()
 
 func _set_hurtbox_collision_layer(layer: CollisionLayers.Layer) -> void:
 	# Reset any previous layers
@@ -172,10 +195,14 @@ func _set_hurtbox_collision_layer(layer: CollisionLayers.Layer) -> void:
 	hurtbox.set_collision_layer_value(layer, true)
 
 func _move_towards_target():
+	if nav_agent_2d.is_navigation_finished():
+		return
+
 	var pos = global_transform.origin
 	var new_pos = nav_agent_2d.get_next_path_position()
-	var new_vel = (new_pos - pos).normalized() * enemy_data.move_speed;
-	velocity = new_vel
+	# Combine knock back and move vel
+	var move_vel = (new_pos - pos).normalized() * enemy_data.move_speed
+	velocity = move_vel + knockback_velocity
 	move_and_slide()
 
 func _should_begin_attack() -> bool:
@@ -208,3 +235,29 @@ func _cooldown_attack() -> void:
 
 func _is_all_players_dead() -> bool:
 		return players.all(func(p): return p.state == PlayerController.PlayerState.DEAD)
+
+func _bounce_animation(num_bounces: int) -> Tween:
+	var tween = create_tween()
+	var base_y = position.y
+	var vertical_change = 20
+	var scale_change = 1.1
+	var time = 0.4 # seconds
+
+	for i in range(num_bounces):
+		# Bounce + grow
+		tween.tween_property(self, "position:y", base_y - vertical_change, time).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+		tween.parallel().tween_property(self, "scale", scale * scale_change, time).set_trans(Tween.TRANS_SINE)
+
+		# Fall + shrink
+		tween.tween_property(self, "position:y", base_y, time).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+		tween.parallel().tween_property(self, "scale", scale, time).set_trans(Tween.TRANS_SINE)
+	return tween
+
+func _on_hurtbox_hit(amount: float, source: Node) -> void:
+	if _is_dead():
+		return
+
+	# Calculate knockback
+	var knockback_force: float = source.weapon_slot.weapon.knockback
+	var knockback_direction = (global_position - source.global_position).normalized()
+	knockback_velocity = knockback_direction * knockback_force * 100

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cdikn380yyyxj"]
+
+[ext_resource type="Script" uid="uid://b18wico8d4dio" path="res://components/ShakyCamera2D.gd" id="1_aj12c"]
+[ext_resource type="Texture2D" uid="uid://dpoqqd8opsx0t" path="res://ASSets/Cute_Fantasy_Free/Tiles/Grass_Middle.png" id="1_oyeqj"]
+[ext_resource type="PackedScene" uid="uid://d0fyntx0582l7" path="res://chracters/player/player.tscn" id="2_aj12c"]
+[ext_resource type="Resource" uid="uid://xcvhfebef7bm" path="res://chracters/player/Count.tres" id="3_qdb73"]
+
+[node name="Big" type="Node2D" unique_id=1781304980]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=817034707]
+position = Vector2(-1076, -587)
+script = ExtResource("1_aj12c")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1481583348]
+offset_left = -1016.0
+offset_top = -587.0
+offset_right = 1035.0
+offset_bottom = 614.0
+texture = ExtResource("1_oyeqj")
+stretch_mode = 1
+
+[node name="Player" parent="." unique_id=1399235571 instance=ExtResource("2_aj12c")]
+position = Vector2(-1076, -587)
+player_data = ExtResource("3_qdb73")

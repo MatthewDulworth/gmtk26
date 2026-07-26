@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3]
+
+[ext_resource type="Script" uid="uid://cx6lerykt0y5s" path="res://weapons/WeaponData.gd" id="1_shotgun"]
+
+[resource]
+script = ExtResource("1_shotgun")
+name = "Shotgun"
+fire_rate = 1.5
+damage = 1.0
+knockback = 8.0
+reload_time = 2.5
+active_reload_start = 1.75
+active_reload_end = 1.0
+num_bullets = 8
+bullet_spread = 0.18
+mag_size = 6
+num_mags = 10
+hitscan_range = 900.0

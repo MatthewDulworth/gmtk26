@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d0rhtoni65bmj"
-path="res://.godot/imported/Bat-Transforming-Vampire.png-cbba5f66b5bb4f1554bfb386ee24c8ed.ctex"
+path="res://.godot/imported/Bat-Transforming-Vampire.png-2a6386efba6f9ad943397a51e2dfb247.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ASSets/Vampire-v2/Bat-Transforming-Vampire.png"
-dest_files=["res://.godot/imported/Bat-Transforming-Vampire.png-cbba5f66b5bb4f1554bfb386ee24c8ed.ctex"]
+source_file="res://assets/Vampire-v2/Bat-Transforming-Vampire.png"
+dest_files=["res://.godot/imported/Bat-Transforming-Vampire.png-2a6386efba6f9ad943397a51e2dfb247.ctex"]
 
 [params]
 

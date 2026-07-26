@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cai7wvm13476g" path="res://assets/Goose/Run.png" id="6_r7v4m"]
 [ext_resource type="Texture2D" uid="uid://3to73gt4a5n0" path="res://assets/Goose/Walk.png" id="7_6sxb8"]
 [ext_resource type="Texture2D" uid="uid://cwmh8k1jxx3fy" path="res://assets/Goose/Attack.png" id="8_jvj35"]
+[ext_resource type="Texture2D" uid="uid://ksehr4t3fdf5" path="res://assets/Goose/attack_devil.png" id="9_k5g5q"]
 [ext_resource type="Texture2D" uid="uid://buh8rbirxp2tu" path="res://assets/Goose/Walk-devil.png" id="9_txd5a"]
 [ext_resource type="PackedScene" uid="uid://d4h7b5x0lxmtq" path="res://chracters/enemies/EnemyHealthBar.tscn" id="12_jgmlk"]
 
@@ -46,6 +47,18 @@ region = Rect2(64, 0, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_pw0mg"]
 atlas = ExtResource("4_cuw3f")
 region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e57v6"]
+atlas = ExtResource("9_k5g5q")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u156g"]
+atlas = ExtResource("9_k5g5q")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mq1iw"]
+atlas = ExtResource("9_k5g5q")
+region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mkn0v"]
 atlas = ExtResource("9_txd5a")
@@ -170,6 +183,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_e57v6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u156g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mq1iw")
+}],
+"loop": 0,
+"name": &"devil_attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_mkn0v")
 }, {
 "duration": 1.0,
@@ -283,7 +310,7 @@ shape = SubResource("CapsuleShape2D_vpdod")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1927816173]
 sprite_frames = SubResource("SpriteFrames_r7v4m")
-animation = &"devil_walk"
+animation = &"devil_attack"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1165551425]
 

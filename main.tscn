@@ -25,10 +25,10 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-959, -536, 957, -542, 
 [node name="Main" type="Node2D" unique_id=699210955]
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1409314398]
-offset_left = -1016.0
-offset_top = -587.0
-offset_right = 1035.0
-offset_bottom = 614.0
+offset_left = -1497.0
+offset_top = -1000.0
+offset_right = 1503.0
+offset_bottom = 1000.0
 texture = ExtResource("1_272bh")
 stretch_mode = 1
 

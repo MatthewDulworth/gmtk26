@@ -58,7 +58,7 @@ player_id = 1
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1687995481 node_paths=PackedStringArray("players")]
 script = ExtResource("8_shake")
-players = [NodePath("../Player"), NodePath("../Player2")]
+players = [NodePath("../Player")]
 
 [node name="Obstacle" parent="." unique_id=1943589396 instance=ExtResource("7_272bh")]
 position = Vector2(-200, 176)

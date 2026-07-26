@@ -237,7 +237,7 @@ func _cooldown_attack() -> void:
 	is_attack_on_cooldown = false
 
 func _is_all_players_dead() -> bool:
-		return players.all(func(p): return p.state == PlayerController.PlayerState.DEAD)
+	return players.all(func(p): return p.state == PlayerController.PlayerState.DEAD)
 
 func _bounce_animation(num_bounces: int) -> Tween:
 	var tween = create_tween()

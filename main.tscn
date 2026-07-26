@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c6yplr84qj8xy"]
 
-[ext_resource type="Texture2D" uid="uid://dpoqqd8opsx0t" path="res://assets/Cute_Fantasy_Free/Tiles/Grass_Middle.png" id="1_272bh"]
+[ext_resource type="Texture2D" uid="uid://dpoqqd8opsx0t" path="res://ASSets/Cute_Fantasy_Free/Tiles/Grass_Middle.png" id="1_272bh"]
 [ext_resource type="Script" uid="uid://bhf76id4vfeir" path="res://level/main.gd" id="1_yaehf"]
 [ext_resource type="PackedScene" uid="uid://d1wakfws1yses" path="res://chracters/enemies/enemy.tscn" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://cx6lerykt0y5s" path="res://weapons/WeaponData.gd" id="2_getpj"]
@@ -8,7 +8,7 @@
 [ext_resource type="Resource" uid="uid://ckeitc570kx0t" path="res://weapons/Shotgun.tres" id="3_1u8w0"]
 [ext_resource type="Resource" uid="uid://xcvhfebef7bm" path="res://chracters/player/Count.tres" id="3_5vw27"]
 [ext_resource type="Resource" uid="uid://cchvlvuoyk60d" path="res://weapons/Pistol.tres" id="3_ryguw"]
-[ext_resource type="PackedScene" uid="uid://d33q7ngm2teb7" path="res://item/Item.tscn" id="3_vivmo"]
+[ext_resource type="PackedScene" uid="uid://d33q7ngm2teb7" path="res://item/item.tscn" id="3_vivmo"]
 [ext_resource type="Resource" uid="uid://dapcnrc6ggwk" path="res://weapons/Uzi.tres" id="4_0odxb"]
 [ext_resource type="Resource" uid="uid://bxhj8gcqqmkpd" path="res://chracters/enemies/variants/EnemySlow.tres" id="4_5vw27"]
 [ext_resource type="Script" uid="uid://bdhvi88d3ihm2" path="res://chracters/enemies/EnemyData.gd" id="4_cegan"]
@@ -92,7 +92,7 @@ offset_top = -509.0
 offset_right = 230.0
 offset_bottom = -468.0
 theme_override_font_sizes/font_size = 40
-text = "Down Gathered: 0"
+text = "DOWN COUNTED: 0"
 horizontal_alignment = 1
 
 [node name="ColorRect" type="ColorRect" parent="Camera2D" unique_id=1203925479]

@@ -47,10 +47,17 @@ var _current_wave = 0:
 	get:
 		return _current_wave
 
-var down_collected = 0 
+var down_collected = 10:
+	set(v):
+		%Down.text = "Count Down: %d" % v
+		count_down_rate = clamp(2.0 / (1.0 + down_collected * 0.05), 0.1, 2.0)
+		down_collected = v
+
+var count_down_rate = 1.0 
+var time_since_last_count_down = 0
+	
 func _on_down_collected(val):
 	down_collected += val
-	%Down.text = "Down Gathered: %d" % down_collected
 
 func _ready() -> void:
 	_current_enemy_count = 0
@@ -68,11 +75,16 @@ func _process(delta: float) -> void:
 		
 		SignalBus.item_spawned.emit()
 		add_child(new_item)
-		
+	if time_since_last_count_down > count_down_rate:
+			down_collected -= 1
+			time_since_last_count_down = 0
+	
+	time_since_last_count_down += delta
 	_time_since_last_item_spawn += delta
 	
 	if _time_since_wave_start > _current_wave_length:
 		return
+		
 	
 	if _time_since_last_spawn > _current_enemy_spawn_rate:
 		var new_enemy: EnemyController = enemy_scene.instantiate()
@@ -89,6 +101,7 @@ func _process(delta: float) -> void:
 
 	_time_since_last_spawn += delta
 	_time_since_wave_start += delta
+
 
 
 	

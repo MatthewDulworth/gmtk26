@@ -173,7 +173,8 @@ func _get_and_start_audio_player(clip_name: SFX, params: Dictionary = {})->Audio
 		
 	if params.has("volume"):
 		audio_player.set_volume_db(params.volume)
-		
+	else:
+		audio_player.volume_db = 0.0
 	audio_player.volume_db -= 30
 	audio_player.play()
 	

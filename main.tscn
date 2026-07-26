@@ -35,54 +35,45 @@ position = Vector2(60, 0)
 player_data = ExtResource("3_5vw27")
 player_id = 1
 
-[node name="Enemy" parent="." unique_id=1397981385 node_paths=PackedStringArray("players") instance=ExtResource("2_0xm2m")]
+[node name="Enemy" parent="." unique_id=1397981385 instance=ExtResource("2_0xm2m")]
 position = Vector2(-6, -500)
 enemy_data = ExtResource("6_kek77")
-players = [NodePath("../Player"), NodePath("../Player2")]
 
-[node name="Enemy2" parent="." unique_id=976929462 node_paths=PackedStringArray("players") instance=ExtResource("2_0xm2m")]
+[node name="Enemy2" parent="." unique_id=976929462 instance=ExtResource("2_0xm2m")]
 position = Vector2(-789, -441)
 enemy_data = ExtResource("6_kek77")
-players = [NodePath("../Player"), NodePath("../Player2")]
 
-[node name="Enemy3" parent="." unique_id=976956025 node_paths=PackedStringArray("players") instance=ExtResource("2_0xm2m")]
+[node name="Enemy3" parent="." unique_id=976956025 instance=ExtResource("2_0xm2m")]
 position = Vector2(899, -452)
 enemy_data = ExtResource("6_kek77")
-players = [NodePath("../Player"), NodePath("../Player2")]
 
-[node name="Enemy4" parent="." unique_id=2013723635 node_paths=PackedStringArray("players") instance=ExtResource("2_0xm2m")]
+[node name="Enemy4" parent="." unique_id=2013723635 instance=ExtResource("2_0xm2m")]
 position = Vector2(734, 349)
 enemy_data = ExtResource("4_5vw27")
-players = [NodePath("../Player"), NodePath("../Player2")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1687995481 node_paths=PackedStringArray("players")]
 script = ExtResource("8_shake")
 players = [NodePath("../Player"), NodePath("../Player2")]
 
-[node name="Enemy5" parent="." unique_id=446114064 node_paths=PackedStringArray("players") instance=ExtResource("2_0xm2m")]
+[node name="Enemy5" parent="." unique_id=446114064 instance=ExtResource("2_0xm2m")]
 position = Vector2(786, 470)
 enemy_data = ExtResource("4_5vw27")
-players = [NodePath("../Player"), NodePath("../Player2")]
 
-[node name="Enemy6" parent="." unique_id=1105890933 node_paths=PackedStringArray("players") instance=ExtResource("2_0xm2m")]
+[node name="Enemy6" parent="." unique_id=1105890933 instance=ExtResource("2_0xm2m")]
 position = Vector2(660, 513)
 enemy_data = ExtResource("4_5vw27")
-players = [NodePath("../Player"), NodePath("../Player2")]
 
-[node name="Enemy7" parent="." unique_id=600845757 node_paths=PackedStringArray("players") instance=ExtResource("2_0xm2m")]
+[node name="Enemy7" parent="." unique_id=600845757 instance=ExtResource("2_0xm2m")]
 position = Vector2(-903, 300)
 enemy_data = ExtResource("7_5vw27")
-players = [NodePath("../Player"), NodePath("../Player2")]
 
-[node name="Enemy8" parent="." unique_id=1266231419 node_paths=PackedStringArray("players") instance=ExtResource("2_0xm2m")]
+[node name="Enemy8" parent="." unique_id=1266231419 instance=ExtResource("2_0xm2m")]
 position = Vector2(-796, 289)
 enemy_data = ExtResource("7_5vw27")
-players = [NodePath("../Player"), NodePath("../Player2")]
 
-[node name="Enemy9" parent="." unique_id=46070260 node_paths=PackedStringArray("players") instance=ExtResource("2_0xm2m")]
+[node name="Enemy9" parent="." unique_id=46070260 instance=ExtResource("2_0xm2m")]
 position = Vector2(-841, 200)
 enemy_data = ExtResource("7_5vw27")
-players = [NodePath("../Player"), NodePath("../Player2")]
 
 [node name="Obstacle" parent="." unique_id=1943589396 instance=ExtResource("7_272bh")]
 position = Vector2(-200, 176)

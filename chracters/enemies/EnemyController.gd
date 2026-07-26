@@ -163,13 +163,9 @@ func _on_animation_complete() -> void:
 	if animation.animation == enemy_data.animation_name_die:
 		animation.stop()
 		animation.play(enemy_data.animation_name_feather)
-<<<<<<< HEAD
-	if animation.animation == enemy_data.animation_name_attack:
-=======
 		var tween = _bounce_animation(10)
 		tween.tween_callback(queue_free)
 	elif animation.animation == enemy_data.animation_name_attack:
->>>>>>> b370f1637933fc1ed830df7c825b0d56d5557b20
 		animation.stop()
 		animation.speed_scale = 1.0
 

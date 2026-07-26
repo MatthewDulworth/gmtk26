@@ -256,7 +256,7 @@ func _bounce_animation(num_bounces: int) -> Tween:
 		tween.parallel().tween_property(self, "scale", scale, time).set_trans(Tween.TRANS_SINE)
 	return tween
 
-func _on_hurtbox_hit(amount: float, source: Node) -> void:
+func _on_hurtbox_hit(_amount: float, source: Node) -> void:
 	if _is_dead():
 		return
 

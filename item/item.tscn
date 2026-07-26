@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://d33q7ngm2teb7"]
 
-[ext_resource type="Script" uid="uid://ds2ne1jaho5v8" path="res://item/item.gd" id="1_6t40p"]
+[ext_resource type="Script" uid="uid://ds2ne1jaho5v8" path="res://item/Item.gd" id="1_6t40p"]
+[ext_resource type="Texture2D" uid="uid://bcb3y3iianhf1" path="res://assets/Chest 1.png" id="2_nb2m6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rhggh"]
 size = Vector2(24, 24)
@@ -12,8 +13,13 @@ script = ExtResource("1_6t40p")
 shape = SubResource("RectangleShape2D_rhggh")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=730055070]
+visible = false
 offset_left = -12.0
 offset_top = -12.0
 offset_right = 12.0
 offset_bottom = 12.0
 color = Color(1, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1244624461]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_nb2m6")

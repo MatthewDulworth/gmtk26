@@ -40,10 +40,10 @@ item_scene = ExtResource("3_vivmo")
 enemy_data_types = Array[ExtResource("4_cegan")]([ExtResource("7_5vw27"), ExtResource("6_kek77"), ExtResource("4_5vw27")])
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1409314398]
-offset_left = -1016.0
-offset_top = -587.0
-offset_right = 1035.0
-offset_bottom = 614.0
+offset_left = -1497.0
+offset_top = -1000.0
+offset_right = 1503.0
+offset_bottom = 1000.0
 texture = ExtResource("1_272bh")
 stretch_mode = 1
 

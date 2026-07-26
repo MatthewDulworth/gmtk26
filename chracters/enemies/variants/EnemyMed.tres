@@ -13,4 +13,5 @@ attack_damage = 5.0
 attack_cooldown = 2.0
 attack_duration = 1.0
 size_scale = 2.0
+drop_rate = 20.0
 metadata/_custom_type_script = "uid://bdhvi88d3ihm2"

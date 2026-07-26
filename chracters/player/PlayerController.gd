@@ -137,7 +137,7 @@ func _on_collect_feather(area: Area2D) -> void:
 				
 	# Collect item
 	if area.has_method("collect"):
-		area.collect()
+		area.collect(self)
 
 func _on_animation_complete() -> void:
 	if animation.animation == player_data.animation_name_die:

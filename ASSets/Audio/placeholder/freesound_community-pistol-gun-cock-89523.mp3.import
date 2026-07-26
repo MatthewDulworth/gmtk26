@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://d043wwit461bf"
-path="res://.godot/imported/freesound_community-pistol-gun-cock-89523.mp3-e9dd2fc97bbcb1c92ede69642064567c.mp3str"
+path="res://.godot/imported/freesound_community-pistol-gun-cock-89523.mp3-4c95d552e3c3335f8e4fd06f8081e040.mp3str"
 
 [deps]
 
-source_file="res://assets/Audio/placeholder/freesound_community-pistol-gun-cock-89523.mp3"
-dest_files=["res://.godot/imported/freesound_community-pistol-gun-cock-89523.mp3-e9dd2fc97bbcb1c92ede69642064567c.mp3str"]
+source_file="res://ASSets/Audio/placeholder/freesound_community-pistol-gun-cock-89523.mp3"
+dest_files=["res://.godot/imported/freesound_community-pistol-gun-cock-89523.mp3-4c95d552e3c3335f8e4fd06f8081e040.mp3str"]
 
 [params]
 

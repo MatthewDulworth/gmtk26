@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://d012qhbsa27tx"
-path="res://.godot/imported/frosted_52-ow-480197.mp3-ee5ce733b37f53bf0a033f2fa9a9327b.mp3str"
+path="res://.godot/imported/frosted_52-ow-480197.mp3-c2803500d18aa054aa7e5f37836a197b.mp3str"
 
 [deps]
 
-source_file="res://assets/Audio/placeholder/frosted_52-ow-480197.mp3"
-dest_files=["res://.godot/imported/frosted_52-ow-480197.mp3-ee5ce733b37f53bf0a033f2fa9a9327b.mp3str"]
+source_file="res://ASSets/Audio/placeholder/frosted_52-ow-480197.mp3"
+dest_files=["res://.godot/imported/frosted_52-ow-480197.mp3-c2803500d18aa054aa7e5f37836a197b.mp3str"]
 
 [params]
 

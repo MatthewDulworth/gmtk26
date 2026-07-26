@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://cn6pkpbvb6nis"
-path="res://.godot/imported/universfield-appearance-04-142918.mp3-153a0412de9c72ffa540aecc21032833.mp3str"
+path="res://.godot/imported/universfield-appearance-04-142918.mp3-874b2a8886e3a82df58ab9742380b035.mp3str"
 
 [deps]
 
-source_file="res://assets/Audio/placeholder/universfield-appearance-04-142918.mp3"
-dest_files=["res://.godot/imported/universfield-appearance-04-142918.mp3-153a0412de9c72ffa540aecc21032833.mp3str"]
+source_file="res://ASSets/Audio/placeholder/universfield-appearance-04-142918.mp3"
+dest_files=["res://.godot/imported/universfield-appearance-04-142918.mp3-874b2a8886e3a82df58ab9742380b035.mp3str"]
 
 [params]
 

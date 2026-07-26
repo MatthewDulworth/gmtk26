@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var master_weapon_catalog: Array[WeaponData]
+@export var weapon_pool: Array[WeaponData]
 @export var enemy_scene: PackedScene
 @export var players: Array[PlayerController]
 @export var item_scene: PackedScene
@@ -21,6 +23,7 @@ var _current_enemy_count:
 	set(v):
 		if v == 0:
 			_current_wave += 1
+			weapon_pool.append(master_weapon_catalog.pick_random())
 		
 		$EnemyCount.text = "Enemies: %d" % v
 		_current_enemy_count = v

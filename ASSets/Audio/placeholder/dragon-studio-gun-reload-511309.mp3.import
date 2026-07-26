@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://dlf1px3bbwexo"
-path="res://.godot/imported/dragon-studio-gun-reload-511309.mp3-289e597e66ebf9af733f4eafbf6d59fa.mp3str"
+path="res://.godot/imported/dragon-studio-gun-reload-511309.mp3-1321390a92aa7536dc32770b7a0d0b25.mp3str"
 
 [deps]
 
-source_file="res://assets/Audio/placeholder/dragon-studio-gun-reload-511309.mp3"
-dest_files=["res://.godot/imported/dragon-studio-gun-reload-511309.mp3-289e597e66ebf9af733f4eafbf6d59fa.mp3str"]
+source_file="res://ASSets/Audio/placeholder/dragon-studio-gun-reload-511309.mp3"
+dest_files=["res://.godot/imported/dragon-studio-gun-reload-511309.mp3-1321390a92aa7536dc32770b7a0d0b25.mp3str"]
 
 [params]
 

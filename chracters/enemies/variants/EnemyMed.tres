@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://bbiflcgguj78o"]
 
+[ext_resource type="PackedScene" uid="uid://d33q7ngm2teb7" path="res://item/Item.tscn" id="1_ghqq8"]
 [ext_resource type="Script" uid="uid://bdhvi88d3ihm2" path="res://chracters/enemies/EnemyData.gd" id="1_r0c0l"]
 
 [resource]

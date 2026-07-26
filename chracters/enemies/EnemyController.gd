@@ -270,6 +270,6 @@ func _drop_item_maybe():
 	var random_roll = randf_range(0.0, 100.0)
 	if random_roll <= enemy_data.drop_rate:
 		var dropped_item = enemy_data.item_drop_scene.instantiate()
-		get_tree().current_scene.add_child(dropped_item)
+		get_tree().current_scene.call_deferred("add_child", dropped_item)
 		var drop_offset = Vector2(30, 60) 
 		dropped_item.global_position = global_position + drop_offset

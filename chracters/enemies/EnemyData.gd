@@ -17,3 +17,6 @@ class_name EnemyData
 @export var attack_duration: float = 0.5   # (seconds) Time of attack animation
 
 @export var size_scale: float = 1.0
+
+@export var item_drop_scene: PackedScene = preload("res://item/Item.tscn")
+@export_range(0.0, 100.0, 1.0, "suffix:%") var drop_rate: float = 100.0 # 50% chance to drop

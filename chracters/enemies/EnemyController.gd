@@ -158,6 +158,8 @@ func _dead_pending_collection() -> void:
 
 	# Completely disable the weapon shape on death
 	hitbox_collision.set_deferred("disabled", true)
+	
+	_drop_item_maybe()
 
 	set_physics_process(false)
 	set_process(false)
@@ -182,7 +184,7 @@ func collect() -> void:
 
 func _show_value_text_popup() -> void:
 	var text_popup = feather_pickup_text.instantiate()
-	text_popup.setup(enemy_data.count_down_value)
+	text_popup.setup("+" + str(enemy_data.count_down_value))
 	text_popup.global_position = global_position
 	get_tree().current_scene.add_child(text_popup)
 
@@ -263,3 +265,11 @@ func _on_hurtbox_hit(amount: float, source: Node) -> void:
 	var reduced_force = knockback_force / enemy_data.mass
 	var knockback_direction = (global_position - source.global_position).normalized()
 	knockback_velocity = knockback_direction * reduced_force * 100
+	
+func _drop_item_maybe():
+	var random_roll = randf_range(0.0, 100.0)
+	if random_roll <= enemy_data.drop_rate:
+		var dropped_item = enemy_data.item_drop_scene.instantiate()
+		get_tree().current_scene.add_child(dropped_item)
+		var drop_offset = Vector2(30, 60) 
+		dropped_item.global_position = global_position + drop_offset

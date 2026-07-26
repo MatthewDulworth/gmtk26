@@ -127,12 +127,17 @@ func _set_hurtbox_collision_layer(layer: CollisionLayers.Layer) -> void:
 
 func _on_collect_feather(area: Area2D) -> void:
 	SignalBus.player_picked_up_feather.emit()
+	# Collect feather
 	if area is HurtBox:
 		var parent = area.get_parent()
 		if parent is EnemyController:
 			var enemy = area.get_parent() as EnemyController
 			if enemy and enemy.state == EnemyController.EnemyState.DEAD_PENDING_COLLECTION:
 				enemy.collect()
+				
+	# Collect item
+	if area.has_method("collect"):
+		area.collect()
 
 func _on_animation_complete() -> void:
 	if animation.animation == player_data.animation_name_die:

@@ -45,6 +45,7 @@ text = "DEATH"
 [node name="PostProcessing" type="CanvasLayer" parent="." unique_id=1305494238]
 layer = 10
 script = ExtResource("1_56rgi")
+active_effect = 2
 
 [node name="CRT" type="ColorRect" parent="PostProcessing" unique_id=849647032]
 visible = false

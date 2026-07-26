@@ -12,6 +12,34 @@
 [node name="Death" type="Node2D" unique_id=593423015]
 script = ExtResource("1_r6ms4")
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1393370892]
+offset_left = -1014.0
+offset_top = -576.0
+offset_right = 1028.0
+offset_bottom = 596.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=429883284]
+offset_left = -926.0
+offset_top = -516.0
+offset_right = 913.0
+offset_bottom = 487.0
+
+[node name="ColorRect3" type="ColorRect" parent="." unique_id=337556734]
+offset_left = -906.0
+offset_top = -497.0
+offset_right = 893.0
+offset_bottom = 470.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="." unique_id=2081060616]
+offset_left = -879.0
+offset_top = -168.0
+offset_right = 1945.0
+offset_bottom = 433.0
+theme_override_font_sizes/font_size = 370
+text = "DEATH"
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2017023098]
 
 [node name="PostProcessing" type="CanvasLayer" parent="." unique_id=1305494238]
@@ -65,15 +93,3 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1393370892]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Label" type="Label" parent="." unique_id=2081060616]
-offset_left = -922.0
-offset_top = -174.0
-offset_right = 1902.0
-offset_bottom = 427.0
-theme_override_font_sizes/font_size = 400
-text = "DEATH"

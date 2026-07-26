@@ -67,6 +67,11 @@ func _ready() -> void:
 		players.append($Player2)
 	else: 
 		$Player2.queue_free()
+	
+	SignalBus.player_died.connect(check_players_dead)
+		
+	#for player in players:
+		#player.health.died.connect(check_players_dead)
 
 
 func _process(delta: float) -> void:
@@ -113,3 +118,10 @@ func _process(delta: float) -> void:
 func _on_enemy_death():
 	_current_enemy_count -= 1
 	kills += 1
+	
+func check_players_dead(playersss):
+	for player in players:
+		if player != null and player.health.current_health > 0:
+			return # someone is still alive
+	
+	get_tree().change_scene_to_file("res://death.tscn")

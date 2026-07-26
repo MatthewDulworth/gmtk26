@@ -3,12 +3,9 @@
 [ext_resource type="Script" uid="uid://b1ltxks71q21v" path="res://chracters/player/PlayerData.gd" id="1_almbu"]
 [ext_resource type="Script" uid="uid://cx6lerykt0y5s" path="res://weapons/WeaponData.gd" id="2_mxpgw"]
 [ext_resource type="Resource" uid="uid://cchvlvuoyk60d" path="res://weapons/Pistol.tres" id="3_ld4ei"]
-[ext_resource type="Resource" uid="uid://dapcnrc6ggwk" path="res://weapons/Uzi.tres" id="4_fljjp"]
-[ext_resource type="Resource" uid="uid://7ovfvi5xec8f" path="res://weapons/RocketLauncher.tres" id="5_rfjc8"]
-[ext_resource type="Resource" path="res://weapons/Shotgun.tres" id="6_fljjp"]
 
 [resource]
 script = ExtResource("1_almbu")
 move_speed = 400.0
-starting_weapons = Array[ExtResource("2_mxpgw")]([ExtResource("3_ld4ei"), ExtResource("4_fljjp"), ExtResource("5_rfjc8"), ExtResource("6_fljjp")])
+starting_weapons = Array[ExtResource("2_mxpgw")]([ExtResource("3_ld4ei")])
 metadata/_custom_type_script = "uid://b1ltxks71q21v"

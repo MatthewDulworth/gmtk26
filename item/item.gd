@@ -1,6 +1,8 @@
 extends Area2D
 class_name Item
 
+@export var weapon_data: WeaponData
+
 @onready var box: ColorRect = $ColorRect
 
 # Optional: Reuse your floating text popup for the box too!

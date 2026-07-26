@@ -24,7 +24,10 @@ enum PlayerState {
 }
 
 func pickup_weapon(data: WeaponData) -> void:
+	var was_current = weapons_list.weapons.find(data) == weapons_list.current_weapon
 	weapons_list.add_weapon(data)
+	if was_current:
+		_use_weapon(weapons_list.get_current_weapon())
 
 func take_damage(damage: float) -> void:
 	health.take_damage(damage)

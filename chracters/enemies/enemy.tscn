@@ -310,7 +310,7 @@ shape = SubResource("CapsuleShape2D_vpdod")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1927816173]
 sprite_frames = SubResource("SpriteFrames_r7v4m")
-animation = &"devil_attack"
+animation = &"death"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1165551425]
 

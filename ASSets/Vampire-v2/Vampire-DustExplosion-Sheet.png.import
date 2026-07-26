@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ulwh5l54q11x"
-path="res://.godot/imported/Vampire-DustExplosion-Sheet.png-1282febee1506f2ceec88083a365a14b.ctex"
+path="res://.godot/imported/Vampire-DustExplosion-Sheet.png-008b8a9a35bc2bfdd9fef9d339e48f98.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ASSets/Vampire-v2/Vampire-DustExplosion-Sheet.png"
-dest_files=["res://.godot/imported/Vampire-DustExplosion-Sheet.png-1282febee1506f2ceec88083a365a14b.ctex"]
+source_file="res://assets/Vampire-v2/Vampire-DustExplosion-Sheet.png"
+dest_files=["res://.godot/imported/Vampire-DustExplosion-Sheet.png-008b8a9a35bc2bfdd9fef9d339e48f98.ctex"]
 
 [params]
 

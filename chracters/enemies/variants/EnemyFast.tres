@@ -7,9 +7,6 @@
 script = ExtResource("1_qajhq")
 move_speed = 300.0
 mass = 2.0
-animation_name_move = "devil_walk"
-animation_name_die = "devil_walk"
-animation_name_attack = "devil_walk"
 attack_range = 25.0
 size_scale = 2.0
 metadata/_custom_type_script = "uid://bdhvi88d3ihm2"

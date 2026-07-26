@@ -41,6 +41,7 @@ const AUDIO_DICT := {
 	SFX.RELOADING: preload("res://ASSets/Audio/placeholder/dragon-studio-gun-reload-511309.mp3"),
 	
 	SFX.ENEMY_DIED: preload("res://ASSets/Audio/placeholder/dragon-studio-car-honk-386166.mp3"),
+	#SFX.ENEMY_DIED: preload("res://assets/goose1.mp3"),
 	SFX.ENEMY_ATTACKED: preload("res://ASSets/Audio/placeholder/sumaga123-knife-432147.mp3"),
 	SFX.ENEMY_DAMAGED: preload("res://ASSets/Audio/placeholder/dragon-studio-punch-431475.mp3"),
 	SFX.ENEMY_WALKING: preload("res://ASSets/Audio/placeholder/freesound_community-duck-quacking-37392.mp3"),
@@ -105,7 +106,8 @@ func _on_enemy_spawn ():
 	#play_loop(SFX.ENEMY_WALKING)
 
 func _on_enemy_died(enemy):
-	play(SFX.ENEMY_DIED)
+	pass
+	#play(SFX.ENEMY_DIED, { "volume": 20 })
 
 func _on_started_reload(weapon_data: WeaponData):
 	reloading_stream = play_loop(SFX.RELOADING)

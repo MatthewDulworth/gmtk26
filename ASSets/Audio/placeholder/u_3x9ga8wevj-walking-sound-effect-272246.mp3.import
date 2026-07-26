@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://ducnyhw2rxxyo"
-path="res://.godot/imported/u_3x9ga8wevj-walking-sound-effect-272246.mp3-06ea23fd6c2d566c9a027bdbc95c8962.mp3str"
+path="res://.godot/imported/u_3x9ga8wevj-walking-sound-effect-272246.mp3-1c798a2c10da40c523ee94cf44093ca1.mp3str"
 
 [deps]
 
-source_file="res://assets/Audio/placeholder/u_3x9ga8wevj-walking-sound-effect-272246.mp3"
-dest_files=["res://.godot/imported/u_3x9ga8wevj-walking-sound-effect-272246.mp3-06ea23fd6c2d566c9a027bdbc95c8962.mp3str"]
+source_file="res://ASSets/Audio/placeholder/u_3x9ga8wevj-walking-sound-effect-272246.mp3"
+dest_files=["res://.godot/imported/u_3x9ga8wevj-walking-sound-effect-272246.mp3-1c798a2c10da40c523ee94cf44093ca1.mp3str"]
 
 [params]
 

@@ -260,5 +260,6 @@ func _on_hurtbox_hit(amount: float, source: Node) -> void:
 
 	# Calculate knockback
 	var knockback_force: float = source.weapon_slot.weapon.knockback
+	var reduced_force = knockback_force / enemy_data.mass
 	var knockback_direction = (global_position - source.global_position).normalized()
-	knockback_velocity = knockback_direction * knockback_force * 100
+	knockback_velocity = knockback_direction * reduced_force * 100

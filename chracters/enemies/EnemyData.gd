@@ -3,7 +3,8 @@ class_name EnemyData
 
 @export var max_health: float = 1.0
 @export var move_speed: float = 200.0
-@export var count_down_value: int = 1
+@export var count_down_value: int = 1 # Value of killing this goose
+@export var mass: float = 1.0 # Higher number reduces knockback
 
 @export var animation_name_move: String = "run"
 @export var animation_name_die: String = "death"

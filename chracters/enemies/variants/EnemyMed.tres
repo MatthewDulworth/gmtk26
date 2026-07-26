@@ -11,6 +11,6 @@ mass = 3.0
 attack_range = 50.0
 attack_damage = 5.0
 attack_duration = 0.4
-size_scale = 2.0
+size_scale = 2.5
 drop_rate = 20.0
 metadata/_custom_type_script = "uid://bdhvi88d3ihm2"

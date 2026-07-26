@@ -3,6 +3,7 @@
 /android/
 .DS_STORE
 .vscode/
+Export/
 
 _notes.md
 .idea

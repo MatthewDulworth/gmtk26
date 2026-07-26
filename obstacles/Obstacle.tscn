@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dktivciqkls6i"]
 
 [ext_resource type="Script" uid="uid://bl4qta4i4ucy4" path="res://obstacles/Obstacle.gd" id="1_fqy7a"]
-[ext_resource type="Texture2D" uid="uid://cksn71qah5jih" path="res://assets/Cute_Fantasy_Free/Outdoor decoration/House_1_Wood_Base_Blue.png" id="2_emqbp"]
+[ext_resource type="Texture2D" uid="uid://cksn71qah5jih" path="res://ASSets/Cute_Fantasy_Free/Outdoor decoration/House_1_Wood_Base_Blue.png" id="2_emqbp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rhggh"]
 radius = 35.0

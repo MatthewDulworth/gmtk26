@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3]
+
+[ext_resource type="Shader" path="res://shaders/analog_monitor.gdshader" id="1_shader"]
+[ext_resource type="Texture2D" path="res://shaders/textures/tiled_pattern.png" id="2_tile"]
+
+[resource]
+shader = ExtResource("1_shader")
+shader_parameter/tiledtexture = ExtResource("2_tile")
+shader_parameter/opacity = 1.0
+shader_parameter/pixel_size = 0.01
+shader_parameter/greyscale = true
+shader_parameter/contrast = 1.0
+shader_parameter/pixel_colors = Vector3(1, 1, 1)
+shader_parameter/background_color = Vector3(0, 0, 0)

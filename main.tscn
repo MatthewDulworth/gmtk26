@@ -174,7 +174,6 @@ position = Vector2(-201, -164)
 scale = Vector2(2, 2)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=162539292]
-visible = false
 navigation_polygon = SubResource("NavigationPolygon_ig7tw")
 
 [node name="PostProcessing" type="CanvasLayer" parent="." unique_id=1236318795]

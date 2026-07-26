@@ -5,7 +5,16 @@ class_name EnemyController
 @export var players: Array[PlayerController]
 @export var health: Health
 @export var hurtbox: HurtBox
-@export var state: EnemyState
+@export var state: EnemyState:
+	set(v):
+		if v == EnemyState.CHASE and state !=  EnemyState.CHASE:
+			SignalBus.enemy_started_walking.emit(self)
+		elif v != EnemyState.CHASE:
+			
+			SignalBus.enemy_stopped_walking.emit(self)
+			
+		state = v
+		
 
 var target: Vector2
 var is_attack_on_cooldown: bool = false
@@ -120,7 +129,7 @@ func _attack() -> void:
 	SignalBus.enemy_attacked.emit()
 
 func _dead_pending_collection() -> void:
-	SignalBus.enemy_died.emit()
+	SignalBus.enemy_died.emit(self)
 	state = EnemyState.DEAD_PENDING_COLLECTION
 	animation.speed_scale = 1.0
 	animation.play(enemy_data.animation_name_die)

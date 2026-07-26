@@ -29,3 +29,21 @@ stream = SubResource("AudioStreamInteractive_jqjfi")
 [node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="AudioPlayerPool" unique_id=23983494]
 
 [node name="AudioStreamPlayer6" type="AudioStreamPlayer" parent="AudioPlayerPool" unique_id=512482798]
+
+[node name="AudioStreamPlayer7" type="AudioStreamPlayer" parent="AudioPlayerPool" unique_id=1475631514]
+
+[node name="AudioStreamPlayer8" type="AudioStreamPlayer" parent="AudioPlayerPool" unique_id=1925705085]
+
+[node name="AudioStreamPlayer9" type="AudioStreamPlayer" parent="AudioPlayerPool" unique_id=1335040058]
+
+[node name="AudioStreamPlayer10" type="AudioStreamPlayer" parent="AudioPlayerPool" unique_id=812319051]
+
+[node name="AudioStreamPlayer11" type="AudioStreamPlayer" parent="AudioPlayerPool" unique_id=1021727123]
+
+[node name="AudioStreamPlayer12" type="AudioStreamPlayer" parent="AudioPlayerPool" unique_id=361883497]
+
+[node name="AudioStreamPlayer13" type="AudioStreamPlayer" parent="AudioPlayerPool" unique_id=1251576808]
+
+[node name="AudioStreamPlayer14" type="AudioStreamPlayer" parent="AudioPlayerPool" unique_id=2089093435]
+
+[node name="AudioStreamPlayer15" type="AudioStreamPlayer" parent="AudioPlayerPool" unique_id=1526420028]

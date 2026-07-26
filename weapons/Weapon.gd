@@ -50,7 +50,7 @@ func reload() -> void:
 	if weapon_slot.ammo.mags_left <= 0: return
 
 	if not reloading: # begin reloading
-		started_reload.emit(weapon_data)
+		started_reload.emit(weapon_slot.weapon)
 		reloading = true
 		tried_active_reload = false
 		reload_timer.start(weapon_slot.weapon.reload_time)
@@ -94,7 +94,7 @@ func fire(dir: Vector2) -> void:
 
 	fire_cooldown = 1.0 / max(weapon_slot.weapon.fire_rate, 0.01)
 	weapon_slot.ammo.bullets_left -= 1
-	fired.emit(weapon_data)
+	fired.emit(weapon_slot.weapon)
 	ammo_changed.emit()
 	print(weapon_slot.ammo.bullets_left)
 

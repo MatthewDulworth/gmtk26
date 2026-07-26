@@ -1,6 +1,6 @@
 extends Node
 
-const POOL_RESIZE_FACTOR := 1.5
+const POOL_RESIZE_FACTOR := 2.0
 
 #var end_stream = preload("res://Audio/end_theme.tres")
 
@@ -59,22 +59,22 @@ const AUDIO_DICT := {
 @onready var _free_audio_player_queue: Array[AudioStreamPlayer] = []
 var deboog = true
 
-var player_walking_stream: AudioStreamPlayer
-var enemy_walking_stream: AudioStreamPlayer
+var player_walking_streams = {}
+var enemy_walking_streams = {}
 var reloading_stream: AudioStreamPlayer
 
 func _ready() -> void:
 	_add_pool_members_to_audio_queue()
 	SignalBus.enemy_damaged.connect(func(current_health): play(SFX.ENEMY_DAMAGED))
-	SignalBus.enemy_died.connect(func(): play(SFX.ENEMY_DIED))
+	SignalBus.enemy_died.connect(_on_enemy_died)
 	SignalBus.enemy_attacked.connect(func(): play(SFX.ENEMY_ATTACKED))
 	SignalBus.enemy_spawned.connect(_on_enemy_spawn)
 	SignalBus.player_picked_up_feather.connect(func(): play(SFX.PICKED_UP_FEATHER))
 	
 	SignalBus.player_damaged.connect(func(current_health): play(SFX.PLAYER_DAMAGED))
-	SignalBus.player_died.connect(func(): play(SFX.PLAYER_DIED))
+	SignalBus.player_died.connect(_on_player_died)
 	
-	SignalBus.player_fired_weapon.connect(func(weapon_data): play(SFX.PLAYER_FIRED_WEAPON))
+	SignalBus.player_fired_weapon.connect(_on_player_fired_weapon)
 	SignalBus.started_reload.connect(_on_started_reload)
 	SignalBus.reloaded.connect(_on_reloaded)
 	
@@ -82,19 +82,39 @@ func _ready() -> void:
 	
 	SignalBus.player_started_walking.connect(_on_player_started_walking)
 	SignalBus.player_stopped_walking.connect(_on_player_stopped_walking)
-	
+	SignalBus.enemy_started_walking.connect(_on_enemy_started_walking)
+	SignalBus.enemy_stopped_walking.connect(_on_enemy_stopped_walking)
 	
 	SignalBus.wave_started.connect(func(): play(SFX.ENEMY_WAVE_STARTED))
 	SignalBus.wave_ended.connect(func(): play(SFX.ENEMY_WAVE_ENDED))
 	
-	
+
 	main_player.play()
 	theme_stream = main_player.stream.get_clip_stream(0) as AudioStreamSynchronized
 	main_playback = main_player.get_stream_playback() as AudioStreamPlaybackInteractive
 
+# add weapon sfx types here
+func _on_player_fired_weapon(weapon_data):
+	play(SFX.PLAYER_FIRED_WEAPON)
+
+func _on_enemy_started_walking(enemy):
+	enemy_walking_streams[enemy] = play_loop(SFX.ENEMY_WALKING)
+
+func _on_enemy_stopped_walking(enemy):
+	stop_loop(enemy_walking_streams[enemy])
+
+func _on_player_died(player):
+	if player_walking_streams[player]: stop_loop(player_walking_streams[player])
+	play(SFX.PLAYER_DIED)
+
 func _on_enemy_spawn ():
 	play(SFX.ENEMY_SPAWNED)
 	#play_loop(SFX.ENEMY_WALKING)
+
+func _on_enemy_died(enemy):
+	if enemy_walking_streams[enemy]: 
+		stop_loop(enemy_walking_streams[enemy])
+	play(SFX.ENEMY_DIED)
 
 func _on_started_reload(weapon_data: WeaponData):
 	reloading_stream = play_loop(SFX.RELOADING)
@@ -102,17 +122,12 @@ func _on_started_reload(weapon_data: WeaponData):
 func _on_reloaded(active: bool):
 	stop_loop(reloading_stream)
 
-func _on_player_started_walking():
-	player_walking_stream = play_loop(SFX.PLAYER_WALKING)
+func _on_player_started_walking(player):
+	player_walking_streams[player] = play_loop(SFX.PLAYER_WALKING)
 	
-func _on_player_stopped_walking():
-	stop_loop(player_walking_stream)
+func _on_player_stopped_walking(player):
+	stop_loop(player_walking_streams[player])
 
-func _on_enemy_started_walking():
-	enemy_walking_stream = play_loop(SFX.ENEMY_WALKING)
-
-func _on_enemy_stopped_walking():
-	stop_loop(enemy_walking_stream)
 
 func _process(_delta: float) -> void:
 	pass

@@ -28,12 +28,12 @@ func pickup_weapon(data: WeaponData) -> void:
 
 func take_damage(damage: float) -> void:
 	health.take_damage(damage)
+	SignalBus.player_damaged.emit(damage)
 
 func _ready() -> void:
 	health.initialize(player_data.max_health, player_data.health_regen_rate)
 	health_bar.bind(health)
 	input = InputManager.get_input_intent(player_id)
-	health.died.connect(_on_death)
 	weapons_list.initialize(player_data.starting_weapons)
 	_use_weapon(weapons_list.get_current_weapon())
 	state = PlayerState.ALIVE
@@ -45,7 +45,6 @@ func _ready() -> void:
 
 	# Signals
 	health.died.connect(_on_death)
-	health.health_changed.connect(func(current_health): SignalBus.player_damaged.emit(current_health))
 	pickup_box.area_entered.connect(_on_collect_feather)
 	weapon.fired.connect(func(weapon_data): SignalBus.player_fired_weapon.emit(weapon_data))
 	weapon.reloaded.connect(func(active): SignalBus.reloaded.emit(active))
@@ -87,15 +86,14 @@ func _use_weapon(slot: WeaponSlot) -> void:
 
 func _cycle_weapon(forwards: bool) -> void:
 	_use_weapon(weapons_list.switch_weapon(forwards))
->>>>>>> b7e04bb1a781349957ee2980f0a8e0c33603c4f4
 
 func _physics_process(_delta: float) -> void:
 	velocity = input.move * player_data.move_speed
 
 	if velocity == Vector2.ZERO and last_move != Vector2.ZERO:
-		SignalBus.player_stopped_walking.emit()
+		SignalBus.player_stopped_walking.emit(self)
 	elif (velocity.x != 0 or velocity.y != 0) and last_move == Vector2.ZERO:
-		SignalBus.player_started_walking.emit()
+		SignalBus.player_started_walking.emit(self)
 
 	last_move = velocity
 	move_and_slide()
@@ -136,9 +134,6 @@ func _on_collect_feather(area: Area2D) -> void:
 			if enemy and enemy.state == EnemyController.EnemyState.DEAD_PENDING_COLLECTION:
 				enemy.collect()
 
-
-func take_damage(damage: float) -> void:
-	health.take_damage(damage)
 func _on_animation_complete() -> void:
 	if animation.animation == player_data.animation_name_die:
 		animation.stop()

@@ -47,10 +47,11 @@ var _current_wave = 0:
 	get:
 		return _current_wave
 
+var down_collected_decrease_drop_rate = 3.0
 var down_collected = 10:
 	set(v):
 		%Down.text = "Count Down: %d" % v
-		count_down_rate = clamp(2.0 / (1.0 + down_collected * 0.05), 0.1, 2.0)
+		count_down_rate = clamp(down_collected_decrease_drop_rate / (1.0 + down_collected * 0.05), 0.1, down_collected_decrease_drop_rate)
 		down_collected = v
 		if v <= 0:
 			get_tree().change_scene_to_file("res://death.tscn")

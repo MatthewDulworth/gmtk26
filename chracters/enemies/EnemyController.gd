@@ -171,7 +171,7 @@ func _on_animation_complete() -> void:
 	if animation.animation == enemy_data.animation_name_die:
 		animation.stop()
 		animation.play(enemy_data.animation_name_feather)
-		var tween = _bounce_animation(10)
+		var tween = _bounce_animation(enemy_data.feather_bounce_till_despawn)
 		tween.tween_callback(queue_free)
 	elif animation.animation == enemy_data.animation_name_attack:
 		animation.stop()

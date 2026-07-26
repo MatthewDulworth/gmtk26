@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://en3nwfgs7q01"
-path="res://.godot/imported/dragon-studio-car-honk-386166.mp3-431b91d2e7f2195145bed27d22c73865.mp3str"
+path="res://.godot/imported/dragon-studio-car-honk-386166.mp3-017d200444db8c388b726ae2a837fd2d.mp3str"
 
 [deps]
 
-source_file="res://ASSets/Audio/placeholder/dragon-studio-car-honk-386166.mp3"
-dest_files=["res://.godot/imported/dragon-studio-car-honk-386166.mp3-431b91d2e7f2195145bed27d22c73865.mp3str"]
+source_file="res://assets/Audio/placeholder/dragon-studio-car-honk-386166.mp3"
+dest_files=["res://.godot/imported/dragon-studio-car-honk-386166.mp3-017d200444db8c388b726ae2a837fd2d.mp3str"]
 
 [params]
 

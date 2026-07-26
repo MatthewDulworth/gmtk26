@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://6l8d6i8pwklp"
-path="res://.godot/imported/chieuk-coin-257878.mp3-a5cb11dfa183f053e98027101aef6760.mp3str"
+path="res://.godot/imported/chieuk-coin-257878.mp3-e2b3453903bcf1ac99da0d2253876ac5.mp3str"
 
 [deps]
 
-source_file="res://ASSets/Audio/placeholder/chieuk-coin-257878.mp3"
-dest_files=["res://.godot/imported/chieuk-coin-257878.mp3-a5cb11dfa183f053e98027101aef6760.mp3str"]
+source_file="res://assets/Audio/placeholder/chieuk-coin-257878.mp3"
+dest_files=["res://.godot/imported/chieuk-coin-257878.mp3-e2b3453903bcf1ac99da0d2253876ac5.mp3str"]
 
 [params]
 

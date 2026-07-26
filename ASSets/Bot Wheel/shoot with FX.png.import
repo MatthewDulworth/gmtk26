@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://brhhrjuv8tbwq"
-path="res://.godot/imported/shoot with FX.png-1d41acec07771bd09fe5908aacf0cb5b.ctex"
+path="res://.godot/imported/shoot with FX.png-1e9942b33791154ebcce382b94a7bc14.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Bot Wheel/shoot with FX.png"
-dest_files=["res://.godot/imported/shoot with FX.png-1d41acec07771bd09fe5908aacf0cb5b.ctex"]
+source_file="res://ASSets/Bot Wheel/shoot with FX.png"
+dest_files=["res://.godot/imported/shoot with FX.png-1e9942b33791154ebcce382b94a7bc14.ctex"]
 
 [params]
 

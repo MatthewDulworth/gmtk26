@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d024o2wlelak6"
-path="res://.godot/imported/GAS dash with FX.png-287726c8c009b491a13616477c224a91.ctex"
+path="res://.godot/imported/GAS dash with FX.png-64018af150eff89fae6b105f88b26ea9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Bot Wheel/GAS dash with FX.png"
-dest_files=["res://.godot/imported/GAS dash with FX.png-287726c8c009b491a13616477c224a91.ctex"]
+source_file="res://ASSets/Bot Wheel/GAS dash with FX.png"
+dest_files=["res://.godot/imported/GAS dash with FX.png-64018af150eff89fae6b105f88b26ea9.ctex"]
 
 [params]
 

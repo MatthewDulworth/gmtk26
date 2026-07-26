@@ -1,6 +1,6 @@
 extends Node
 
-const POOL_RESIZE_FACTOR := 2.0
+const POOL_RESIZE_FACTOR := 3.0
 
 #var end_stream = preload("res://Audio/end_theme.tres")
 

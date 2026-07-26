@@ -99,7 +99,7 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func _on_death() -> void:
-	SignalBus.player_died.emit()
+	SignalBus.player_died.emit(self)
 	print("player ", player_id, " died.")
 	state = PlayerState.DEAD
 	set_process(false)

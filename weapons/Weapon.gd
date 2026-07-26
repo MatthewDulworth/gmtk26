@@ -168,6 +168,8 @@ static func explode(from_node: Node2D, position: Vector2, radius: float, damage:
 static func _spawn_explosion_fx(from_node: Node2D, position: Vector2, radius: float) -> void:
 	var current_scene := from_node.get_tree().current_scene
 
+	AudioManager.play(AudioManager.SFX.EXPLOSION)
+
 	var effect: ExplosionEffect = EXPLOSION_EFFECT_SCENE.instantiate()
 	current_scene.add_child(effect)
 	effect.global_position = position

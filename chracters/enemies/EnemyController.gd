@@ -41,6 +41,7 @@ func _ready() -> void:
 	_spawn()
 	_set_target_player()
 	scale = scale * enemy_data.size_scale;
+	nav_agent_2d.radius = collision_box.shape.radius * scale.x
 	health.initialize(enemy_data.max_health)
 
 	hitbox_collision.disabled = true

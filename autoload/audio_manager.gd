@@ -26,6 +26,7 @@ enum SFX {
 	ENEMY_WAVE_ENDED,
 	
 	ITEM_SPAWNED,
+	EXPLOSION,
 }
 
 const AUDIO_DICT := {
@@ -50,6 +51,7 @@ const AUDIO_DICT := {
 	
 	SFX.ITEM_SPAWNED: preload("res://ASSets/Audio/placeholder_sfx.mp3"),
 	SFX.PICKED_UP_FEATHER: preload("res://ASSets/Audio/placeholder/chieuk-coin-257878.mp3"),
+	SFX.EXPLOSION: preload("res://level/retro-explosion-sound-effect.mp3"),
 }
 
 @onready var main_player: AudioStreamPlayer = $MainPlayer

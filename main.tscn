@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://bbiflcgguj78o" path="res://chracters/enemies/variants/EnemyMed.tres" id="7_5vw27"]
 [ext_resource type="PackedScene" uid="uid://dktivciqkls6i" path="res://obstacles/Obstacle.tscn" id="7_272bh"]
 [ext_resource type="Script" uid="uid://b18wico8d4dio" path="res://components/ShakyCamera2D.gd" id="8_shake"]
+[ext_resource type="Material" path="res://shaders/crt_shader.tres" id="9_crt"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ig7tw"]
 vertices = PackedVector2Array(315.3125, 77.21875, 947, -531.96094, 947, 528.02344, 302.46875, 328.5703, 330.3828, -248.32031, 311.1797, -9.3828125, -947.0078, 532.96875, 67.890625, 314.95313, -84.640625, 303.35938, 46.921875, 311.46094, -308, 295.65625, 177.35156, 2.2578125, 62.492188, -25.601563, -100.63281, -23, 49.046875, 91.75, -92.15625, 81.02344, -196.14063, -0.84375, -308, 91.28125, -948.97656, -526.03125, -320.17188, -23, -85.71875, -251.97656, 50.789063, -244.71875, -315.92188, -272.78906, 176.20313, -378.78125, -203.47656, -365.3828)
@@ -102,3 +103,13 @@ scale = Vector2(2, 2)
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=162539292]
 visible = false
 navigation_polygon = SubResource("NavigationPolygon_ig7tw")
+
+[node name="CRTLayer" type="CanvasLayer" parent="." unique_id=1236318795]
+layer = 10
+
+[node name="CRTShader" type="ColorRect" parent="CRTLayer" unique_id=123830384]
+material = ExtResource("9_crt")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2

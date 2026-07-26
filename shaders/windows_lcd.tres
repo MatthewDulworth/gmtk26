@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
+
+[ext_resource type="Shader" path="res://shaders/windows_lcd.gdshader" id="1_shader"]
+
+[resource]
+shader = ExtResource("1_shader")
+shader_parameter/virtual_resolution = Vector2(640, 480)
+shader_parameter/grid_strength = 0.15
+shader_parameter/grid_scale = 1.0

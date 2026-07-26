@@ -543,6 +543,7 @@ script = ExtResource("5_d0rr7")
 [node name="PostProcessing" type="CanvasLayer" parent="." unique_id=1088624893]
 layer = 10
 script = ExtResource("4_7ufi4")
+active_effect = 2
 
 [node name="CRT" type="ColorRect" parent="PostProcessing" unique_id=2132988473]
 visible = false

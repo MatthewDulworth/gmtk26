@@ -185,6 +185,7 @@ func collect() -> void:
 func _show_value_text_popup() -> void:
 	var text_popup = feather_pickup_text.instantiate()
 	text_popup.setup("+" + str(enemy_data.count_down_value))
+	SignalBus.player_picked_up_feather.emit(enemy_data.count_down_value)
 	text_popup.global_position = global_position
 	get_tree().current_scene.add_child(text_popup)
 

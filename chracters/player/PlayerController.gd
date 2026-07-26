@@ -133,7 +133,6 @@ func _on_collect_feather(area: Area2D) -> void:
 			var enemy = area.get_parent() as EnemyController
 			if enemy and enemy.state == EnemyController.EnemyState.DEAD_PENDING_COLLECTION:
 				enemy.collect()
-				SignalBus.player_picked_up_feather.emit()
 
 	# Collect item
 	if area.has_method("collect"):

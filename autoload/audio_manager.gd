@@ -69,7 +69,7 @@ func _ready() -> void:
 	SignalBus.enemy_died.connect(_on_enemy_died)
 	SignalBus.enemy_attacked.connect(func(): play(SFX.ENEMY_ATTACKED))
 	SignalBus.enemy_spawned.connect(_on_enemy_spawn)
-	SignalBus.player_picked_up_feather.connect(func(): play(SFX.PICKED_UP_FEATHER))
+	SignalBus.player_picked_up_feather.connect(func(val): play(SFX.PICKED_UP_FEATHER))
 	
 	SignalBus.player_damaged.connect(func(current_health): play(SFX.PLAYER_DAMAGED))
 	SignalBus.player_died.connect(_on_player_died)
@@ -82,9 +82,6 @@ func _ready() -> void:
 	
 	SignalBus.player_started_walking.connect(_on_player_started_walking)
 	SignalBus.player_stopped_walking.connect(_on_player_stopped_walking)
-	#SignalBus.enemy_started_walking.connect(_on_enemy_started_walking)
-	#SignalBus.enemy_stopped_walking.connect(_on_enemy_stopped_walking)
-	
 	SignalBus.wave_started.connect(func(): play(SFX.ENEMY_WAVE_STARTED))
 	SignalBus.wave_ended.connect(func(): play(SFX.ENEMY_WAVE_ENDED))
 	
@@ -97,12 +94,6 @@ func _ready() -> void:
 func _on_player_fired_weapon(weapon_data):
 	play(SFX.PLAYER_FIRED_WEAPON)
 
-func _on_enemy_started_walking(enemy):
-	enemy_walking_streams[enemy] = play_loop(SFX.ENEMY_WALKING)
-
-func _on_enemy_stopped_walking(enemy):
-	stop_loop(enemy_walking_streams[enemy])
-
 func _on_player_died(player):
 	if player in player_walking_streams and player_walking_streams[player]: stop_loop(player_walking_streams[player])
 	play(SFX.PLAYER_DIED)
@@ -112,8 +103,6 @@ func _on_enemy_spawn ():
 	#play_loop(SFX.ENEMY_WALKING)
 
 func _on_enemy_died(enemy):
-	if enemy_walking_streams[enemy]: 
-		stop_loop(enemy_walking_streams[enemy])
 	play(SFX.ENEMY_DIED)
 
 func _on_started_reload(weapon_data: WeaponData):

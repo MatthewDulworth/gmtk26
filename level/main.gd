@@ -48,8 +48,8 @@ var _current_wave = 0:
 		return _current_wave
 
 var down_collected = 0 
-func _on_down_collected():
-	down_collected += 1
+func _on_down_collected(val):
+	down_collected += val
 	%Down.text = "Down Gathered: %d" % down_collected
 
 func _ready() -> void:

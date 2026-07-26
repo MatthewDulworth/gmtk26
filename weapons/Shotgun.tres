@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="WeaponData" format=3]
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://ckeitc570kx0t"]
 
 [ext_resource type="Script" uid="uid://cx6lerykt0y5s" path="res://weapons/WeaponData.gd" id="1_shotgun"]
 
@@ -6,7 +6,6 @@
 script = ExtResource("1_shotgun")
 name = "Shotgun"
 fire_rate = 1.5
-damage = 1.0
 knockback = 8.0
 reload_time = 2.5
 active_reload_start = 1.75

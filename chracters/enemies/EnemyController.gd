@@ -44,6 +44,8 @@ func _ready() -> void:
 	nav_agent_2d.radius = collision_box.shape.radius * scale.x
 	health.initialize(enemy_data.max_health)
 
+	# Scale hitbox
+	hitbox.scale = hitbox.scale * enemy_data.size_scale
 	hitbox_collision.disabled = true
 
 	# Signals
@@ -186,6 +188,7 @@ func collect() -> void:
 func _show_value_text_popup() -> void:
 	var text_popup = feather_pickup_text.instantiate()
 	text_popup.setup("+" + str(enemy_data.count_down_value))
+	SignalBus.player_picked_up_feather.emit(enemy_data.count_down_value)
 	text_popup.global_position = global_position
 	get_tree().current_scene.add_child(text_popup)
 
@@ -271,6 +274,6 @@ func _drop_item_maybe():
 	var random_roll = randf_range(0.0, 100.0)
 	if random_roll <= enemy_data.drop_rate:
 		var dropped_item = enemy_data.item_drop_scene.instantiate()
-		get_tree().current_scene.add_child(dropped_item)
+		get_tree().current_scene.call_deferred("add_child", dropped_item)
 		var drop_offset = Vector2(30, 60) 
 		dropped_item.global_position = global_position + drop_offset

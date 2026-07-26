@@ -1,0 +1,127 @@
+[gd_scene format=3 uid="uid://cjuqjifx4sr7k"]
+
+[ext_resource type="Script" uid="uid://b7mbho2ji8wd5" path="res://intro.gd" id="1_s2ta7"]
+[ext_resource type="PackedScene" uid="uid://d0fyntx0582l7" path="res://chracters/player/player.tscn" id="2_7a8ye"]
+[ext_resource type="PackedScene" uid="uid://c6yplr84qj8xy" path="res://main.tscn" id="2_wby50"]
+[ext_resource type="PackedScene" uid="uid://d1wakfws1yses" path="res://chracters/enemies/enemy.tscn" id="3_0a7ni"]
+[ext_resource type="Script" uid="uid://bxn4pw2dgnss8" path="res://shaders/PostProcessing.gd" id="4_7ufi4"]
+[ext_resource type="Resource" uid="uid://d38xsxobsmd6k" path="res://chracters/enemies/variants/EnemyFast.tres" id="4_h0kys"]
+[ext_resource type="Script" uid="uid://qk25it4qnuvg" path="res://label_2.gd" id="5_d0rr7"]
+[ext_resource type="Material" path="res://shaders/crt_shader.tres" id="5_h0kys"]
+[ext_resource type="Material" path="res://shaders/crt_luminance.tres" id="6_d0rr7"]
+[ext_resource type="Material" path="res://shaders/vhs_post_processing.tres" id="7_wby50"]
+[ext_resource type="Material" path="res://shaders/psx_horror.tres" id="8_xsd0a"]
+[ext_resource type="Material" path="res://shaders/analog_monitor.tres" id="9_smii7"]
+[ext_resource type="Material" path="res://shaders/windows_lcd.tres" id="10_dmx7j"]
+
+[node name="Intro" type="Node2D" unique_id=2144797063]
+script = ExtResource("1_s2ta7")
+main_scene = ExtResource("2_wby50")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=163990477]
+offset_left = -1005.0
+offset_top = -569.0
+offset_right = 1229.0
+offset_bottom = 665.0
+color = Color(0.22365093, 0.5835512, 0.6770945, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=251229110]
+offset_left = -1218.0
+offset_top = 340.0
+offset_right = 1142.0
+offset_bottom = 695.0
+color = Color(0.20369887, 0.46279508, 3.85046e-07, 1)
+
+[node name="Label" type="Label" parent="." unique_id=1136328475]
+offset_left = -584.0
+offset_top = -449.0
+offset_right = 539.0
+offset_bottom = -328.0
+theme_override_font_sizes/font_size = 120
+text = "COUNT DOWN"
+
+[node name="Player" parent="." unique_id=1399235571 instance=ExtResource("2_7a8ye")]
+position = Vector2(-599.00006, 95)
+scale = Vector2(-10, 10)
+
+[node name="PlayerHealthBar" parent="Player" index="7" unique_id=1151305661]
+visible = false
+
+[node name="WeaponHUD" parent="Player" index="8" unique_id=1919452286]
+visible = false
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=743477379]
+
+[node name="Enemy" parent="." unique_id=976929462 instance=ExtResource("3_0a7ni")]
+position = Vector2(589.00006, 452.00003)
+scale = Vector2(15, 15)
+enemy_data = ExtResource("4_h0kys")
+
+[node name="AnimatedSprite2D" parent="Enemy" index="4" unique_id=1927816173]
+animation = &"devil_walk"
+
+[node name="Label2" type="Label" parent="." unique_id=2028661641]
+offset_left = -376.0
+offset_top = 458.0
+offset_right = 459.0
+offset_bottom = 499.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "CLICK ANYWHERE TO START"
+script = ExtResource("5_d0rr7")
+
+[node name="PostProcessing" type="CanvasLayer" parent="." unique_id=1088624893]
+layer = 10
+script = ExtResource("4_7ufi4")
+
+[node name="CRT" type="ColorRect" parent="PostProcessing" unique_id=2132988473]
+visible = false
+material = ExtResource("5_h0kys")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="CRTLuminance" type="ColorRect" parent="PostProcessing" unique_id=323192512]
+visible = false
+material = ExtResource("6_d0rr7")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="VHS" type="ColorRect" parent="PostProcessing" unique_id=252164636]
+visible = false
+material = ExtResource("7_wby50")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="PSXHorror" type="ColorRect" parent="PostProcessing" unique_id=916196562]
+visible = false
+material = ExtResource("8_xsd0a")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="AnalogMonitor" type="ColorRect" parent="PostProcessing" unique_id=239382257]
+visible = false
+material = ExtResource("9_smii7")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="WindowsLCD" type="ColorRect" parent="PostProcessing" unique_id=1487351568]
+visible = false
+material = ExtResource("10_dmx7j")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[editable path="Player"]
+[editable path="Enemy"]

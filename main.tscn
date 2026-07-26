@@ -1,10 +1,18 @@
 [gd_scene format=3 uid="uid://c6yplr84qj8xy"]
 
 [ext_resource type="Texture2D" uid="uid://dpoqqd8opsx0t" path="res://assets/Cute_Fantasy_Free/Tiles/Grass_Middle.png" id="1_272bh"]
+[ext_resource type="Script" uid="uid://bhf76id4vfeir" path="res://level/main.gd" id="1_yaehf"]
 [ext_resource type="PackedScene" uid="uid://d1wakfws1yses" path="res://chracters/enemies/enemy.tscn" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://cx6lerykt0y5s" path="res://weapons/WeaponData.gd" id="2_getpj"]
 [ext_resource type="PackedScene" uid="uid://d0fyntx0582l7" path="res://chracters/player/player.tscn" id="2_h2yge"]
+[ext_resource type="Resource" uid="uid://ckeitc570kx0t" path="res://weapons/Shotgun.tres" id="3_1u8w0"]
 [ext_resource type="Resource" uid="uid://xcvhfebef7bm" path="res://chracters/player/Count.tres" id="3_5vw27"]
+[ext_resource type="Resource" uid="uid://cchvlvuoyk60d" path="res://weapons/Pistol.tres" id="3_ryguw"]
+[ext_resource type="PackedScene" uid="uid://d33q7ngm2teb7" path="res://item/Item.tscn" id="3_vivmo"]
+[ext_resource type="Resource" uid="uid://dapcnrc6ggwk" path="res://weapons/Uzi.tres" id="4_0odxb"]
 [ext_resource type="Resource" uid="uid://bxhj8gcqqmkpd" path="res://chracters/enemies/variants/EnemySlow.tres" id="4_5vw27"]
+[ext_resource type="Script" uid="uid://bdhvi88d3ihm2" path="res://chracters/enemies/EnemyData.gd" id="4_cegan"]
+[ext_resource type="Resource" uid="uid://7ovfvi5xec8f" path="res://weapons/RocketLauncher.tres" id="5_lswn8"]
 [ext_resource type="Resource" uid="uid://d38xsxobsmd6k" path="res://chracters/enemies/variants/EnemyFast.tres" id="6_kek77"]
 [ext_resource type="Resource" uid="uid://bbiflcgguj78o" path="res://chracters/enemies/variants/EnemyMed.tres" id="7_5vw27"]
 [ext_resource type="PackedScene" uid="uid://dktivciqkls6i" path="res://obstacles/Obstacle.tscn" id="7_272bh"]
@@ -22,7 +30,14 @@ vertices = PackedVector2Array(315.3125, 77.21875, 947, -531.96094, 947, 528.0234
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 1, 0, 5), PackedInt32Array(3, 2, 6, 7), PackedInt32Array(8, 9, 7, 6, 10), PackedInt32Array(5, 0, 11), PackedInt32Array(12, 5, 11), PackedInt32Array(13, 12, 11, 14, 15, 16), PackedInt32Array(17, 10, 6, 18, 19), PackedInt32Array(14, 9, 8, 15), PackedInt32Array(13, 20, 21, 12), PackedInt32Array(19, 13, 16), PackedInt32Array(19, 16, 17), PackedInt32Array(22, 19, 18), PackedInt32Array(1, 4, 23), PackedInt32Array(18, 1, 23, 24), PackedInt32Array(24, 22, 18), PackedInt32Array(24, 23, 21, 20)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-959, -536, 957, -542, 957, 538, -957, 543), PackedVector2Array(-306, -268, -310, -33, -110, -33, -96, -248, -204, -352), PackedVector2Array(69, 305, 293, 318, 305, 83, 178, 14, 59, 97, 57, 303), PackedVector2Array(72, -35, 302, -20, 320, -244, 177, -365, 61, -241), PackedVector2Array(-298, 286, -95, 293, -102, 86, -196, 12, -298, 96)])
 
-[node name="Main" type="Node2D" unique_id=699210955]
+[node name="Main" type="Node2D" unique_id=699210955 node_paths=PackedStringArray("players")]
+script = ExtResource("1_yaehf")
+master_weapon_catalog = Array[ExtResource("2_getpj")]([ExtResource("3_1u8w0"), ExtResource("4_0odxb"), ExtResource("5_lswn8")])
+weapon_pool = Array[ExtResource("2_getpj")]([ExtResource("3_ryguw")])
+enemy_scene = ExtResource("2_0xm2m")
+players = [NodePath("Player"), NodePath("Player2")]
+item_scene = ExtResource("3_vivmo")
+enemy_data_types = Array[ExtResource("4_cegan")]([ExtResource("7_5vw27"), ExtResource("6_kek77"), ExtResource("4_5vw27")])
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1409314398]
 offset_left = -1497.0
@@ -36,54 +51,86 @@ stretch_mode = 1
 position = Vector2(-60, 0)
 player_data = ExtResource("3_5vw27")
 
-[node name="Enemy" parent="." unique_id=1397981385 node_paths=PackedStringArray("players") instance=ExtResource("2_0xm2m")]
-position = Vector2(-6, -500)
-enemy_data = ExtResource("6_kek77")
-players = [NodePath("../Player")]
-
-[node name="Enemy2" parent="." unique_id=976929462 node_paths=PackedStringArray("players") instance=ExtResource("2_0xm2m")]
-position = Vector2(-789, -441)
-enemy_data = ExtResource("6_kek77")
-players = [NodePath("../Player")]
-
-[node name="Enemy3" parent="." unique_id=976956025 node_paths=PackedStringArray("players") instance=ExtResource("2_0xm2m")]
-position = Vector2(899, -452)
-enemy_data = ExtResource("6_kek77")
-players = [NodePath("../Player")]
-
-[node name="Enemy4" parent="." unique_id=2013723635 node_paths=PackedStringArray("players") instance=ExtResource("2_0xm2m")]
-position = Vector2(734, 349)
-enemy_data = ExtResource("4_5vw27")
-players = [NodePath("../Player")]
+[node name="Player2" parent="." unique_id=1888812345 instance=ExtResource("2_h2yge")]
+position = Vector2(60, 0)
+player_data = ExtResource("3_5vw27")
+player_id = 1
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1687995481 node_paths=PackedStringArray("players")]
+z_index = 10
+z_as_relative = false
 script = ExtResource("8_shake")
 players = [NodePath("../Player")]
 
-[node name="Enemy5" parent="." unique_id=446114064 node_paths=PackedStringArray("players") instance=ExtResource("2_0xm2m")]
-position = Vector2(786, 470)
-enemy_data = ExtResource("4_5vw27")
-players = [NodePath("../Player")]
+[node name="WaveBanner" type="ColorRect" parent="Camera2D" unique_id=871645624]
+unique_name_in_owner = true
+offset_left = -858.0
+offset_top = -205.0
+offset_right = 894.0
+offset_bottom = 169.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+color = Color(0, 0, 0, 1)
 
-[node name="Enemy6" parent="." unique_id=1105890933 node_paths=PackedStringArray("players") instance=ExtResource("2_0xm2m")]
-position = Vector2(660, 513)
-enemy_data = ExtResource("4_5vw27")
-players = [NodePath("../Player")]
+[node name="WaveLabel" type="Label" parent="Camera2D/WaveBanner" unique_id=187716494]
+unique_name_in_owner = true
+z_index = 10
+layout_mode = 0
+offset_left = 27.0
+offset_top = 33.0
+offset_right = 1721.0
+offset_bottom = 334.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(1, 0.16000003, 0.16000003, 1)
+theme_override_font_sizes/font_size = 300
+text = "Wave: 0"
 
-[node name="Enemy7" parent="." unique_id=600845757 node_paths=PackedStringArray("players") instance=ExtResource("2_0xm2m")]
-position = Vector2(-903, 300)
-enemy_data = ExtResource("7_5vw27")
-players = [NodePath("../Player")]
+[node name="Down" type="Label" parent="Camera2D" unique_id=465614195]
+unique_name_in_owner = true
+z_index = 10
+offset_left = -298.0
+offset_top = -509.0
+offset_right = 230.0
+offset_bottom = -468.0
+theme_override_font_sizes/font_size = 40
+text = "Down Gathered: 0"
+horizontal_alignment = 1
 
-[node name="Enemy8" parent="." unique_id=1266231419 node_paths=PackedStringArray("players") instance=ExtResource("2_0xm2m")]
-position = Vector2(-796, 289)
-enemy_data = ExtResource("7_5vw27")
-players = [NodePath("../Player")]
+[node name="ColorRect" type="ColorRect" parent="Camera2D" unique_id=1203925479]
+offset_left = -336.0
+offset_top = -602.0
+offset_right = 273.0
+offset_bottom = -440.0
+color = Color(0, 0, 0, 1)
 
-[node name="Enemy9" parent="." unique_id=46070260 node_paths=PackedStringArray("players") instance=ExtResource("2_0xm2m")]
-position = Vector2(-841, 200)
-enemy_data = ExtResource("7_5vw27")
-players = [NodePath("../Player")]
+[node name="ColorRect2" type="ColorRect" parent="Camera2D" unique_id=296517561]
+offset_left = -1001.0
+offset_top = 454.0
+offset_right = -302.0
+offset_bottom = 569.0
+color = Color(0, 0, 0, 1)
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Camera2D" unique_id=2040907303]
+offset_left = -939.0
+offset_top = 478.0
+offset_right = -386.0
+offset_bottom = 519.0
+theme_override_constants/separation = 50
+
+[node name="KillsLabel" type="Label" parent="Camera2D/HBoxContainer2" unique_id=243365851]
+unique_name_in_owner = true
+z_index = 20
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.16078432, 0.16078432, 1)
+theme_override_font_sizes/font_size = 40
+text = "Kills: 0"
+
+[node name="EnemyCount" type="Label" parent="Camera2D/HBoxContainer2" unique_id=762859231]
+unique_name_in_owner = true
+z_index = 10
+layout_mode = 2
+theme_override_colors/font_color = Color(0.84910774, 0.41350687, 7.70092e-07, 1)
+theme_override_font_sizes/font_size = 40
+text = "Enemies: 0"
 
 [node name="Obstacle" parent="." unique_id=1943589396 instance=ExtResource("7_272bh")]
 position = Vector2(-200, 176)
@@ -156,3 +203,22 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
+
+[node name="EnemySpawners" type="Node" parent="." unique_id=1199320130]
+
+[node name="Marker2D" type="Marker2D" parent="EnemySpawners" unique_id=16341505]
+position = Vector2(6, -561)
+
+[node name="Marker2D2" type="Marker2D" parent="EnemySpawners" unique_id=908285054]
+position = Vector2(5, 592)
+
+[node name="ItemSpawners" type="Node" parent="." unique_id=76291855]
+
+[node name="Marker2D2" type="Marker2D" parent="ItemSpawners" unique_id=1241508568]
+position = Vector2(595, 356)
+
+[node name="Marker2D" type="Marker2D" parent="ItemSpawners" unique_id=991410245]
+position = Vector2(-299, -358)
+gizmo_extents = 27.5
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1009543401]

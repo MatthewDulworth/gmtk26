@@ -7,7 +7,7 @@ signal player_picked_up_item
 signal player_switched_weapon
 signal player_started_walking(player)
 signal player_stopped_walking(player)
-signal player_picked_up_feather
+signal player_picked_up_feather(val)
 
 signal player_fired_weapon(weapon_data: WeaponData)
 signal reloaded(active: bool)

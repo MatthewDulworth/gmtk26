@@ -8,12 +8,15 @@ class_name Item
 # Optional: Reuse your floating text popup for the box too!
 const FLOATING_TEXT_SCENE = preload("res://components/FloatingText.tscn")
 
-func collect() -> void:
+func collect(player: PlayerController) -> void:
 	var text_popup = FLOATING_TEXT_SCENE.instantiate()
-	text_popup.setup("new gun")
+	var available_weapons: Array = get_tree().current_scene.weapon_pool
+	var weapon: WeaponData = available_weapons.pick_random()
+	player.weapons_list.add_weapon(weapon)
+	text_popup.setup("Got %s" % weapon.name) 
+
 	get_tree().current_scene.add_child(text_popup)
 	text_popup.global_position = global_position
-
 	queue_free()
 
 func _ready() -> void:

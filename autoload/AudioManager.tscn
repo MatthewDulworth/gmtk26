@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b054rjhksl5xl"]
 
 [ext_resource type="Script" uid="uid://ccggbmoxah0ka" path="res://autoload/audio_manager.gd" id="1_nbik8"]
-[ext_resource type="AudioStream" uid="uid://b4eeu1tm14lq3" path="res://ASSets/Audio/playholder_theme.mp3" id="2_jqjfi"]
+[ext_resource type="AudioStream" uid="uid://bf4evk34eykw3" path="res://ASSets/Audio/Game Jame 2026.mp3" id="2_jqjfi"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_jqjfi"]
 clip_count = 1

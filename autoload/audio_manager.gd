@@ -44,12 +44,12 @@ const AUDIO_DICT := {
 	SFX.ENEMY_ATTACKED: preload("res://ASSets/Audio/placeholder/sumaga123-knife-432147.mp3"),
 	SFX.ENEMY_DAMAGED: preload("res://ASSets/Audio/placeholder/dragon-studio-punch-431475.mp3"),
 	SFX.ENEMY_WALKING: preload("res://ASSets/Audio/placeholder/freesound_community-duck-quacking-37392.mp3"),
-	SFX.ENEMY_SPAWNED: preload("res://ASSets/Audio/placeholder_sfx.mp3"),
+	SFX.ENEMY_SPAWNED: preload("res://ASSets/Audio/placeholder/placeholder_sfx.mp3"),
 	
 	SFX.ENEMY_WAVE_STARTED: preload("res://ASSets/Audio/placeholder/freesound_community-angry-elephant-40916.mp3"),
 	SFX.ENEMY_WAVE_ENDED: preload("res://ASSets/Audio/placeholder/freesound_community-success-1-6297.mp3"),
 	
-	SFX.ITEM_SPAWNED: preload("res://ASSets/Audio/placeholder_sfx.mp3"),
+	SFX.ITEM_SPAWNED: preload("res://ASSets/Audio/placeholder/placeholder_sfx.mp3"),
 	SFX.PICKED_UP_FEATHER: preload("res://ASSets/Audio/placeholder/chieuk-coin-257878.mp3"),
 	SFX.EXPLOSION: preload("res://level/retro-explosion-sound-effect.mp3"),
 }
@@ -71,7 +71,7 @@ func _ready() -> void:
 	SignalBus.enemy_died.connect(_on_enemy_died)
 	SignalBus.enemy_attacked.connect(func(): play(SFX.ENEMY_ATTACKED))
 	SignalBus.enemy_spawned.connect(_on_enemy_spawn)
-	SignalBus.player_picked_up_feather.connect(func(): play(SFX.PICKED_UP_FEATHER))
+	SignalBus.player_picked_up_feather.connect(func(val): play(SFX.PICKED_UP_FEATHER))
 	
 	SignalBus.player_damaged.connect(func(current_health): play(SFX.PLAYER_DAMAGED))
 	SignalBus.player_died.connect(_on_player_died)
@@ -84,9 +84,6 @@ func _ready() -> void:
 	
 	SignalBus.player_started_walking.connect(_on_player_started_walking)
 	SignalBus.player_stopped_walking.connect(_on_player_stopped_walking)
-	SignalBus.enemy_started_walking.connect(_on_enemy_started_walking)
-	SignalBus.enemy_stopped_walking.connect(_on_enemy_stopped_walking)
-	
 	SignalBus.wave_started.connect(func(): play(SFX.ENEMY_WAVE_STARTED))
 	SignalBus.wave_ended.connect(func(): play(SFX.ENEMY_WAVE_ENDED))
 	
@@ -99,12 +96,6 @@ func _ready() -> void:
 func _on_player_fired_weapon(weapon_data):
 	play(SFX.PLAYER_FIRED_WEAPON)
 
-func _on_enemy_started_walking(enemy):
-	enemy_walking_streams[enemy] = play_loop(SFX.ENEMY_WALKING)
-
-func _on_enemy_stopped_walking(enemy):
-	stop_loop(enemy_walking_streams[enemy])
-
 func _on_player_died(player):
 	if player in player_walking_streams and player_walking_streams[player]: stop_loop(player_walking_streams[player])
 	play(SFX.PLAYER_DIED)
@@ -114,8 +105,6 @@ func _on_enemy_spawn ():
 	#play_loop(SFX.ENEMY_WALKING)
 
 func _on_enemy_died(enemy):
-	if enemy_walking_streams[enemy]: 
-		stop_loop(enemy_walking_streams[enemy])
 	play(SFX.ENEMY_DIED)
 
 func _on_started_reload(weapon_data: WeaponData):
@@ -156,6 +145,7 @@ func _process(_delta: float) -> void:
 
 ## Plays the audio clip of the given name, optionally applies the given AudioPlayer params
 func play(clip_name: SFX, params: Dictionary = {}) -> void:
+	
 	var audio_player = _get_and_start_audio_player(clip_name, params)
 	
 	await audio_player.finished
@@ -185,6 +175,8 @@ func _get_and_start_audio_player(clip_name: SFX, params: Dictionary = {})->Audio
 		
 	if params.has("volume"):
 		audio_player.set_volume_db(params.volume)
+		
+	audio_player.volume_db -= 30
 	audio_player.play()
 	
 	return audio_player

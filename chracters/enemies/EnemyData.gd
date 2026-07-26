@@ -10,6 +10,7 @@ class_name EnemyData
 @export var animation_name_die: String = "death"
 @export var animation_name_attack: String = "attack"
 @export var animation_name_feather: String = "down_feather"
+@export var feather_bounce_till_despawn: int = 20
 
 @export var attack_range: float = 1.0
 @export var attack_damage: float = 1.0
